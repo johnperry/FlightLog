@@ -1,0 +1,22 @@
+FlightLog.exe ^
+ //IS//FlightLog ^
+ --Install="${home}"\windows\FlightLog.exe ^
+ --Description="Flight Log" ^
+ --Startup=auto ^
+ --Jvm=auto ^
+ --StartMode=jvm ^
+ --JvmMs=128 ^
+ --JvmMx=512 ^
+ --Classpath=FlightLogServer.jar ^
+ --StartPath="${home}" ^
+ --StartClass=org.jp.server.FlightLogServer ^
+ --StartMethod=startService ^
+ --StartParams=start ^
+ --StopMode=jvm ^
+ --StopPath="${home}" ^
+ --StopClass=org.jp.server.FlightLogServer ^
+ --StopMethod=stopService ^
+ --StopParams=stop ^
+ --LogPath="${home}"\logs ^
+ --StdOutput=auto ^
+ --StdError=auto
