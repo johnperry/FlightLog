@@ -71,6 +71,7 @@
 				<xsl:if test="@admin='yes'">
 					<div class="L1">Admin</div>
 					<div class="L2"><a href="javascript:loadFrame('/save')">Save database</a></div>
+					<div class="L2"><a href="javascript:loadFrame('/fixACIDs')">Fix A/C IDs</a></div>
 					<div class="L2"><a href="javascript:loadFrame('/users?suppress')">User Manager</a></div>
 					<div class="L2"><a href="javascript:loadFrame('/system?suppress')">System</a></div>
 					<div class="L2"><a href="javascript:loadFrame('/environment?suppress')">Environment</a></div>

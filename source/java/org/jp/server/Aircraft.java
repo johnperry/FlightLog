@@ -31,7 +31,7 @@ public class Aircraft implements Serializable, Comparable<Aircraft> {
 
 	public void set(String name, String value) {
 		if (name.equals("acid")) acid = fixACID(value);
-		else if (name.equals("model")) model = value;
+		else if (name.equals("model")) model = fixModel(value);
 		else if (name.equals("category")) category = value;
 		else if (name.equals("tailwheel")) tailwheel = yesblank(value);
 		else if (name.equals("retractable")) retractable = yesblank(value);
@@ -41,13 +41,34 @@ public class Aircraft implements Serializable, Comparable<Aircraft> {
 	public static String fixACID(String id) {
 		id = (id != null) ? id.trim() : "";
 		if (id.length() > 0) {
-			char c = id.charAt(0);
-			if ( (c != 'n') && (c != 'N') ) {
-				if (Character.isDigit(c)) id = "N" + id;
-			}
 			id = id.toUpperCase();
+			char c = id.charAt(0);
+			if (Character.isDigit(c)) id = "N" + id;
+			int k = id.indexOf("/");
+			if (k >= 0) {
+				k++;
+				String s = id.substring(k);
+				if (s.equals("SEA")) s = "s";
+				else s = s.toLowerCase();
+				id = id.substring(0, k) + s;
+			}
 		}
 		return id;
+	}
+	
+	public static String fixModel(String model) {
+		model = (model != null) ? model.trim() : "";
+		if (model.length() > 0) {
+			int k = model.indexOf("/");
+			if (k >= 0) {
+				k++;
+				String s = model.substring(k);
+				if (s.toUpperCase().equals("SEA")) s = "s";
+				else s = s.toLowerCase();
+				model = model.substring(0, k) + s;
+			}
+		}
+		return model;
 	}
 	
 	public String yesblank(String s) {

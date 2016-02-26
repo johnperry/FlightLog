@@ -190,4 +190,33 @@ public class Database {
 		catch (Exception ex) { return null; }
 	}
 	
+	public synchronized boolean fixACIDs() {
+		boolean ok = true;
+		try {
+			//First fix the aircraft table
+			LinkedList<Aircraft> acs = getAircraftList();
+			for ( Aircraft ac : acs ) {
+				if (ac.acid.contains("/") || ac.model.contains("/")) {
+					aircraftTable.remove(ac.acid);
+					ac.acid = Aircraft.fixACID(ac.acid);
+					ac.model = Aircraft.fixModel(ac.model);
+					addAircraft(ac);
+				}
+			}
+			//Now fix the flights table
+			LinkedList<Flight> flights = getFlightList();
+			for ( Flight flight : flights ) {
+				if (flight.acid.contains("/")) {
+					flight.acid = Aircraft.fixACID(flight.acid);
+					addFlight(flight);
+				}
+			}
+		}
+		catch (Exception ex) { 
+			logger.warn("Unable to fix the ACIDs", ex);
+			ok = false;
+		}
+		return ok;
+	}
+	
 }
