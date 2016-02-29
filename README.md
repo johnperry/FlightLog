@@ -3,6 +3,8 @@ A Pilot's Flight Logbook Server and Printer
 
 This repository builds FlightLog-installer.jar. The program is a self-extracting installer for the FlightLogServer and FlightLogPrinter programs. It creates a directory called FlightLog and puts the necessary files in it.
 
+The FlightLog-installer.jar program can be downloaded without having to build it. It is in the products directory in the repository.
+
 The program can be configured by putting a file called config.properties in the FlightLog directory. The configuration parameters are:
 
 port - the port on which the server is to be opened
