@@ -120,9 +120,9 @@ public class FlightLogPrinter extends JFrame {
 	class FlightPrinter implements Pageable, Printable {
 		
 		String name;
-		Font headerFont = new Font( "SansSerif", Font.BOLD, 14 );
+		Font headerFont = new Font("SansSerif", Font.BOLD, 14);
  		Font flightFont = new Font("SansSerif", Font.PLAIN, 12);
-		Font titleFont = new Font( "SansSerif", Font.BOLD, 14 );
+		Font titleFont = new Font("SansSerif", Font.BOLD, 14);
 		Font numberFont = new Font("SansSerif", Font.PLAIN, 10);
 		int marginTop = 9;
 		int headerPadding = 4;

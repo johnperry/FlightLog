@@ -63,7 +63,28 @@ public class Flight implements Serializable, Comparable<Flight> {
 		}
 		if (tday.isZero() && !total.isZero()) tday = new Time(total.subtract(tnt));
 		if (pic.isZero()) pic = new Time(total.subtract(dual));
-		if (to.equals("") || to.equals("LOCAL")) to = "local";
+		if (to.toUpperCase().equals("LOCAL")) to = "";
+		if (to.equals(from)) to = "";
+	}
+	
+	public Flight(Element el) {
+		id = el.getAttribute("id");
+		date = el.getAttribute("date");
+		acid = Aircraft.fixACID(el.getAttribute("acid"));
+		from = el.getAttribute("from").toUpperCase();
+		to = el.getAttribute("to").toUpperCase();
+		ldg = StringUtil.getInt(el.getAttribute("ldg"));
+		app = StringUtil.getInt(el.getAttribute("app"));
+		tach = getTime(el.getAttribute("tach"));
+		total = getTime(el.getAttribute("total"));
+		txc = getTime(el.getAttribute("txc"));
+		tday = getTime(el.getAttribute("tday"));
+		tnt = getTime(el.getAttribute("tnt"));
+		inst = getTime(el.getAttribute("inst"));
+		hood = getTime(el.getAttribute("hood"));
+		dual = getTime(el.getAttribute("dual"));
+		pic = getTime(el.getAttribute("pic"));
+		notes = trim(el.getAttribute("notes"));
 	}
 
 	public void set(String name, String value) {
@@ -129,7 +150,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 		flight.setAttribute("date", date);
 		flight.setAttribute("acid", acid);
 		flight.setAttribute("from", from);
-		flight.setAttribute("to", to);
+		if (!to.equals("")) flight.setAttribute("to", to);
 		if (!notes.equals("")) flight.setAttribute("notes", notes);
 		if (ldg > 0) flight.setAttribute("ldg", Integer.toString(ldg));
 		if (app > 0) flight.setAttribute("app", Integer.toString(app));
@@ -143,5 +164,16 @@ public class Flight implements Serializable, Comparable<Flight> {
 		if (!dual.isZero()) flight.setAttribute("dual", dual.toString());
 		if (!pic.isZero()) flight.setAttribute("pic", pic.toString());
 		return flight;
+	}
+	
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(id+"/");
+		sb.append(date+"/");
+		sb.append(acid+"/");
+		sb.append(from+"/");
+		sb.append(to+"/");
+		sb.append(total.toString());
+		return sb.toString();
 	}
 }

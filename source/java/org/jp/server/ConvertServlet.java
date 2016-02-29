@@ -7,31 +7,31 @@ import org.rsna.server.HttpResponse;
 import org.rsna.servlets.Servlet;
 
 /**
- * The servlet to tell the database to fix the Aircraft IDs
- * in both the Aircraft table and the Flights table.
+ * The servlet to make conversions in both the Aircraft table
+ * and the Flights table.
  */
-public class FixACIDsServlet extends Servlet {
+public class ConvertServlet extends Servlet {
 
 	static final Logger logger = Logger.getLogger(SaveServlet.class);
 	
 	/**
-	 * Construct a FixACIDsServlet.
+	 * Construct a ConvertServlet.
 	 * @param root the root directory of the server.
 	 * @param context the path identifying the servlet.
 	 */
-	public FixACIDsServlet(File root, String context) {
+	public ConvertServlet(File root, String context) {
 		super(root, context);
 	}
 
 	/**
-	 * The GET handler: tell the database to fix the Aircraft IDs.
+	 * The GET handler
 	 * @param req the request object
 	 * @param res the response object
 	 */
 	public void doGet(HttpRequest req, HttpResponse res) {
 		if (req.userHasRole("admin")) {
 			Database db = Database.getInstance();
-			if (db.fixACIDs()) {
+			if (db.convert()) {
 				res.write("The database was modified successfully.");
 			}
 			else {

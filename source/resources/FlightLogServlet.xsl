@@ -71,7 +71,6 @@
 				<xsl:if test="@admin='yes'">
 					<div class="L1">Admin</div>
 					<div class="L2"><a href="javascript:loadFrame('/save')">Save database</a></div>
-					<div class="L2"><a href="javascript:loadFrame('/fixACIDs')">Fix A/C IDs</a></div>
 					<div class="L2"><a href="javascript:loadFrame('/users?suppress')">User Manager</a></div>
 					<div class="L2"><a href="javascript:loadFrame('/system?suppress')">System</a></div>
 					<div class="L2"><a href="javascript:loadFrame('/environment?suppress')">Environment</a></div>
@@ -79,6 +78,8 @@
 					<div class="L2"><a href="javascript:loadFrame('/level?suppress')">Logger Levels</a></div>
 					<div class="L2"><a href="javascript:loadFrame('/attacklog?suppress')">Attack Log</a></div>
 					<div class="L2"><a href="javascript:loadFrame('/svrsts')">Server Status</a></div>
+					<div class="L2"><a href="javascript:loadFrame('/convert')">Convert</a></div>
+					<div class="L2"><a href="javascript:loadFrame('/initialize')">Initialize</a></div>
 				</xsl:if>
 			</xsl:if>
 		</div>

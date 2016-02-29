@@ -55,7 +55,7 @@ public class AddFlightServlet extends Servlet {
 						flight.set("date", StringUtil.getDate("."));
 						flight.set("acid", "N32CP");
 						flight.set("from", "68IS");
-						flight.set("to", "local");
+						flight.set("to", "");
 					}
 					else {
 						flight.set("date", lastFlight.date);
@@ -68,6 +68,7 @@ public class AddFlightServlet extends Servlet {
 							flight.set("from", lastFlight.to);
 							flight.set("to", lastFlight.from);
 						}
+						if (flight.from.equals(flight.to)) flight.to = "";
 						Aircraft lastAircraft = db.getAircraft(lastFlight.acid);
 						if ((lastAircraft != null) && lastAircraft.category.equals("Helicopter")) flight.ldg = 0;
 					}

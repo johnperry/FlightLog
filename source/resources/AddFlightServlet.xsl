@@ -34,6 +34,7 @@
 	<xsl:if test="Flight/@id = ''">
 		<h1>Add Flight</h1>
 	</xsl:if>	
+	<p><input type="button" value="Today" onclick="today()"/></p>
 
 	<form id="addFlight" method="POST" accept-charset="UTF-8" action="/addflight">
 	

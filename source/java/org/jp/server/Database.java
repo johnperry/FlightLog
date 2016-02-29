@@ -101,6 +101,17 @@ public class Database {
 		catch (Exception ex) { return null; }
 	}
 	
+	public synchronized int getNumberOfAircraft() {
+		try {
+			int n = 0;
+			FastIterator fit = aircraftTable.values();
+			String key;
+			while ( (key=(String)fit.next()) != null ) n++;
+			return n;
+		}
+		catch (Exception ex) { return -1; }
+	}
+	
 	public synchronized void addFlight(Flight flight) {
 		try {
 			//See if this is flight has an id
@@ -190,7 +201,18 @@ public class Database {
 		catch (Exception ex) { return null; }
 	}
 	
-	public synchronized boolean fixACIDs() {
+	public synchronized int getNumberOfFlights() {
+		try {
+			int n = 0;
+			FastIterator fit = flightsTable.values();
+			String key;
+			while ( (key=(String)fit.next()) != null ) n++;
+			return n;
+		}
+		catch (Exception ex) { return -1; }
+	}
+	
+	public synchronized boolean convert() {
 		boolean ok = true;
 		try {
 			//First fix the aircraft table
@@ -206,14 +228,20 @@ public class Database {
 			//Now fix the flights table
 			LinkedList<Flight> flights = getFlightList();
 			for ( Flight flight : flights ) {
+				boolean update = false;
 				if (flight.acid.contains("/")) {
 					flight.acid = Aircraft.fixACID(flight.acid);
-					addFlight(flight);
+					update = true;
 				}
+				if (flight.to.toUpperCase().equals("LOCAL") || flight.to.equals(flight.from)) {
+					flight.to = "";
+					update = true;
+				}
+				if (update) addFlight(flight);
 			}
 		}
 		catch (Exception ex) { 
-			logger.warn("Unable to fix the ACIDs", ex);
+			logger.warn("Unable to convert the database", ex);
 			ok = false;
 		}
 		return ok;

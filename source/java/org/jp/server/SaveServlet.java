@@ -1,9 +1,10 @@
 package org.jp.server;
 
-import java.io.File;
+import java.io.*;
 import java.util.Collections;
 import java.util.LinkedList;
 import org.apache.log4j.Logger;
+import org.jp.config.Configuration;
 import org.rsna.server.HttpRequest;
 import org.rsna.server.HttpResponse;
 import org.rsna.servlets.Servlet;
@@ -42,10 +43,10 @@ public class SaveServlet extends Servlet {
 				Document doc = XmlUtil.getDocument();
 				Element root = doc.createElement("FlightLog");
 				doc.appendChild(root);
-				Element aircraft = doc.createElement("Aircraft");
+				Element aircraft = doc.createElement("AircraftList");
 				root.appendChild(aircraft);
 				for (Aircraft ac : db.getAircraftList()) aircraft.appendChild(ac.getElement(aircraft));
-				Element flights = doc.createElement("Flights");
+				Element flights = doc.createElement("FlightList");
 				root.appendChild(flights);
 				
 				//Get the flights and sort them in date order
@@ -56,11 +57,14 @@ public class SaveServlet extends Servlet {
 				}
 				
 				//Save it in the program root directory
+				String xml = XmlUtil.toPrettyString(doc);
+				xml = xml.replace("    ", " ");
 				File backupfile = new File("FlightLog.xml");
-				FileUtil.setText(backupfile, XmlUtil.toPrettyString(doc));
+				FileUtil.setText(backupfile, xml);
 				
-				//Copy it to Google Drive, it available
-				File userhome = new File("C:\\Users\\John");
+				//Copy it to Google Drive, if available
+				String userhome = Configuration.getInstance().getProperty("userhome", "C:\\Users\\John");
+				File userdir = new File(userhome);
 				File googledrive = new File(userhome, "Google Drive");
 				File googlefile = null;
 				if (googledrive.exists()) {
@@ -74,8 +78,10 @@ public class SaveServlet extends Servlet {
 				res.write("Backup file created ["+backupfile.getAbsolutePath()+"]");
 				if (googlefile != null) res.write("\nand copied to Google Drive.");
 			}
-			catch (Exception unable) {
-				unable.printStackTrace();
+			catch (Exception ex) {
+				StringWriter sw = new StringWriter();
+				ex.printStackTrace(new PrintWriter(sw));
+				res.write(sw.toString());
 				res.setResponseCode(res.servererror);
 			}
 		}

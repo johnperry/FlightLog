@@ -18,6 +18,8 @@ public class Aircraft implements Serializable, Comparable<Aircraft> {
 	public String retractable	= "";
 	public String complex		= "";
 
+	public Aircraft() { }
+	
 	public Aircraft(HttpRequest req) {
 		acid = fixACID(req.getParameter("acid", ""));
 		model = req.getParameter("model", "");
@@ -27,7 +29,14 @@ public class Aircraft implements Serializable, Comparable<Aircraft> {
 		complex = yesblank(req.getParameter("complex", "no"));
 	}
 
-	public Aircraft() { }
+	public Aircraft(Element el) {
+		acid = fixACID(el.getAttribute("acid"));
+		model = el.getAttribute("model");
+		category = el.getAttribute("category");
+		tailwheel = yesblank(el.getAttribute("tailwheel"));
+		retractable = yesblank(el.getAttribute("retractable"));
+		complex = yesblank(el.getAttribute("complex"));
+	}
 
 	public void set(String name, String value) {
 		if (name.equals("acid")) acid = fixACID(value);

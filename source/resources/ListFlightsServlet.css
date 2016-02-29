@@ -40,6 +40,8 @@ td.right {
 td.number {
 	text-align: right;
 	background: #b9d0ed;
+	font-size: 8pt;
+	vertical-align: bottom;
 }	
 
 td.totals {
