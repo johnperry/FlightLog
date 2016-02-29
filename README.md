@@ -9,7 +9,7 @@ port - the port on which the server is to be opened
 
 name - the pilot's name to be printed on each page of the log book
 
-userhome - the path to the user's home directory
+userhome - the path to the user's home directory (used when copying a backup to Google drive)
 
 Defaults are provided which configure the program for me, so while I don't need a config file, you do.
 
