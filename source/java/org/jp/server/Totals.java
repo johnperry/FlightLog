@@ -33,9 +33,9 @@ public class Totals {
 	public Element getElement(Element parent) {
 		Document doc = parent.getOwnerDocument();
 		Element totals = doc.createElement("Totals");
-		totals.setAttribute("ldg", Integer.toString(ldg));
+		if (ldg > 0) totals.setAttribute("ldg", Integer.toString(ldg));
 		if (app > 0) totals.setAttribute("app", Integer.toString(app));
-		totals.setAttribute("total", total.toString());
+		if (!total.isZero()) totals.setAttribute("total", total.toString());
 		if (!txc.isZero()) totals.setAttribute("txc", txc.toString());
 		if (!tday.isZero()) totals.setAttribute("tday", tday.toString());
 		if (!tnt.isZero()) totals.setAttribute("tnt", tnt.toString());

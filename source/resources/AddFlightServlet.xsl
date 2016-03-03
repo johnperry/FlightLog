@@ -96,14 +96,14 @@
 	<div class="notes">
 		<p>
 			Notes:<br/>
-			<textarea name="notes">
+			<textarea name="notes" tabindex="16">
 				<xsl:if test="Flight/@notes"><xsl:value-of select="Flight/@notes"/></xsl:if>
 				<xsl:if test="not(Flight/@notes)">&#160;</xsl:if>
 			</textarea>
 		</p>
 	</div>
 
-	<p><input type="submit" value="Submit Flight"/></p>
+	<p><input type="submit" value="Submit Flight" tabindex="17"/></p>
 	</form>
 
 </center>

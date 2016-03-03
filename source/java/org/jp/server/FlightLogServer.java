@@ -47,6 +47,9 @@ public class FlightLogServer implements Runnable {
 		System.out.println(dateTime+" Stopping the service");
 		logger.info("Stopping the service");
 		if (thread != null) {
+			Database.getInstance().close();
+			System.out.println(dateTime+" Database closed");
+			logger.info("Database closed");
 			thread.interrupt();
 			System.out.println(dateTime+" Thread interrupted");
 			logger.info("Thread interrupted");
@@ -120,6 +123,7 @@ public class FlightLogServer implements Runnable {
 		selector.addServlet("convert",		ConvertServlet.class);
 		selector.addServlet("initialize",	InitializeServlet.class);
 		selector.addServlet("search",		SearchServlet.class);
+		selector.addServlet("oddballs",		OddballServlet.class);
 		selector.addServlet("login",		LoginServlet.class);
 		selector.addServlet("users",		UserManagerServlet.class);
 		selector.addServlet("user",			UserServlet.class);

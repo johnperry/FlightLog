@@ -60,7 +60,9 @@ public class AddFlightServlet extends Servlet {
 					else {
 						flight.set("date", lastFlight.date);
 						flight.set("acid", lastFlight.acid);
-						if (lastFlight.to.equals("local") || (lastFlight.ldg % 2 == 0)) {
+						if (lastFlight.to.equals("local") ||
+							lastFlight.to.equals("") ||
+							(lastFlight.ldg % 2 == 0)) {
 							flight.set("from", lastFlight.from);
 							flight.set("to", "");
 						}

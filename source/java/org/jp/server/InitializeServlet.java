@@ -62,7 +62,9 @@ public class InitializeServlet extends Servlet {
 						Node child = fts.getFirstChild();
 						while (child != null) {
 							if ((child instanceof Element) && child.getNodeName().equals("Flight")) {
-								db.addFlight(new Flight( (Element)child ));
+								Flight flight = new Flight( (Element)child );
+								flight.id = "";
+								db.addFlight(flight);
 								ftCount++;
 							}
 							child = child.getNextSibling();
@@ -72,7 +74,7 @@ public class InitializeServlet extends Servlet {
 					res.write(ftCount + " flights were imported.\n");
 				}
 				else {
-					res.write("The database contained "+nAircraft+" and "+nFlights+".\n");
+					res.write("The database contained "+nAircraft+" aircraft and "+nFlights+" flights.\n");
 					res.write("Flights cannot be imported into the database.\n");
 				}
 			}
