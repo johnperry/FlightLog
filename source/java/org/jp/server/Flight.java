@@ -136,7 +136,11 @@ public class Flight implements Serializable, Comparable<Flight> {
 	}
 
 	public int compareTo(Flight fl) {
-		return date.compareTo(fl.date);
+		int c = date.compareTo(fl.date);
+		if (c != 0) return c;
+		int iThis = StringUtil.getInt(id);
+		int iOther = StringUtil.getInt(fl.id);
+		return (iThis - iOther);
 	}
 	
 	public boolean matches(SearchCriteria criteria) {

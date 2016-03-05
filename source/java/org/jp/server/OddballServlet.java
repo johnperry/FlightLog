@@ -1,6 +1,7 @@
 package org.jp.server;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import org.apache.log4j.Logger;
@@ -38,20 +39,48 @@ public class OddballServlet extends Servlet {
 		if (req.userHasRole("admin")) {
 			try {
 				Database db = Database.getInstance();
-				LinkedList<Flight> list = db.getFlightList();
+				LinkedList<Aircraft> acList = db.getAircraftList();
+				Hashtable<String,Aircraft> acTable = new Hashtable<String,Aircraft>();
+				HashSet<String> unreferencedAC = new HashSet<String>();
+				HashSet<String> missingAC = new HashSet<String>();
+				for (Aircraft ac : acList) {
+					acTable.put(ac.acid, ac);
+					unreferencedAC.add(ac.acid);
+				}
+				LinkedList<Flight> flightList = db.getFlightList();
 				Document doc = XmlUtil.getDocument();
-				Element root = doc.createElement("Flights");
+				Element root = doc.createElement("Oddballs");
 				root.setAttribute("title", "Oddballs");
 				doc.appendChild(root);
-				for (Flight flight : list) {
+				for (Flight flight : flightList) {
+					unreferencedAC.remove(flight.acid);
+					if (!acTable.containsKey(flight.acid)) missingAC.add(flight.acid);
 					double totalTime = flight.total.doubleValue();
 					double dayTime = flight.tday.doubleValue();
 					double picTime = flight.pic.doubleValue();
-					if ((dayTime > totalTime) || (picTime > totalTime)){
+					double xcTime = flight.txc.doubleValue();
+					if ((dayTime > totalTime) || (picTime > totalTime) || 
+							((picTime > 1.0d) && flight.txc.isZero() && !flight.to.equals(""))){
 						root.appendChild(flight.getElement(root));
 					}
 				}
-				Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("ListFlightsServlet.xsl" ) );
+				if (missingAC.size() > 0) {
+					for (String acid : missingAC) {
+						Element ac = doc.createElement("MissingAC");
+						ac.setAttribute("acid", acid);
+						root.appendChild(ac);
+					}
+				}
+				if (unreferencedAC.size() > 0) {
+					Element uac = doc.createElement("UnreferencedAC");
+					root.appendChild(uac);
+					for (String acid : unreferencedAC) {
+						Aircraft ac = acTable.get(acid);
+						uac.appendChild(ac.getElement(uac));
+					}
+				}
+				//System.out.println(XmlUtil.toPrettyString(root));
+				Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("OddballServlet.xsl" ) );
 				res.write( XmlUtil.getTransformedText(doc, xsl, null) );
 				res.disableCaching();
 				res.setContentType("html");

@@ -4,7 +4,7 @@
 
 <xsl:preserve-space elements="*"/>
 
-<xsl:template match="/Flights">
+<xsl:template match="/Oddballs">
 
 <html>
 
@@ -92,16 +92,63 @@
 				<td class="right"><xsl:value-of select="Totals/@pic"/></td>
 			</tr>
 		</xsl:if>
-		<tr/>
-		<tr/>
-		<tr/>
 	</table>
-
+	
+	<xsl:apply-templates select="UnreferencedAC"/>
+	
+	<xsl:if test="MissingAC">
+		<h1>Missing Aircraft</h1>
+		<table>
+			<xsl:for-each select="MissingAC">
+				<xsl:sort select="@acid"/>
+				<tr>
+					<td>
+						<a href="/addaircraft?acid={@acid}">
+							<xsl:value-of select="@acid"/>
+						</a>
+					</td>
+				</tr>
+			</xsl:for-each>
+		</table>
+	</xsl:if>
 </center>
 </body>
 
 </html>
 
+</xsl:template>
+
+<xsl:template match="UnreferencedAC">
+	<h1>Unreferenced Aircraft</h1>
+	<table>
+		<tr>
+			<th>A/C ID</th>
+			<th>Model</th>
+			<th>Category</th>
+			<th>Tailwheel</th>
+			<th>Retractable</th>
+			<th>Complex</th>
+		</tr>
+		<xsl:for-each select="Aircraft">
+			<xsl:sort select="@category"/>
+			<xsl:sort select="@model"/>
+			<xsl:sort select="@acid"/>
+			<tr>
+				<td><a href="/addaircraft?acid={@acid}"><xsl:value-of select="@acid"/></a></td>
+				<td><xsl:value-of select="@model"/></td>
+				<td class="center"><xsl:value-of select="@category"/></td>
+				<td class="center">
+					<xsl:if test="@tailwheel='yes'">&#10003;</xsl:if>
+				</td>
+				<td class="center">
+					<xsl:if test="@retractable='yes'">&#10003;</xsl:if>
+				</td>
+				<td class="center">
+					<xsl:if test="@complex='yes'">&#10003;</xsl:if>
+				</td>
+			</tr>
+		</xsl:for-each>
+	</table>
 </xsl:template>
 
 </xsl:stylesheet>
