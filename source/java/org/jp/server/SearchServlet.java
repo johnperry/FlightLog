@@ -43,9 +43,14 @@ public class SearchServlet extends Servlet {
 				doc.appendChild(root);
 				String username = req.getUser().getUsername();
 				SearchCriteria sc = lastCriteria.get(username);
-				if (sc != null) root.appendChild(sc.getElement(root));
-				Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("SearchServlet.xsl" ) );
-				res.write( XmlUtil.getTransformedText(doc, xsl, null) );
+				if ((sc != null) && req.hasParameter("repeat")) {
+					res.write(search(sc));
+				}
+				else {
+					if (sc != null) root.appendChild(sc.getElement(root));
+					Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("SearchServlet.xsl" ) );
+					res.write( XmlUtil.getTransformedText(doc, xsl, null) );
+				}
 				res.disableCaching();
 				res.setContentType("html");
 			}
@@ -71,20 +76,7 @@ public class SearchServlet extends Servlet {
 				SearchCriteria criteria = new SearchCriteria(req);
 				String username = req.getUser().getUsername();
 				lastCriteria.put(username, criteria);
-				Database db = Database.getInstance();
-				LinkedList<Flight> list = db.getFlightList(criteria);
-				Totals totals = new Totals();
-				Document doc = XmlUtil.getDocument();
-				Element root = doc.createElement("Flights");
-				root.setAttribute("title", "Search Results");
-				doc.appendChild(root);
-				for (Flight flight : list) {
-					root.appendChild(flight.getElement(root));
-					totals.add(flight);
-				}
-				root.appendChild(totals.getElement(root));
-				Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("ListFlightsServlet.xsl" ) );
-				res.write( XmlUtil.getTransformedText(doc, xsl, null) );
+				res.write(search(criteria));
 				res.disableCaching();
 				res.setContentType("html");
 			}
@@ -99,4 +91,22 @@ public class SearchServlet extends Servlet {
 		}
 		res.send();
 	}
+	
+	private String search(SearchCriteria criteria) throws Exception {
+		Database db = Database.getInstance();
+		LinkedList<Flight> list = db.getFlightList(criteria);
+		Totals totals = new Totals();
+		Document doc = XmlUtil.getDocument();
+		Element root = doc.createElement("Flights");
+		root.setAttribute("title", "Search Results");
+		doc.appendChild(root);
+		for (Flight flight : list) {
+			root.appendChild(flight.getElement(root));
+			totals.add(flight);
+		}
+		root.appendChild(totals.getElement(root));
+		Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("ListFlightsServlet.xsl" ) );
+		return XmlUtil.getTransformedText(doc, xsl, null);
+	}
+
 }

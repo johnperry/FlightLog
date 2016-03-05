@@ -83,8 +83,6 @@ public class SearchCriteria {
 		this.retractable = denullBoolean(retractable);
 		this.complex = denullBoolean(complex);
 		this.notes = Flight.trim(notes).toLowerCase();
-		
-		acceptAllClasses = !(this.asel || this.ases || this.amel || this.ames || this.glider || this.helicopter);
 	}
 	
 	private String denullLC(String s) {
@@ -100,6 +98,7 @@ public class SearchCriteria {
 	}
 	
 	public boolean matches(Flight flight) {
+		acceptAllClasses = !(this.asel || this.ases || this.amel || this.ames || this.glider || this.helicopter);
 		boolean result = 
 				(earliestDate.equals("") || (flight.date.compareTo(earliestDate) >= 0))
 			&&	(latestDate.equals("") || (flight.date.compareTo(latestDate) <= 0))
@@ -163,6 +162,7 @@ public class SearchCriteria {
 	}
 	
 	public void print() {
+		acceptAllClasses = !(this.asel || this.ases || this.amel || this.ames || this.glider || this.helicopter);
 		System.out.println("SearchCriteria:");
 		System.out.println("  earliestDate: \""+earliestDate+"\"");
 		System.out.println("  latestDate:   \""+latestDate+"\"");

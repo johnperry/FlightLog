@@ -123,6 +123,7 @@ public class FlightLogServer implements Runnable {
 		selector.addServlet("convert",		ConvertServlet.class);
 		selector.addServlet("initialize",	InitializeServlet.class);
 		selector.addServlet("search",		SearchServlet.class);
+		selector.addServlet("summary",		SummaryServlet.class);
 		selector.addServlet("oddballs",		OddballServlet.class);
 		selector.addServlet("login",		LoginServlet.class);
 		selector.addServlet("users",		UserManagerServlet.class);
