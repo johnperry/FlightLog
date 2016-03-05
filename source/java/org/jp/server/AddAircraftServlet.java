@@ -42,9 +42,11 @@ public class AddAircraftServlet extends Servlet {
 				if (!acid.equals("")) {
 					Database db = Database.getInstance();
 					Aircraft ac = db.getAircraft(acid);
-					if (ac != null) {
-						root.appendChild(ac.getElement(root));
+					if (ac == null) {
+						ac = new Aircraft();
+						ac.acid = acid;
 					}
+					root.appendChild(ac.getElement(root));
 				}
 				Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("AddAircraftServlet.xsl" ) );
 				res.write( XmlUtil.getTransformedText(doc, xsl, null) );

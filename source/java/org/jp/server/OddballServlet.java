@@ -39,6 +39,12 @@ public class OddballServlet extends Servlet {
 		if (req.userHasRole("admin")) {
 			try {
 				Database db = Database.getInstance();
+				
+				//If this is a remove aircraft command, do it now 
+				String removeAC = req.getParameter("removeAC");
+				if (removeAC != null) db.removeAircraft(removeAC);
+				
+				//Make the Oddballs page
 				LinkedList<Aircraft> acList = db.getAircraftList();
 				Hashtable<String,Aircraft> acTable = new Hashtable<String,Aircraft>();
 				HashSet<String> unreferencedAC = new HashSet<String>();

@@ -111,6 +111,7 @@
 			</xsl:for-each>
 		</table>
 	</xsl:if>
+	<br/><br/><br/><br/>
 </center>
 </body>
 
@@ -145,6 +146,9 @@
 				</td>
 				<td class="center">
 					<xsl:if test="@complex='yes'">&#10003;</xsl:if>
+				</td>
+				<td>
+					<input type="button" value="Remove" onclick="window.open('?removeAC={@acid}','_self');"/>
 				</td>
 			</tr>
 		</xsl:for-each>

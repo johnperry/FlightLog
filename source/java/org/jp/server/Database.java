@@ -80,6 +80,16 @@ public class Database {
 		}
 	}
 	
+	public synchronized void removeAircraft(String acid) {
+		try {
+			aircraftTable.remove(acid);
+			commit();
+		}
+		catch (Exception unable) {
+			logger.warn("Unable to remove aircraft "+acid);
+		}
+	}
+	
 	public synchronized Aircraft getAircraft(String acid) {
 		try {
 			return (Aircraft)aircraftTable.get(acid);
