@@ -103,7 +103,22 @@
 	</table>
 
 	<p><input type="submit" value="Submit Flight" tabindex="17"/></p>
-	<p><input type="button" value="Repeat Previous Search" tabindex="18" onclick="window.open('/search?repeat','_self');"/></p>
+	
+	<p>
+		<input type="button" 
+			   value="Repeat Previous Search" 
+			   tabindex="18" 
+			   onclick="window.open('/search?repeat','_self');"/>
+	</p>
+	
+	<xsl:if test="Flight/@date">
+		<p>
+			<input type="button" 
+				   value="Flights around this date" 
+				   tabindex="19" 
+				   onclick="window.open('/search?date={Flight/@date}','_self');"/>
+		</p>
+	</xsl:if>
 	</form>
 
 </center>
