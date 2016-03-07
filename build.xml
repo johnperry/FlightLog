@@ -12,6 +12,7 @@
 	<property name="copyright" value="Copyright 2014 John Perry"/>
 	<property name="ctp" value="D:/Development/CTP"/>
 	<property name="printer" value="org/jp/printer"/>
+	<property name="importer" value="org/jp/importer"/>
 	<property name="server" value="org/jp/server"/>
 	<property name="installer" value="org/jp/installer"/>
 	<property name="config" value="org/jp/config"/>
@@ -59,6 +60,16 @@
 	</target>
 
 	<target name="jar" depends="compile">
+
+		<jar jarfile="${products}/AirportImporter.jar">
+			<manifest>
+				<attribute name="Main-Class" value="org.jp.importer.AirportImporter"/>
+				<attribute name="Class-Path" value="libraries/util.jar"/>
+				<attribute name="Implementation-Version" value="${today} @ ${now}"/>
+			</manifest>
+			<fileset dir="${build}" includes="${importer}/*.*" />
+			<fileset dir="${build}" includes="${config}/**" />
+		</jar>
 	
 		<jar jarfile="${products}/FlightLogPrinter.jar">
 			<manifest>
@@ -90,6 +101,7 @@
       <copy overwrite="true" todir="${build}/FlightLog">
          <fileset dir="${products}" includes="FlightLogServer.jar"/>
          <fileset dir="${products}" includes="FlightLogPrinter.jar"/>
+         <fileset dir="${products}" includes="AirportImporter.jar"/>
          <fileset dir="${files}"/>
       </copy>
 
