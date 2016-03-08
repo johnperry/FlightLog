@@ -38,13 +38,8 @@
 		</tr>
 		
 		<tr>
-			<td>From:</td>
-			<td><input class="text" type="text" name="from" value="{SC/@from}"/></td>
-		</tr>
-		
-		<tr>
-			<td>To:</td>
-			<td><input class="text" type="text" name="to" value="{SC/@to}"/></td>
+			<td>Route:</td>
+			<td><input class="text" type="text" name="route" value="{SC/@route}"/></td>
 		</tr>
 		
 		<tr>

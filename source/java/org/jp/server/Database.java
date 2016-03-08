@@ -243,10 +243,6 @@ public class Database {
 					flight.acid = Aircraft.fixACID(flight.acid);
 					update = true;
 				}
-				if (flight.to.toUpperCase().equals("LOCAL") || flight.to.equals(flight.from)) {
-					flight.to = "";
-					update = true;
-				}
 				if (update) addFlight(flight);
 			}
 		}

@@ -25,8 +25,7 @@
 			<th/>
 			<th>Date</th>
 			<th>A/C ID</th>
-			<th>From</th>
-			<th>To</th>
+			<th>Route</th>
 			<th>Total</th>
 			<th>Ldg</th>
 			<th>App</th>
@@ -53,10 +52,7 @@
 				</td>
 				<td><a href="/addflight?id={@id}"><xsl:value-of select="@date"/></a></td>
 				<td><a href="/addaircraft?acid={@acid}"><xsl:value-of select="@acid"/></a></td>
-				<td><xsl:value-of select="@from"/></td>
-				<td>
-					<xsl:if test="@to!='local'"><xsl:value-of select="@to"/></xsl:if>
-				</td>
+				<td><xsl:value-of select="@route"/></td>
 				<td class="right">
 					<xsl:if test="@tach">
 						<xsl:attribute name="title">tach=<xsl:value-of select="@tach"/></xsl:attribute>
@@ -79,7 +75,7 @@
 			<tr>
 				<td class="totals"/>
 				<td class="totals">Totals:</td>
-				<td class="totals" colspan="3"/>
+				<td class="totals" colspan="2"/>
 				<td class="right"><xsl:value-of select="Totals/@total"/></td>
 				<td class="right"><xsl:value-of select="Totals/@ldg"/></td>
 				<td class="right"><xsl:value-of select="Totals/@app"/></td>

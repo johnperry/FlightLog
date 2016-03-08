@@ -37,8 +37,7 @@ public class Row {
 		addCell(Integer.toString(flightNumber), Cell.RIGHT, 3, numberFont);
 		addCell(flight.getAttribute("date"), Cell.LEFT);
 		addCell(flight.getAttribute("acid"), Cell.LEFT);
-		addCell(flight.getAttribute("from"), Cell.LEFT);
-		addCell(flight.getAttribute("to"), Cell.LEFT);
+		addCell(flight.getAttribute("route"), Cell.LEFT);
  		addCell(flight.getAttribute("total"), Cell.RIGHT);
 		addCell(flight.getAttribute("ldg"), Cell.RIGHT);
 		addCell(flight.getAttribute("app"), Cell.RIGHT);
@@ -119,8 +118,7 @@ public class Row {
 		row.addCell(" ", Cell.RIGHT);
 		row.addCell("Date", Cell.LEFT);
 		row.addCell("A/C ID", Cell.LEFT);
-		row.addCell("From", Cell.LEFT);
-		row.addCell("To", Cell.LEFT);
+		row.addCell("Route", Cell.LEFT);
 		row.addCell("Total", Cell.RIGHT);
 		row.addCell("Ldg", Cell.RIGHT);
 		row.addCell("App", Cell.RIGHT);

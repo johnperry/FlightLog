@@ -65,17 +65,17 @@ public class SaveServlet extends Servlet {
 				//Copy it to Google Drive, if available
 				String cloud = Configuration.getInstance().getProperty("cloud", "C:\\Users\\John\\Google Drive");
 				File cloudDir = new File(cloud);
-				File googleFile = null;
+				File cloudFile = null;
 				if (cloudDir.exists()) {
-					cloudFile = new File(cloudDir, backupfile.getName());
-					FileUtil.copy(backupfile, cloudFile);
+					cloudFile = new File(cloudDir, backupFile.getName());
+					FileUtil.copy(backupFile, cloudFile);
 				}
 				
 				//Send a response
 				res.disableCaching();
 				res.setContentType("txt");
 				res.write("Backup file created ["+backupFile.getAbsolutePath()+"]");
-				if (cloudFile != null) res.write("\nand copied to cloud drive.");
+				if (cloudFile != null) res.write("\nand copied to the cloud drive ["+cloudDir.getAbsolutePath()+"]");
 			}
 			catch (Exception ex) {
 				StringWriter sw = new StringWriter();

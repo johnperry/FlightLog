@@ -54,23 +54,12 @@ public class AddFlightServlet extends Servlet {
 					if (lastFlight == null) {
 						flight.set("date", StringUtil.getDate("."));
 						flight.set("acid", "N32CP");
-						flight.set("from", "68IS");
-						flight.set("to", "");
+						flight.set("route", "68IS");
 					}
 					else {
 						flight.set("date", lastFlight.date);
 						flight.set("acid", lastFlight.acid);
-						if (lastFlight.to.equals("local") ||
-							lastFlight.to.equals("") ||
-							(lastFlight.ldg % 2 == 0)) {
-							flight.set("from", lastFlight.from);
-							flight.set("to", "");
-						}
-						else {
-							flight.set("from", lastFlight.to);
-							flight.set("to", lastFlight.from);
-						}
-						if (flight.from.equals(flight.to)) flight.to = "";
+						flight.set("route", lastFlight.route);
 						Aircraft lastAircraft = db.getAircraft(lastFlight.acid);
 						if ((lastAircraft != null) && lastAircraft.category.equals("Helicopter")) flight.ldg = 0;
 					}

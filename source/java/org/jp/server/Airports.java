@@ -48,6 +48,20 @@ public class Airports {
 		return 0.0;
 	}
 	
+	public double getXCDistance(String route) {
+		String[] wps = route.split(" ");
+		if (wps.length > 1) {
+			double total = 0.0;
+			boolean isXC = false;
+			for (int i=0; i < wps.length; i++) {
+				total += getDistance(wps[i-1], wps[i]);
+				if (getDistance(wps[0], wps[i]) >= 50.0) isXC = true;
+			}
+			if (isXC) return total;
+		}
+		return 0.0;
+	}
+	
 	class V3 {
 		double x;
 		double y;

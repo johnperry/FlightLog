@@ -10,8 +10,7 @@ public class SearchCriteria {
 	
 	public String earliestDate = "";
 	public String latestDate = "";
-	public String from = "";
-	public String to = "";
+	public String route = "";
 	public String acid = "";
 	public String model = "";
 	public boolean asel = false;
@@ -33,8 +32,7 @@ public class SearchCriteria {
 		this(
 				req.getParameter("earliestDate"),
 				req.getParameter("latestDate"),
-				req.getParameter("from"),
-				req.getParameter("to"),
+				req.getParameter("route"),
 				req.getParameter("acid"),
 				req.getParameter("model"),
 				req.getParameter("asel"),
@@ -53,8 +51,7 @@ public class SearchCriteria {
 	public SearchCriteria(
 				String earliestDate,
 				String latestDate,
-				String from,
-				String to,
+				String route,
 				String acid,
 				String model,
 				String asel,
@@ -69,8 +66,7 @@ public class SearchCriteria {
 				String notes) {
 		this.earliestDate = denullLC(earliestDate);
 		this.latestDate = denullLC(latestDate);
-		this.from = denullLC(from);
-		this.to = denullLC(to);
+		this.route = denullLC(route);
 		this.acid = Aircraft.fixACID(acid);
 		this.model = denullLC(model);
 		this.asel = denullBoolean(asel);
@@ -102,8 +98,7 @@ public class SearchCriteria {
 		boolean result = 
 				(earliestDate.equals("") || (flight.date.compareTo(earliestDate) >= 0))
 			&&	(latestDate.equals("") || (flight.date.compareTo(latestDate) <= 0))
-			&&	(from.equals("") || flight.from.toLowerCase().contains(from))
-			&&	(to.equals("") || flight.to.toLowerCase().contains(to))
+			&&	(route.equals("") || flight.route.toLowerCase().contains(route))
 			&&	(acid.equals("") || flight.acid.equals(acid))
 			&&	(notes.equals("") || flight.notes.toLowerCase().contains(notes));
 		
@@ -144,8 +139,7 @@ public class SearchCriteria {
 		Element sc = doc.createElement("SC");
 		sc.setAttribute("earliestDate", earliestDate);
 		sc.setAttribute("latestDate", latestDate);
-		sc.setAttribute("from", from);
-		sc.setAttribute("to", to);
+		sc.setAttribute("route", route);
 		sc.setAttribute("acid", acid);
 		sc.setAttribute("model", model);
 		if (asel) sc.setAttribute("asel", "yes");
@@ -166,8 +160,7 @@ public class SearchCriteria {
 		System.out.println("SearchCriteria:");
 		System.out.println("  earliestDate: \""+earliestDate+"\"");
 		System.out.println("  latestDate:   \""+latestDate+"\"");
-		System.out.println("  from:         \""+from+"\"");
-		System.out.println("  to:           \""+to+"\"");
+		System.out.println("  route:         \""+route+"\"");
 		System.out.println("  acid:         \""+acid+"\"");
 		System.out.println("  model:        \""+model+"\"");
 		System.out.println("  acceptAll:    "+acceptAllClasses);

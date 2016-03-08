@@ -17,8 +17,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 	public String	id		= "";
 	public String	date	= today();
 	public String	acid	= "";
-	public String	from	= "";
-	public String	to		= "";
+	public String	route	= "";
 	public int		ldg		= 1;
 	public int		app		= 0;
 	public Time		tach	= Time.zero();
@@ -32,16 +31,13 @@ public class Flight implements Serializable, Comparable<Flight> {
 	public Time		pic		= Time.zero();
 	public String	notes	= "";
 
-	public static GregorianCalendar gc = new GregorianCalendar();
-
 	public Flight() { }
 
 	public Flight(HttpRequest req) {
 		id = req.getParameter("id", "");
 		date = req.getParameter("date");
 		acid = Aircraft.fixACID(req.getParameter("acid"));
-		from = req.getParameter("from").toUpperCase();
-		to = req.getParameter("to").toUpperCase();
+		route = req.getParameter("route").toUpperCase();
 		ldg = StringUtil.getInt(req.getParameter("ldg"));
 		app = StringUtil.getInt(req.getParameter("app"));
 		tach = getTime(req.getParameter("tach"));
@@ -63,16 +59,13 @@ public class Flight implements Serializable, Comparable<Flight> {
 		}
 		if (tday.isZero() && !total.isZero()) tday = new Time(total.subtract(tnt));
 		if (pic.isZero()) pic = new Time(total.subtract(dual));
-		if (to.toUpperCase().equals("LOCAL")) to = "";
-		if (to.equals(from)) to = "";
 	}
 	
 	public Flight(Element el) {
 		id = el.getAttribute("id");
 		date = el.getAttribute("date");
 		acid = Aircraft.fixACID(el.getAttribute("acid"));
-		from = el.getAttribute("from").toUpperCase();
-		to = el.getAttribute("to").toUpperCase();
+		route = el.getAttribute("route").toUpperCase();
 		ldg = StringUtil.getInt(el.getAttribute("ldg"));
 		app = StringUtil.getInt(el.getAttribute("app"));
 		tach = getTime(el.getAttribute("tach"));
@@ -91,8 +84,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 		if (name.equals("id"))			id		= value;
 		else if (name.equals("date")) 	date 	= value;
 		else if (name.equals("acid")) 	acid	= Aircraft.fixACID(value);
-		else if (name.equals("from")) 	from 	= value.toUpperCase();
-		else if (name.equals("to")) 	to 		= value.toUpperCase();
+		else if (name.equals("route")) 	route 	= value.toUpperCase();
 		else if (name.equals("ldg")) 	ldg 	= StringUtil.getInt(value);
 		else if (name.equals("app")) 	app 	= StringUtil.getInt(value);
 		else if (name.equals("tach"))	tach 	= Time.valueOf(value);
@@ -105,8 +97,6 @@ public class Flight implements Serializable, Comparable<Flight> {
 		else if (name.equals("dual")) 	dual 	= Time.valueOf(value);
 		else if (name.equals("pic")) 	pic 	= Time.valueOf(value);
 		else if (name.equals("notes")) 	notes 	= trim(value);
-		
-		if (to.equals("LOCAL")) to = "local";
 	}
 	
 	public static String trim(String s) {
@@ -120,6 +110,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 	}
 
 	private static String today() {
+		GregorianCalendar gc = new GregorianCalendar();
 		return
 			gc.get(gc.YEAR)
 				+ "." + two(gc.get(gc.MONTH) + 1)
@@ -153,8 +144,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 		flight.setAttribute("id", id);
 		flight.setAttribute("date", date);
 		flight.setAttribute("acid", acid);
-		flight.setAttribute("from", from);
-		if (!to.equals("")) flight.setAttribute("to", to);
+		flight.setAttribute("route", route);
 		if (!notes.equals("")) flight.setAttribute("notes", notes);
 		if (ldg > 0) flight.setAttribute("ldg", Integer.toString(ldg));
 		if (app > 0) flight.setAttribute("app", Integer.toString(app));
@@ -170,13 +160,18 @@ public class Flight implements Serializable, Comparable<Flight> {
 		return flight;
 	}
 	
+	public static String fixAirportID(String id) {
+		id = id.toUpperCase();
+		if (id.startsWith("K")) id = id.substring(1);
+		return id;
+	}
+	
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(id+"/");
 		sb.append(date+"/");
 		sb.append(acid+"/");
-		sb.append(from+"/");
-		sb.append(to+"/");
+		sb.append(route+"/");
 		sb.append(total.toString());
 		return sb.toString();
 	}
