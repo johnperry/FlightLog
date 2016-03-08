@@ -59,24 +59,23 @@ public class SaveServlet extends Servlet {
 				//Save it in the program root directory
 				String xml = XmlUtil.toPrettyString(doc);
 				xml = xml.replace("    ", " ");
-				File backupfile = new File("FlightLog.xml");
-				FileUtil.setText(backupfile, xml);
+				File backupFile = new File("FlightLog.xml");
+				FileUtil.setText(backupFile, xml);
 				
 				//Copy it to Google Drive, if available
-				String userhome = Configuration.getInstance().getProperty("userhome", "C:\\Users\\John");
-				File userdir = new File(userhome);
-				File googledrive = new File(userhome, "Google Drive");
-				File googlefile = null;
-				if (googledrive.exists()) {
-					googlefile = new File(googledrive, backupfile.getName());
-					FileUtil.copy(backupfile, googlefile);
+				String cloud = Configuration.getInstance().getProperty("cloud", "C:\\Users\\John\\Google Drive");
+				File cloudDir = new File(cloud);
+				File googleFile = null;
+				if (cloudDir.exists()) {
+					cloudFile = new File(cloudDir, backupfile.getName());
+					FileUtil.copy(backupfile, cloudFile);
 				}
 				
 				//Send a response
 				res.disableCaching();
 				res.setContentType("txt");
-				res.write("Backup file created ["+backupfile.getAbsolutePath()+"]");
-				if (googlefile != null) res.write("\nand copied to Google Drive.");
+				res.write("Backup file created ["+backupFile.getAbsolutePath()+"]");
+				if (cloudFile != null) res.write("\nand copied to cloud drive.");
 			}
 			catch (Exception ex) {
 				StringWriter sw = new StringWriter();
