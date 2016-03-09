@@ -139,6 +139,17 @@
 
 	<p><input type="submit" value="Search"/></p>
 	</form>
+	
+	<table>
+		<tr>
+			<td>Route:</td>
+			<td># = round trip<br/>! = cross country</td>
+		</tr>
+		<tr>
+			<td>Notes:</td>
+			<td>* = contains notes<br/># = contains route</td>
+		</tr>
+	</table>
 
 </center>
 </body>

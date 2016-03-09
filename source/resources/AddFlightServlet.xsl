@@ -45,46 +45,42 @@
 		<tr>
 			<td>Date:</td>
 			<td><input id="date" class="text" type="text" name="date" value="{Flight/@date}" tabindex="1"/></td>
-			<td/>
-			<td/>
-		</tr>
-		<tr>
-			<td>Aircraft ID:</td>
-			<td><input class="text" type="text" name="acid" value="{Flight/@acid}" tabindex="2"/></td>
 			<td>XC:</td>
 			<td><input class="text" type="text" name="txc" value="{Flight/@txc}" tabindex="9"/></td>
 		</tr>
 		<tr>
-			<td>Route:</td>
-			<td><input class="text" type="text" name="route" value="{Flight/@from}" tabindex="3"/></td>
+			<td>Aircraft ID:</td>
+			<td><input class="text" type="text" name="acid" value="{Flight/@acid}" tabindex="2"/></td>
 			<td>Day:</td>
 			<td><input class="text" type="text" name="tday" value="{Flight/@tday}" tabindex="10"/></td>
 		</tr>
 		<tr>
-			<td>Landings:</td>
-			<td><input class="text" type="text" name="ldg" value="{Flight/@ldg}" tabindex="5"/></td>
+			<td>Route:</td>
+			<td><input class="text" type="text" name="route" value="{Flight/@route}" tabindex="3"/></td>
 			<td>Night:</td>
 			<td><input class="text" type="text" name="tnt" value="{Flight/@tnt}" tabindex="11"/></td>
 		</tr>
 		<tr>
-			<td>Total Time:</td>
-			<td><input class="text" type="text" name="total" value="{Flight/@total}" tabindex="6"/></td>
+			<td>Landings:</td>
+			<td><input class="text" type="text" name="ldg" value="{Flight/@ldg}" tabindex="5"/></td>
 			<td>Approaches:</td>
 			<td><input class="text" type="text" name="app" value="{Flight/@app}" tabindex="12"/></td>
 		</tr>
 		<tr>
-			<td>Tach Time:</td>
-			<td><input class="text" type="text" name="tach" value="{Flight/@tach}" tabindex="7"/></td>
+			<td>Total Time:</td>
+			<td><input class="text" type="text" name="total" value="{Flight/@total}" tabindex="6"/></td>
 			<td>Instrument:</td>
 			<td><input class="text" type="text" name="inst" value="{Flight/@inst}" tabindex="13"/></td>
 		</tr>
 		<tr>
-			<td>PIC:</td>
-			<td><input class="text" type="text" name="pic" value="{Flight/@pic}" tabindex="8"/></td>
+			<td>Tach Time:</td>
+			<td><input class="text" type="text" name="tach" value="{Flight/@tach}" tabindex="7"/></td>
 			<td>Hood:</td>
 			<td><input class="text" type="text" name="hood" value="{Flight/@hood}" tabindex="14"/></td>
 		</tr>
 		<tr>
+			<td>PIC:</td>
+			<td><input class="text" type="text" name="pic" value="{Flight/@pic}" tabindex="8"/></td>
 			<td>Dual:</td>
 			<td><input class="text" type="text" name="dual" value="{Flight/@dual}" tabindex="15"/></td>
 		</tr>

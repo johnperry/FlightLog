@@ -98,9 +98,13 @@ public class SearchCriteria {
 		boolean result = 
 				(earliestDate.equals("") || (flight.date.compareTo(earliestDate) >= 0))
 			&&	(latestDate.equals("") || (flight.date.compareTo(latestDate) <= 0))
-			&&	(route.equals("") || flight.route.toLowerCase().contains(route))
+			&&	(route.equals("") || flight.route.toLowerCase().contains(route)
+					|| (route.equals("#") && isRoundTrip(flight))
+					|| (route.equals("!") && isXC(flight)))
 			&&	(acid.equals("") || flight.acid.equals(acid))
-			&&	(notes.equals("") || flight.notes.toLowerCase().contains(notes));
+			&&	(notes.equals("") || flight.notes.toLowerCase().contains(notes) 
+					|| (notes.equals("*") && (flight.notes.length() > 0))
+					|| (notes.equals("#") && isRoute(flight.notes)));
 		
 		if (result) {
 			Database db = Database.getInstance();
@@ -115,6 +119,28 @@ public class SearchCriteria {
 			}
 		}
 		return result;
+	}
+	
+	private boolean isXC(Flight flight) {
+		Airports aps = Airports.getInstance();
+		return (aps.getXCDistance(flight.route) >= 50.0);
+	}
+	
+	private boolean isRoundTrip(Flight flight) {
+		if (flight.ldg != 2) return false;
+		return (flight.route.split(" ").length == 2);
+	}
+	
+	private boolean isRoute(String s) {
+		String[] wps = s.split(" ");
+		if (wps.length < 2) return false;
+		for (String wp : wps) {
+			wp = wp.trim();
+			int len = wp.length();
+			if ((len < 3) || len > 6) return false;
+			if (wp.replaceAll("[0-9A-Z]", "").length() != 0) return false;
+		}
+		return true;
 	}
 	
 	private boolean checkModel(Aircraft ac) {

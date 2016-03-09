@@ -109,9 +109,11 @@ public class SearchServlet extends Servlet {
 		Element root = doc.createElement("Flights");
 		root.setAttribute("title", "Search Results");
 		doc.appendChild(root);
-		for (Flight flight : list) {
-			root.appendChild(flight.getElement(root));
-			totals.add(flight);
+		if (list != null) {
+			for (Flight flight : list) {
+				root.appendChild(flight.getElement(root));
+				totals.add(flight);
+			}
 		}
 		root.appendChild(totals.getElement(root));
 		Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("ListFlightsServlet.xsl" ) );

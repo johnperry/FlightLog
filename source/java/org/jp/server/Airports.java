@@ -53,7 +53,7 @@ public class Airports {
 		if (wps.length > 1) {
 			double total = 0.0;
 			boolean isXC = false;
-			for (int i=0; i < wps.length; i++) {
+			for (int i=1; i < wps.length; i++) {
 				total += getDistance(wps[i-1], wps[i]);
 				if (getDistance(wps[0], wps[i]) >= 50.0) isXC = true;
 			}

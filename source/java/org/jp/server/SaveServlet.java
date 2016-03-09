@@ -9,6 +9,7 @@ import org.rsna.server.HttpRequest;
 import org.rsna.server.HttpResponse;
 import org.rsna.servlets.Servlet;
 import org.rsna.util.FileUtil;
+import org.rsna.util.StringUtil;
 import org.rsna.util.XmlUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -60,6 +61,7 @@ public class SaveServlet extends Servlet {
 				String xml = XmlUtil.toPrettyString(doc);
 				xml = xml.replace("    ", " ");
 				File backupFile = new File("FlightLog.xml");
+				backup(backupFile); //copy the previous backup
 				FileUtil.setText(backupFile, xml);
 				
 				//Copy it to Google Drive, if available
@@ -89,4 +91,36 @@ public class SaveServlet extends Servlet {
 		}
 		res.send();
 	}
+	
+	private void backup(File targetFile) {
+		targetFile = targetFile.getAbsoluteFile();
+		File parent = targetFile.getParentFile();
+		if (targetFile.exists()) {
+			String name = targetFile.getName();
+			int k = name.lastIndexOf(".");
+			String target = name.substring(0,k) + "[";
+			int tlen = target.length();
+			String ext = name.substring(k);
+
+			int n = 0;
+			File[] files = parent.listFiles();
+			if (files != null) {
+				for (File file : files) {
+					String fname = file.getName();
+					if (fname.startsWith(target)) {
+						int kk = fname.indexOf("]", tlen);
+						if (kk > tlen) {
+							int nn = StringUtil.getInt(fname.substring(tlen, kk), 0);
+							if (nn > n) n = nn;
+						}
+					}
+				}
+			}
+			n++;
+			File backup = new File(parent, target + n + "]" + ext);
+			backup.delete(); //shouldn't be there, but just in case.
+			FileUtil.copy(targetFile, backup);
+		}
+	}
+
 }

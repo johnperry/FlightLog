@@ -72,8 +72,15 @@ public class FlightLogPrinter extends JFrame {
 			job = PrinterJob.getPrinterJob();
 			pageFormat = job.defaultPage();
 			pageFormat.setOrientation(PageFormat.LANDSCAPE);
+			
+			Paper paper = new Paper();
+			double marginV = 36;
+			double marginH = 72;
+			paper.setImageableArea(marginH, marginV, paper.getWidth() - 2*marginH, paper.getHeight() - 2*marginV);
+			pageFormat.setPaper(paper);
+			
 			printer = new FlightPrinter(doc);
-			job.setPrintable(printer,pageFormat);
+			job.setPrintable(printer, pageFormat);
 			job.setPageable(printer);
 			pageItem.setEnabled(true);
 			printItem.setEnabled(true);
