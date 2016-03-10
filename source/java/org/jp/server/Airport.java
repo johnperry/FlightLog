@@ -26,4 +26,13 @@ public class Airport {
 		lon = Double.parseDouble(ap.getAttribute("lon"));
 	}
 	
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(id + "\n");
+		sb.append("    " + name + "\n");
+		sb.append("    " + city + ", " + state + "\n");
+		sb.append("    " + "("+lat+","+lon+")" + "\n");
+		return sb.toString();
+	}
+	
 }

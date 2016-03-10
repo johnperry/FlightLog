@@ -140,7 +140,7 @@
 	<p><input type="submit" value="Search"/></p>
 	</form>
 	
-	<table>
+	<table border="1">
 		<tr>
 			<td>Route:</td>
 			<td># = round trip<br/>! = cross country</td>

@@ -13,6 +13,9 @@
 	<link rel="stylesheet" href="/BaseStyles.css" type="text/css"/>
 	<link rel="stylesheet" href="/JSPage.css" type="text/css"/>
 	<link rel="stylesheet" href="/ListFlightsServlet.css" type="text/css"/>
+	<script language="JavaScript" type="text/javascript" src="/JSUtil.js">;</script>
+	<script language="JavaScript" type="text/javascript" src="/JSAJAX.js">;</script>
+	<script language="JavaScript" type="text/javascript" src="/ListFlightsServlet.js">;</script>
 </head>
 
 <body>
@@ -52,7 +55,11 @@
 				</td>
 				<td><a href="/addflight?id={@id}"><xsl:value-of select="@date"/></a></td>
 				<td><a href="/addaircraft?acid={@acid}"><xsl:value-of select="@acid"/></a></td>
-				<td><xsl:value-of select="@route"/></td>
+				<td>
+					<a href="javascript:getAirports('{@id}');">
+						<xsl:value-of select="@route"/>
+					</a>
+				</td>
 				<td class="right">
 					<xsl:if test="@tach">
 						<xsl:attribute name="title">tach=<xsl:value-of select="@tach"/></xsl:attribute>

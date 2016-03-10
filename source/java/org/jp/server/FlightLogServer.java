@@ -112,28 +112,29 @@ public class FlightLogServer implements Runnable {
 						false /*do not require authentication*/ );
 
 		//Add in the servlets
-		selector.addServlet("admin",		AdminServlet.class);
-		selector.addServlet("attacklog",	AttackLogServlet.class);
-		selector.addServlet("flightlog",	FlightLogServlet.class);
-		selector.addServlet("addflight",	AddFlightServlet.class);
-		selector.addServlet("listflights",	ListFlightsServlet.class);
 		selector.addServlet("addaircraft",	AddAircraftServlet.class);
-		selector.addServlet("listaircraft",	ListAircraftServlet.class);
-		selector.addServlet("save",			SaveServlet.class);
+		selector.addServlet("addflight",	AddFlightServlet.class);
+		selector.addServlet("admin",		AdminServlet.class);
+		selector.addServlet("airports",		AirportServlet.class);
+		selector.addServlet("attacklog",	AttackLogServlet.class);
 		selector.addServlet("convert",		ConvertServlet.class);
+		selector.addServlet("environment",	EnvironmentServlet.class);
+		selector.addServlet("flightlog",	FlightLogServlet.class);
 		selector.addServlet("initialize",	InitializeServlet.class);
+		selector.addServlet("level",		LoggerLevelServlet.class);
+		selector.addServlet("listaircraft",	ListAircraftServlet.class);
+		selector.addServlet("listflights",	ListFlightsServlet.class);
+		selector.addServlet("login",		LoginServlet.class);
+		selector.addServlet("logs",			LogServlet.class);
+		selector.addServlet("oddballs",		OddballServlet.class);
+		selector.addServlet("ping",			PingServlet.class);
+		selector.addServlet("save",			SaveServlet.class);
 		selector.addServlet("search",		SearchServlet.class);
 		selector.addServlet("summary",		SummaryServlet.class);
-		selector.addServlet("oddballs",		OddballServlet.class);
-		selector.addServlet("login",		LoginServlet.class);
-		selector.addServlet("users",		UserManagerServlet.class);
-		selector.addServlet("user",			UserServlet.class);
-		selector.addServlet("logs",			LogServlet.class);
 		selector.addServlet("svrsts",		ServerStatusServlet.class);
 		selector.addServlet("system",		SysPropsServlet.class);
-		selector.addServlet("environment",	EnvironmentServlet.class);
-		selector.addServlet("level",		LoggerLevelServlet.class);
-		selector.addServlet("ping",			PingServlet.class);
+		selector.addServlet("user",			UserServlet.class);
+		selector.addServlet("users",		UserManagerServlet.class);
 		
 		//Hook the shutdown and close the database
 		Runtime.getRuntime().addShutdownHook(new Thread() {

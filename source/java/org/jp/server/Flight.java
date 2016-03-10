@@ -137,6 +137,10 @@ public class Flight implements Serializable, Comparable<Flight> {
 	public boolean matches(SearchCriteria criteria) {
 		return criteria.matches(this);
 	}
+	
+	public boolean isXC() {
+		return (Airports.getInstance().getXCDistance(route) > 49.0);
+	}
 
 	public Element getElement(Element parent) {
 		Document doc = parent.getOwnerDocument();

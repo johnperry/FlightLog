@@ -154,7 +154,7 @@ public class Database {
 		}
 	}
 	
-	public synchronized Flight getFlight(String id) {
+	public synchronized Flight getFlight(String id) throws Exception {
 		return getFlight(new Integer(id));
 	}
 	

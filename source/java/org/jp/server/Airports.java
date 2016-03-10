@@ -35,6 +35,12 @@ public class Airports {
 		}
 	}
 	
+	public Airport getAirport(String id) {
+		Airport ap = airports.get(id);
+		if (ap == null) ap = airports.get("K"+id);
+		return ap;
+	}
+	
 	public double getDistance(String fromID, String toID) {
 		Airport fromAP = airports.get(fromID);
 		Airport toAP = airports.get(toID);
