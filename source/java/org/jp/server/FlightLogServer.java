@@ -160,5 +160,8 @@ public class FlightLogServer implements Runnable {
 
 		//Start the DDNS thread
 		(new DDNS()).start();
+		
+		//Load the Airports database in case it has to be downloaded
+		Airports.getInstance();
 	}
 }

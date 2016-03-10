@@ -26,6 +26,31 @@ public class Airport {
 		lon = Double.parseDouble(ap.getAttribute("lon"));
 	}
 	
+	public Airport(String id,
+				   String name,
+				   String city,
+				   String state,
+				   String lat,
+				   String lon) {
+		this.id = id;
+		this.name = name;
+		this.city = city;
+		this.state = state;
+		this.lat = Double.parseDouble(lat);
+		this.lon = Double.parseDouble(lon);
+	}
+	
+	public Element getElement(Element parent) {
+		Document doc = parent.getOwnerDocument();
+		Element ap = doc.createElement("Airport");
+		ap.setAttribute("id", id.trim());
+		ap.setAttribute("city", city.trim());
+		ap.setAttribute("name", name.trim());
+		ap.setAttribute("lat", String.format("%.3f",lat));
+		ap.setAttribute("lon", String.format("%.3f",lon));
+		return ap;
+	}
+	
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(id + "\n");

@@ -124,7 +124,7 @@ public class Database {
 	
 	public synchronized void addFlight(Flight flight) {
 		try {
-			//See if this is flight has an id
+			//See if this flight has an id
 			if (!flight.id.equals("")) {
 				//Yes, see if this is an add or delete
 				Integer idInt = new Integer(flight.id);
