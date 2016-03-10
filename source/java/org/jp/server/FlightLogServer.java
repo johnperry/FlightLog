@@ -115,7 +115,7 @@ public class FlightLogServer implements Runnable {
 		selector.addServlet("addaircraft",	AddAircraftServlet.class);
 		selector.addServlet("addflight",	AddFlightServlet.class);
 		selector.addServlet("admin",		AdminServlet.class);
-		selector.addServlet("airports",		AirportServlet.class);
+		selector.addServlet("airports",		AirportsServlet.class);
 		selector.addServlet("attacklog",	AttackLogServlet.class);
 		selector.addServlet("convert",		ConvertServlet.class);
 		selector.addServlet("environment",	EnvironmentServlet.class);

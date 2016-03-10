@@ -9,16 +9,16 @@ import org.rsna.servlets.Servlet;
 /**
  * A servlet to access the Airports database.
  */
-public class AirportServlet extends Servlet {
+public class AirportsServlet extends Servlet {
 
-	static final Logger logger = Logger.getLogger(AirportServlet.class);
+	static final Logger logger = Logger.getLogger(AirportsServlet.class);
 	
 	/**
-	 * Construct an AirportServlet.
+	 * Construct an AirportsServlet.
 	 * @param root the root directory of the server.
 	 * @param context the path identifying the servlet.
 	 */
-	public AirportServlet(File root, String context) {
+	public AirportsServlet(File root, String context) {
 		super(root, context);
 	}
 
