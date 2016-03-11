@@ -8,7 +8,7 @@ import org.w3c.dom.*;
 /**
  * A class to encapsulate an airport.
  */
-public class Airport {
+public class Airport implements Comparable<Airport> {
 	
 	public String id;
 	public String name;
@@ -40,17 +40,28 @@ public class Airport {
 		this.lon = Double.parseDouble(lon);
 	}
 	
+	public boolean matches(AirportSearchCriteria sc) {
+		return sc.matches(this);
+	}
+	
 	public Element getElement(Element parent) {
 		Document doc = parent.getOwnerDocument();
 		Element ap = doc.createElement("Airport");
 		ap.setAttribute("id", id.trim());
 		ap.setAttribute("city", city.trim());
 		ap.setAttribute("name", name.trim());
+		ap.setAttribute("state", state.trim());
 		ap.setAttribute("lat", String.format("%.3f",lat));
 		ap.setAttribute("lon", String.format("%.3f",lon));
 		return ap;
 	}
 	
+	public int compareTo(Airport ap) {
+		int k ;
+		if ((k=state.compareTo(ap.state)) != 0) return k;
+		return id.compareTo(ap.id);
+	}
+
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(id + "\n");

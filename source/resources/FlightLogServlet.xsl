@@ -70,6 +70,9 @@
 				<div class="L2"><a href="javascript:loadFrame('/addaircraft')">Add aircraft</a></div>
 				<div class="L2"><a href="javascript:loadFrame('/listaircraft')">List aircraft</a></div>
 
+				<div class="L1">Airports</div>
+				<div class="L2"><a href="javascript:loadFrame('/airports')">Search airports</a></div>
+
 				<xsl:if test="@admin='yes'">
 					<div class="L1">Admin</div>
 					<div class="L2"><a href="javascript:loadFrame('/save')">Save database</a></div>

@@ -1,10 +1,15 @@
 package org.jp.server;
 
 import java.io.*;
+import java.util.Hashtable;
+import java.util.LinkedList;
 import org.apache.log4j.Logger;
 import org.rsna.server.HttpRequest;
 import org.rsna.server.HttpResponse;
 import org.rsna.servlets.Servlet;
+import org.rsna.util.Cache;
+import org.rsna.util.XmlUtil;
+import org.w3c.dom.*;
 
 /**
  * A servlet to access the Airports database.
@@ -12,6 +17,7 @@ import org.rsna.servlets.Servlet;
 public class AirportsServlet extends Servlet {
 
 	static final Logger logger = Logger.getLogger(AirportsServlet.class);
+	static Hashtable<String,AirportSearchCriteria> lastCriteria = new Hashtable<String,AirportSearchCriteria>();
 	
 	/**
 	 * Construct an AirportsServlet.
@@ -33,6 +39,7 @@ public class AirportsServlet extends Servlet {
 			try {
 				String id = req.getParameter("id");
 				if (id != null) {
+					//This is an AJAX request for flight waypoint information
 					StringBuffer sb = new StringBuffer();
 					Flight flight = Database.getInstance().getFlight(id);
 					if (flight != null) {
@@ -65,8 +72,17 @@ public class AirportsServlet extends Servlet {
 					res.setContentType("txt");
 				}
 				else {
-					res.write("missing id parameter");
-					res.setContentType("txt");
+					//This is a request for the search page
+					Document doc = XmlUtil.getDocument();
+					Element root = doc.createElement("Request");
+					doc.appendChild(root);
+					String username = req.getUser().getUsername();
+					AirportSearchCriteria sc = lastCriteria.get(username);
+					if (sc != null) root.appendChild(sc.getElement(root));
+					Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("AirportsServlet.xsl" ) );
+					res.write( XmlUtil.getTransformedText(doc, xsl, null) );
+					res.disableCaching();
+					res.setContentType("html");
 				}
 			}
 			catch (Exception ex) {
@@ -82,4 +98,39 @@ public class AirportsServlet extends Servlet {
 		res.send();
 	}
 	
+	/**
+	 * The POST handler
+	 * @param req the request object
+	 * @param res the response object
+	 */
+	public void doPost(HttpRequest req, HttpResponse res) {
+		res.disableCaching();
+		if (req.isFromAuthenticatedUser()) {
+			try {
+				AirportSearchCriteria sc = new AirportSearchCriteria(req);
+				String username = req.getUser().getUsername();
+				lastCriteria.put(username, sc);
+				LinkedList<Airport> aps = Airports.getInstance().search(sc);
+				Document doc = XmlUtil.getDocument();
+				Element root = doc.createElement("Airports");
+				doc.appendChild(root);
+				for (Airport ap : aps) {
+					root.appendChild(ap.getElement(root));
+				}
+				Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("AirportsServlet.xsl" ) );
+				res.write( XmlUtil.getTransformedText(doc, xsl, null) );
+				res.disableCaching();
+				res.setContentType("html");
+			}
+			catch (Exception ex) {
+				res.setResponseCode(res.servererror);
+			}
+		}
+		else {
+			res.setResponseCode(res.forbidden);
+		}
+		res.send();
+		
+	}
+
 }

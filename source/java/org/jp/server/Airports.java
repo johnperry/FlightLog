@@ -3,6 +3,7 @@ package org.jp.server;
 import java.io.File;
 import java.net.HttpURLConnection;
 import java.util.Hashtable;
+import java.util.LinkedList;
 import org.apache.log4j.Logger;
 import org.rsna.util.*;
 import org.w3c.dom.*;
@@ -54,6 +55,16 @@ public class Airports {
 		Airport ap = airports.get(id);
 		if (ap == null) ap = airports.get("K"+id);
 		return ap;
+	}
+	
+	public LinkedList<Airport> search(AirportSearchCriteria sc) {
+		LinkedList<Airport> aps = new LinkedList<Airport>();
+		for (Airport ap : airports.values()) {
+			if (ap.matches(sc)) {
+				aps.add(ap);
+			}
+		}
+		return aps;
 	}
 	
 	public double getDistance(String fromID, String toID) {

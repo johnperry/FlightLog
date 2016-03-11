@@ -51,10 +51,15 @@ public class SummaryServlet extends Servlet {
 				sc.model = "ea300*"; //Note: must be lower case
 				root.appendChild(search(root, "Extra 300L", sc));
 				
-				//Get the total in all Extras
+				//Get the total in EA200
 				sc = new SearchCriteria();
 				sc.model = "ea200"; //Note: must be lower case
 				root.appendChild(search(root, "Extra 200", sc));
+				
+				//Get the total in all Extras
+				sc = new SearchCriteria();
+				sc.model = "ea*"; //Note: must be lower case
+				root.appendChild(search(root, "All Extras", sc));
 				
 				//Get the total tailwheel time
 				sc = new SearchCriteria();
