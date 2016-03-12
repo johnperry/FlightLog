@@ -44,6 +44,10 @@ td.number {
 	vertical-align: bottom;
 }	
 
+span.index {
+	font-size: 4pt;
+}	
+
 td.totals {
 	text-align: center;
 	background: #b9d0ed;

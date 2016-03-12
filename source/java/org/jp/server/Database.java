@@ -193,6 +193,7 @@ public class Database {
 			FastIterator fit = flightsTable.values();
 			Flight flight;
 			while ( (flight=(Flight)fit.next()) != null ) list.add(flight);
+			Collections.sort(list);
 			return list;
 		}
 		catch (Exception ex) { return null; }
@@ -206,6 +207,7 @@ public class Database {
 			while ( (flight=(Flight)fit.next()) != null ) {
 				if (flight.matches(criteria)) list.add(flight);
 			}
+			Collections.sort(list);
 			return list;
 		}
 		catch (Exception ex) { return null; }

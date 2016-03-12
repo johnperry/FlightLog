@@ -42,8 +42,6 @@
 				<th>PIC</th>
 			</tr>
 			<xsl:for-each select="Flight">
-				<xsl:sort select="@date"/>
-				<xsl:sort select="number(@id)"/>
 				<tr>
 					<td class="number">
 						<xsl:if test="@notes">
@@ -54,7 +52,16 @@
 							<xsl:value-of select="position()"/>
 						</xsl:if>
 					</td>
-					<td><a href="/addflight?id={@id}"><xsl:value-of select="@date"/></a></td>
+					<td>
+						<a href="/addflight?id={@id}">
+							<xsl:value-of select="substring(@date,1,10)"/>
+							<xsl:if test="string-length(@date)&gt;10">
+								<span class="index">
+									<xsl:value-of select="substring(@date,11)"/>
+								</span>
+							</xsl:if>
+						</a>
+					</td>
 					<td><a href="/addaircraft?acid={@acid}"><xsl:value-of select="@acid"/></a></td>
 					<td>
 						<a href="javascript:getAirports('{@id}');">

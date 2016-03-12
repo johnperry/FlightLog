@@ -40,6 +40,7 @@ public class Airports {
 				}
 				child = child.getNextSibling();
 			}
+			logger.info("Airports database loaded: "+String.format("%,d",airports.size())+" airports found.");
 		}
 		else {
 			load();

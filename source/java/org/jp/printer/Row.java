@@ -34,8 +34,10 @@ public class Row {
 	}
 	
 	public void addFlight(Element flight, int flightNumber) {
+		String date = flight.getAttribute("date");
+		date = date.substring(0, Math.min(date.length(), 10));
 		addCell(Integer.toString(flightNumber), Cell.RIGHT, 3, numberFont);
-		addCell(flight.getAttribute("date"), Cell.LEFT);
+		addCell(date, Cell.LEFT);
 		addCell(flight.getAttribute("acid"), Cell.LEFT);
 		addCell(flight.getAttribute("route"), Cell.LEFT);
  		addCell(flight.getAttribute("total"), Cell.RIGHT);

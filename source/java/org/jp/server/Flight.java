@@ -127,8 +127,44 @@ public class Flight implements Serializable, Comparable<Flight> {
 	}
 
 	public int compareTo(Flight fl) {
-		int c = date.compareTo(fl.date);
+		//Compare the dates.
+		//Note the date may have an index indicating the 
+		//number of the flight on the day.
+		int c;
+		if ((date.length() <= 10) || (fl.date.length() <= 10)) {
+			//This case is where at least one date does not
+			//contain an index, so we can just compare the strings.
+			c = date.compareTo(fl.date);
+		}
+		else {
+			//This case is where both dates contain an index.
+			//First compare the date parts.
+			String dateString = date.substring(0, 10);
+			String fldateString = fl.date.substring(0, 10);
+			c = dateString.compareTo(fldateString);
+			if (c == 0) {
+				//The date parts are the same; now compare the indexes.
+				if (date.length() > 11) {
+					String dateIndexString = date.substring(11);
+					String fldateIndexString = fl.date.substring(11);
+					try { 
+						c = new Integer(dateIndexString)
+										.compareTo(
+												new Integer(fldateIndexString) );
+					}
+					catch (Exception ex) {
+						//At least one index didn't parse. This can happen if 
+						//the index was entered as, for example, ".a". For
+						//this case, just compare the index strings.
+						c = dateIndexString.compareTo(fldateIndexString);
+					}
+				}
+			}
+		}
 		if (c != 0) return c;
+		
+		//If no order can be found so far, use the id attributes.
+		//This can be wrong if flights with the same date are entered out of order.
 		int iThis = StringUtil.getInt(id);
 		int iOther = StringUtil.getInt(fl.id);
 		return (iThis - iOther);
@@ -139,7 +175,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 	}
 	
 	public boolean isXC() {
-		return (Airports.getInstance().getXCDistance(route) > 49.0);
+		return (Airports.getInstance().getXCDistance(route) > 49.9);
 	}
 
 	public Element getElement(Element parent) {
