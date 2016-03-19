@@ -142,13 +142,18 @@ public class Airports {
 							Element tr = (Element)doc.importNode(trs.item(i), true);
 							NodeList tds = tr.getElementsByTagName("td");
 							if (tds.getLength() >= 8) {
+								String id = tds.item(2).getTextContent().trim().toUpperCase();
+								String city = capitalize(tds.item(4).getTextContent().trim(), state);
+								String name = capitalize(tds.item(5).getTextContent().trim(), state);
+								String lat = filter(tds.item(6).getTextContent().trim());
+								String lon = filter(tds.item(7).getTextContent().trim());
 								Element ap = doc.createElement("Airport");
 								ap.setAttribute("state", state);
-								ap.setAttribute("id", tds.item(2).getTextContent().trim());
-								ap.setAttribute("city", tds.item(4).getTextContent().trim());
-								ap.setAttribute("name", tds.item(5).getTextContent().trim());
-								ap.setAttribute("lat", filter(tds.item(6).getTextContent().trim()));
-								ap.setAttribute("lon", filter(tds.item(7).getTextContent().trim()));
+								ap.setAttribute("id", id);
+								ap.setAttribute("city", city);
+								ap.setAttribute("name", name);
+								ap.setAttribute("lat", lat);
+								ap.setAttribute("lon", lon);
 								root.appendChild(ap);
 							}
 						}
@@ -185,6 +190,36 @@ public class Airports {
 			s = s.trim();
 			int k = s.indexOf("(");
 			if (k >= 0) s = s.substring(0, k).trim();
+			return s;
+		}
+
+		private String capitalize(String s, String state) {
+			if (s == null) s = "";
+			s = s.replace("\"", "");
+			//s = s.replace("'", "");
+			s = s.replace("/", " / ");
+			s = s.replaceAll("\\s+"," ");
+			s = s.trim();
+			String[] words = s.split("\\s");
+			StringBuffer sb = new StringBuffer();
+			for (String w : words) {
+				w = w.toUpperCase();
+				if (w.length() > 0) {
+					if (w.matches("'[A-Z]'") || w.equals(state)) {
+						sb.append(w);
+					}
+					else if (w.startsWith("O'") && (w.length() > 2)) {
+						sb.append(w.substring(0,3) + w.substring(3).toLowerCase());
+					}
+					else {
+						sb.append(w.substring(0,1));
+						sb.append(w.substring(1).toLowerCase());
+					}
+					sb.append(" ");
+				}
+			}
+			s = sb.toString().replace(" / ", "/").replaceAll("\\s+"," ").trim();
+			if (s.endsWith("/")) s = s.substring(0, s.length()-2);
 			return s;
 		}
 	}

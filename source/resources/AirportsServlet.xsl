@@ -91,7 +91,11 @@
 				<xsl:sort select="@id"/>
 				<tr>
 					<td class="number"><xsl:value-of select="position()"/></td>
-					<td><xsl:value-of select="@id"/></td>
+					<td>
+						<a href="http://www.airnav.com/airport/{@id}">
+							<xsl:value-of select="@id"/>
+						</a>
+					</td>
 					<td><xsl:value-of select="@name"/></td>
 					<td><xsl:value-of select="@city"/>, <xsl:value-of select="@state"/></td>
 					<td class="right"><xsl:value-of select="@lat"/></td>

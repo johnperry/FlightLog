@@ -19,8 +19,9 @@ import org.w3c.dom.*;
 public class AirportImporter extends JFrame {
 
 	String windowTitle = "AirportImporter";
-	JScrollPane jsp;
-	ColorPane cp;
+	ColorPane cpProgress;
+	ColorPane cpXML;
+	ColorPane cpTXT;
 	FooterPanel footer;
     Color background = new Color(0xC6D8F9);
     
@@ -111,6 +112,7 @@ public class AirportImporter extends JFrame {
 		public void run() {
 			try {
 				int count = 0;
+				StringBuffer txtBuffer = new StringBuffer();
 				doc = XmlUtil.getDocument();
 				root = doc.createElement("Airports");
 				doc.appendChild(root);
@@ -128,31 +130,49 @@ public class AirportImporter extends JFrame {
 							Element tr = (Element)doc.importNode(trs.item(i), true);
 							NodeList tds = tr.getElementsByTagName("td");
 							if (tds.getLength() >= 8) {
+								String id = tds.item(2).getTextContent().trim().toUpperCase();
+								String city = capitalize(tds.item(4).getTextContent().trim(), state);
+								String name = capitalize(tds.item(5).getTextContent().trim(), state);
+								String lat = filter(tds.item(6).getTextContent().trim());
+								String lon = filter(tds.item(7).getTextContent().trim());
 								Element ap = doc.createElement("Airport");
 								ap.setAttribute("state", state);
-								ap.setAttribute("id", tds.item(2).getTextContent().trim());
-								ap.setAttribute("city", tds.item(4).getTextContent().trim());
-								ap.setAttribute("name", tds.item(5).getTextContent().trim());
-								ap.setAttribute("lat", filter(tds.item(6).getTextContent().trim()));
-								ap.setAttribute("lon", filter(tds.item(7).getTextContent().trim()));
+								ap.setAttribute("id", id);
+								ap.setAttribute("city", city);
+								ap.setAttribute("name", name);
+								ap.setAttribute("lat", lat);
+								ap.setAttribute("lon", lon);
 								root.appendChild(ap);
+								
+								StringBuffer sb = new StringBuffer();
+								sb.append(id + "|");
+								sb.append(name + "|");
+								sb.append(city + "|");
+								sb.append(state + "|");
+								sb.append(lat + "," +lon);
+								sb.append("\n");
+								txtBuffer.append(sb.toString());
+								cpTXT.print(sb.toString());
+								
 								count++;
 								stateCount++;
 							}
 						}
-						cp.println("Done importing "+state+": "+stateCount+" airport"+((stateCount!=1)?"s":""));
+						cpProgress.println("Done importing "+state+": "+stateCount+" airport"+((stateCount!=1)?"s":""));
 					}
-					else cp.println("Null table received for "+state+".");
+					else cpProgress.println("Null table received for "+state+".");
 				}
 				String xml = XmlUtil.toPrettyString(doc);
+				cpXML.println(xml);
 				xml = xml.replace("    ", " ");
 				FileUtil.setText(new File("Airports.xml"), xml);
-				cp.println(count + " airports in all");
+				FileUtil.setText(new File("Airports.txt"), txtBuffer.toString());
+				cpProgress.println(count + " airports in all");
 			}
 			catch (Exception ex) {
 				StringWriter sw = new StringWriter();
 				ex.printStackTrace(new PrintWriter(sw));
-				cp.println(sw.toString());
+				cpProgress.println(sw.toString());
 			}
 			footer.setMessage("Done");
 		}
@@ -177,19 +197,70 @@ public class AirportImporter extends JFrame {
 			if (k >= 0) s = s.substring(0, k).trim();
 			return s;
 		}
+		private String capitalize(String s, String state) {
+			if (s == null) s = "";
+			s = s.replace("\"", "");
+			//s = s.replace("'", "");
+			s = s.replace("/", " / ");
+			s = s.replaceAll("\\s+"," ");
+			s = s.trim();
+			String[] words = s.split("\\s");
+			StringBuffer sb = new StringBuffer();
+			for (String w : words) {
+				w = w.toUpperCase();
+				if (w.length() > 0) {
+					if (w.matches("'[A-Z]'") || w.equals(state)) {
+						sb.append(w);
+					}
+					else if (w.startsWith("O'") && (w.length() > 2)) {
+						sb.append(w.substring(0,3) + w.substring(3).toLowerCase());
+					}
+					else {
+						sb.append(w.substring(0,1));
+						sb.append(w.substring(1).toLowerCase());
+					}
+					sb.append(" ");
+				}
+			}
+			s = sb.toString().replace(" / ", "/").replaceAll("\\s+"," ").trim();
+			if (s.endsWith("/")) s = s.substring(0, s.length()-2);
+			return s;
+		}
 	}
 	
 	void initComponents() {
 		setTitle(windowTitle);
-		JPanel mainPanel = new JPanel(new BorderLayout());
-		mainPanel.setBackground(background);
-		mainPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-		cp = new ColorPane();
+		JTabbedPane jtp = new JTabbedPane();
+
+		JPanel progressPanel = new JPanel(new BorderLayout());
+		progressPanel.setBackground(background);
+		progressPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		cpProgress = new ColorPane();
+		JScrollPane jsp = new JScrollPane();
+		jsp.setViewportView(cpProgress);
+		progressPanel.add(jsp, BorderLayout.CENTER);
+		jtp.add(progressPanel, "Progress");
+
+		JPanel xmlPanel = new JPanel(new BorderLayout());
+		xmlPanel.setBackground(background);
+		xmlPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		cpXML = new ColorPane();
 		jsp = new JScrollPane();
-		jsp.setViewportView(cp);
-		mainPanel.add(jsp, BorderLayout.CENTER);
+		jsp.setViewportView(cpXML);
+		xmlPanel.add(jsp, BorderLayout.CENTER);
+		jtp.add(xmlPanel, "XML");
+
+		JPanel txtPanel = new JPanel(new BorderLayout());
+		txtPanel.setBackground(background);
+		txtPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		cpTXT = new ColorPane();
+		jsp = new JScrollPane();
+		jsp.setViewportView(cpTXT);
+		txtPanel.add(jsp, BorderLayout.CENTER);
+		jtp.add(txtPanel, "Text");
+		
 		footer = new FooterPanel();
-		getContentPane().add(mainPanel, BorderLayout.CENTER);
+		getContentPane().add(jtp, BorderLayout.CENTER);
 		getContentPane().add(footer, BorderLayout.SOUTH);
 		pack();
 		centerFrame();
