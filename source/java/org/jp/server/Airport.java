@@ -16,6 +16,9 @@ public class Airport implements Comparable<Airport> {
 	public String state;
 	public double lat;
 	public double lon;
+	public String elev;
+	public String rwy;
+	public String var;
 	
 	public Airport(Element ap) {
 		id = ap.getAttribute("id");
@@ -24,6 +27,9 @@ public class Airport implements Comparable<Airport> {
 		state = ap.getAttribute("state");
 		lat = Double.parseDouble(ap.getAttribute("lat"));
 		lon = Double.parseDouble(ap.getAttribute("lon"));
+		elev = ap.getAttribute("elev");
+		rwy = ap.getAttribute("rwy");
+		var = ap.getAttribute("var");
 	}
 	
 	public Airport(String id,
@@ -31,13 +37,19 @@ public class Airport implements Comparable<Airport> {
 				   String city,
 				   String state,
 				   String lat,
-				   String lon) {
+				   String lon,
+				   String elev,
+				   String rwy,
+				   String var) {
 		this.id = id;
 		this.name = name;
 		this.city = city;
 		this.state = state;
 		this.lat = Double.parseDouble(lat);
 		this.lon = Double.parseDouble(lon);
+		this.elev = elev;
+		this.rwy = rwy;
+		this.var = var;
 	}
 	
 	public boolean matches(AirportSearchCriteria sc) {
@@ -53,6 +65,9 @@ public class Airport implements Comparable<Airport> {
 		ap.setAttribute("state", state.trim());
 		ap.setAttribute("lat", String.format("%.3f",lat));
 		ap.setAttribute("lon", String.format("%.3f",lon));
+		ap.setAttribute("elev", elev.trim());
+		ap.setAttribute("rwy", rwy.trim());
+		ap.setAttribute("var", var.trim());
 		return ap;
 	}
 	
@@ -68,6 +83,9 @@ public class Airport implements Comparable<Airport> {
 		sb.append("    " + name + "\n");
 		sb.append("    " + city + ", " + state + "\n");
 		sb.append("    " + "("+lat+","+lon+")" + "\n");
+		sb.append("    Elev: " + elev + "\n");
+		sb.append("    Rwy:  " + rwy + "\n");
+		sb.append("    Var:  " + var + "\n");
 		return sb.toString();
 	}
 	

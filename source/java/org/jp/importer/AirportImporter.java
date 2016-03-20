@@ -138,8 +138,8 @@ public class AirportImporter extends JFrame {
 								String lon = filter(tds.item(7).getTextContent());
 								String rwy = filter(tds.item(8).getTextContent());
 								
-								String elev = "UNK";
-								String var = "UNK";
+								String elev = "";
+								String var = "";
 								Element airportTable = getAirportTable((Element)tds.item(5));
 								NodeList aptrs = airportTable.getElementsByTagName("tr");
 								if (aptrs.getLength() > 1) {
@@ -154,7 +154,13 @@ public class AirportImporter extends JFrame {
 											String s = aptds.item(0).getTextContent().trim();
 											String sign = s.endsWith("W") ? "-" : "+";
 											s = filter(s);
-											if (!s.equals("")) var = sign + s;
+											if (!s.equals("")) {
+												try {
+													double d = Double.parseDouble(sign + s);
+													var = String.format("%.1f", d);
+												}
+												catch (Exception unable) { }
+											}
 										}
 									}
 								}

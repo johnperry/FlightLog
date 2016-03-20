@@ -85,6 +85,9 @@
 				<th>City</th>
 				<th>Lat</th>
 				<th>Lon</th>
+				<th>Elev</th>
+				<th>Rwy</th>
+				<th>Var</th>
 			</tr>
 			<xsl:for-each select="Airport">
 				<xsl:sort select="@state"/>
@@ -100,6 +103,9 @@
 					<td><xsl:value-of select="@city"/>, <xsl:value-of select="@state"/></td>
 					<td class="right"><xsl:value-of select="@lat"/></td>
 					<td class="right"><xsl:value-of select="@lon"/></td>
+					<td class="right"><xsl:value-of select="@elev"/></td>
+					<td class="right"><xsl:value-of select="@rwy"/></td>
+					<td class="right"><xsl:value-of select="@var"/></td>
 				</tr>
 			</xsl:for-each>
 		</table>
