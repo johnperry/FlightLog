@@ -57,7 +57,6 @@ public class AirportImporter extends JFrame {
 		"MO",
 		"MP",
 		"MS",
-		"MO",
 		"NC",
 		"ND",
 		"NE",
@@ -112,6 +111,7 @@ public class AirportImporter extends JFrame {
 		public void run() {
 			try {
 				int count = 0;
+				Hashtable<String,String> index = new Hashtable<String,String>();
 				StringBuffer txtBuffer = new StringBuffer();
 				doc = XmlUtil.getDocument();
 				root = doc.createElement("Airports");
@@ -119,22 +119,46 @@ public class AirportImporter extends JFrame {
 				for (String state : states) {
 					int stateCount = 0;
 					footer.setMessage("Processing "+state);
-					String table = getTable(state);
-					table = table.replace("&", "&amp;");
-					//cp.println(table);
+					Element table = getStateTable(state);
 					if (table != null) {
-						Document tableDoc = XmlUtil.getDocument(table);
-						Element tableRoot = tableDoc.getDocumentElement();
-						NodeList trs = tableRoot.getElementsByTagName("tr");
+						NodeList trs = table.getElementsByTagName("tr");
 						for (int i=1; i<trs.getLength(); i++) { //(skip the title row)
 							Element tr = (Element)doc.importNode(trs.item(i), true);
 							NodeList tds = tr.getElementsByTagName("td");
 							if (tds.getLength() >= 8) {
 								String id = tds.item(2).getTextContent().trim().toUpperCase();
+								if (id.equals("")) {
+									id = tds.item(1).getTextContent().trim().toUpperCase();
+								}
+								footer.setMessage("Processing "+state+": "+id);
+
 								String city = capitalize(tds.item(4).getTextContent().trim(), state);
 								String name = capitalize(tds.item(5).getTextContent().trim(), state);
-								String lat = filter(tds.item(6).getTextContent().trim());
-								String lon = filter(tds.item(7).getTextContent().trim());
+								String lat = filter(tds.item(6).getTextContent());
+								String lon = filter(tds.item(7).getTextContent());
+								String rwy = filter(tds.item(8).getTextContent());
+								
+								String elev = "UNK";
+								String var = "UNK";
+								Element airportTable = getAirportTable((Element)tds.item(5));
+								NodeList aptrs = airportTable.getElementsByTagName("tr");
+								if (aptrs.getLength() > 1) {
+									NodeList aptds = ((Element)aptrs.item(1)).getElementsByTagName("td");
+									if (aptds.getLength() > 2) {
+										String s = filter(aptds.item(2).getTextContent());
+										if (!s.equals("")) elev = s;
+									}
+									if (aptrs.getLength() > 2) {
+										aptds = ((Element)aptrs.item(2)).getElementsByTagName("td");
+										if (aptds.getLength() > 2) {
+											String s = aptds.item(0).getTextContent().trim();
+											String sign = s.endsWith("W") ? "-" : "+";
+											s = filter(s);
+											if (!s.equals("")) var = sign + s;
+										}
+									}
+								}
+								
 								Element ap = doc.createElement("Airport");
 								ap.setAttribute("state", state);
 								ap.setAttribute("id", id);
@@ -142,20 +166,43 @@ public class AirportImporter extends JFrame {
 								ap.setAttribute("name", name);
 								ap.setAttribute("lat", lat);
 								ap.setAttribute("lon", lon);
-								root.appendChild(ap);
+								ap.setAttribute("elev", elev);
+								ap.setAttribute("rwy", rwy);
+								ap.setAttribute("var", var);
 								
 								StringBuffer sb = new StringBuffer();
 								sb.append(id + "|");
 								sb.append(name + "|");
 								sb.append(city + "|");
 								sb.append(state + "|");
-								sb.append(lat + "," +lon);
+								sb.append(lat + "," +lon + "|");
+								sb.append(elev + "|");
+								sb.append(rwy + "|");
+								sb.append(var);
 								sb.append("\n");
-								txtBuffer.append(sb.toString());
-								cpTXT.print(sb.toString());
+								String apString = sb.toString().trim();
 								
-								count++;
-								stateCount++;
+								if (!id.equals("")) {
+									String s = index.get(id);
+									if (s != null) {
+										if (!s.equals(apString)) {
+											cpProgress.println("    Non-identical duplicate for ID "+id);
+											cpProgress.println("    (1): "+s);
+											cpProgress.println("    (2): "+apString);
+										}
+									}
+									else {
+										index.put(id, apString);
+										root.appendChild(ap);
+										txtBuffer.append(apString + "\n");
+										cpTXT.println(apString);
+										count++;
+										stateCount++;
+									}
+								}
+								else {
+									cpProgress.println("    Empty ID: \""+apString+"\"");
+								}
 							}
 						}
 						cpProgress.println("Done importing "+state+": "+stateCount+" airport"+((stateCount!=1)?"s":""));
@@ -176,27 +223,68 @@ public class AirportImporter extends JFrame {
 			}
 			footer.setMessage("Done");
 		}
-		private String getTable(String state) throws Exception {
+		private Element getStateTable(String state) {
+			Element table = null;
 			String url = "http://www.fallingrain.com/world/US/"+state+"/airports.html";
-			HttpURLConnection conn = HttpUtil.getConnection(url);
-			conn.setRequestMethod("GET");
-			conn.connect();
-			String page = FileUtil.getText( conn.getInputStream() );
-			int tableStart = page.indexOf("<table");
-			if (tableStart >= 0) {
-				int tableEnd = page.indexOf("</table>", tableStart);
-				if (tableEnd > tableStart) {
-					return page.substring(tableStart, tableEnd+8);
+			try {
+				HttpURLConnection conn = HttpUtil.getConnection(url);
+				conn.setRequestMethod("GET");
+				conn.connect();
+				String page = FileUtil.getText( conn.getInputStream() );
+				int tableStart = page.indexOf("<table");
+				if (tableStart >= 0) {
+					int tableEnd = page.indexOf("</table>", tableStart);
+					if (tableEnd > tableStart) {
+						String tableText = page.substring(tableStart, tableEnd+8);
+						tableText = tableText.replace("&", "&amp;");
+						Document doc = XmlUtil.getDocument(tableText);
+						table = doc.getDocumentElement();
+					}
 				}
 			}
-			return null;			
+			catch (Exception unable) { }
+			return table;			
+		}
+		private Element getAirportTable(Element td) {
+			Element table = null;
+			String tableText = null;
+			try {
+				NodeList nl = td.getElementsByTagName("a");
+				if (nl.getLength() > 0) {
+					String path = ((Element)nl.item(0)).getAttribute("href");
+					String url = "http://www.fallingrain.com" + path;
+					HttpURLConnection conn = HttpUtil.getConnection(url);
+					conn.setRequestMethod("GET");
+					conn.connect();
+					String page = FileUtil.getText( conn.getInputStream() );
+					int tableStart = page.indexOf("<table");
+					if (tableStart >= 0) {
+						int tableEnd = page.indexOf("</table>", tableStart);
+						if (tableEnd > tableStart) {
+							int k = page.indexOf("</tr>", tableStart) + 5;
+							k = page.indexOf("</tr>", k) + 5;
+							k = page.indexOf("</tr>", k) + 5;
+							
+							tableText = page.substring(tableStart, k) 
+											+ page.substring(tableEnd, tableEnd+8);
+							tableText = filterAmpersands(tableText);
+							Document doc = XmlUtil.getDocument(tableText);
+							table = doc.getDocumentElement();
+						}
+					}
+				}
+			}
+			catch (Exception unable) { 
+				System.out.println(tableText);
+			}
+			return table;			
 		}
 		private String filter(String s) {
-			s = s.trim();
-			int k = s.indexOf("(");
-			if (k >= 0) s = s.substring(0, k).trim();
-			return s;
+			return s.replaceAll("[^0-9\\.+-]", "").trim();
 		}
+		private String filterAmpersands(String s) {
+			return s.replaceAll("&([^agl#])", "&amp;$1");
+		}		
 		private String capitalize(String s, String state) {
 			if (s == null) s = "";
 			s = s.replace("\"", "");
@@ -211,6 +299,15 @@ public class AirportImporter extends JFrame {
 				if (w.length() > 0) {
 					if (w.matches("'[A-Z]'") || w.equals(state)) {
 						sb.append(w);
+					}
+					else if (w.equals("OHARE")) {
+						sb.append("O'Hare");
+					}
+					else if (w.equals("GRTR")) {
+						sb.append("Greater");
+					}
+					else if (w.equals("DE")) {
+						sb.append("de");
 					}
 					else if (w.startsWith("O'") && (w.length() > 2)) {
 						sb.append(w.substring(0,3) + w.substring(3).toLowerCase());
