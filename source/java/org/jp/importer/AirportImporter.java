@@ -309,7 +309,13 @@ public class AirportImporter extends JFrame {
 					else if (w.equals("OHARE")) {
 						sb.append("O'Hare");
 					}
-					else if (w.equals("GRTR")) {
+					else if (w.equals("DUPAGE")) {
+						sb.append("DuPage");
+					}
+					else if (w.equals("DEKALB")) {
+						sb.append("DeKalb");
+					}
+					else if (w.equals("GTR")) {
 						sb.append("Greater");
 					}
 					else if (w.equals("DE")) {
@@ -327,6 +333,13 @@ public class AirportImporter extends JFrame {
 			}
 			s = sb.toString().replace(" / ", "/").replaceAll("\\s+"," ").trim();
 			if (s.endsWith("/")) s = s.substring(0, s.length()-2);
+			s = s.replace("de Kalb", "DeKalb");
+			int k = s.indexOf("-");
+			if ((k > 0) && (k < s.length()-1)) {
+				s = s.substring(0, k+1) 
+						+ s.substring(k+1, k+2).toUpperCase() 
+							+ s.substring(k+2);
+			}
 			return s;
 		}
 	}

@@ -215,7 +215,7 @@
   id="AA06"
   lat="61.290"
   lon="-149.806"
-  name="Six-mile Lake"
+  name="Six-Mile Lake"
   rwy="4000"
   state="AK"
   var=""/>
@@ -2415,7 +2415,7 @@
   id="UBW"
   lat="70.331"
   lon="-149.598"
-  name="Ugnu-kuparuk"
+  name="Ugnu-Kuparuk"
   rwy="6000"
   state="AK"
   var="22.0"/>
@@ -2995,7 +2995,7 @@
   id="95Z"
   lat="64.759"
   lon="-147.388"
-  name="Bradley Sky-ranch"
+  name="Bradley Sky-Ranch"
   rwy="4100"
   state="AK"
   var="28.0"/>
@@ -3285,7 +3285,7 @@
   id="AK63"
   lat="61.589"
   lon="-149.143"
-  name="Pat-mar Strip"
+  name="Pat-Mar Strip"
   rwy="1800"
   state="AK"
   var="23.0"/>
@@ -5825,7 +5825,7 @@
   id="PYP"
   lat="34.090"
   lon="-85.610"
-  name="Centre-piedmont-cherokee County Rgnl"
+  name="Centre-Piedmont-cherokee County Rgnl"
   rwy="5500"
   state="AL"
   var="-4.0"/>
@@ -5925,7 +5925,7 @@
   id="1AL2"
   lat="33.249"
   lon="-86.597"
-  name="Tri-l Acres"
+  name="Tri-L Acres"
   rwy="2900"
   state="AL"
   var=""/>
@@ -7915,7 +7915,7 @@
   id="0AR2"
   lat="35.267"
   lon="-90.350"
-  name="Mission Field-marotti Memorial"
+  name="Mission Field-Marotti Memorial"
   rwy="2800"
   state="AR"
   var="2.0"/>
@@ -8235,7 +8235,7 @@
   id="14AR"
   lat="35.053"
   lon="-90.675"
-  name="Rice-bell Field"
+  name="Rice-Bell Field"
   rwy="2500"
   state="AR"
   var=""/>
@@ -8480,7 +8480,7 @@
   state="AR"
   var="3.0"/>
  <Airport
-  city="Helena-west Helena"
+  city="Helena-West Helena"
   elev="242"
   id="HEE"
   lat="34.576"
@@ -9185,7 +9185,7 @@
   id="AR19"
   lat="35.213"
   lon="-93.752"
-  name="Wesson-davis Field"
+  name="Wesson-Davis Field"
   rwy="1500"
   state="AR"
   var="5.0"/>
@@ -9235,7 +9235,7 @@
   id="AR93"
   lat="36.486"
   lon="-90.280"
-  name="Ark-mo"
+  name="Ark-Mo"
   rwy="2400"
   state="AR"
   var="2.0"/>
@@ -12025,7 +12025,7 @@
   id="CL23"
   lat="39.460"
   lon="-121.696"
-  name="Jones/Ag-viation"
+  name="Jones/Ag-Viation"
   rwy="2600"
   state="CA"
   var="17.0"/>
@@ -12075,7 +12075,7 @@
   id="1CA4"
   lat="33.869"
   lon="-114.527"
-  name="Aha-quin"
+  name="Aha-Quin"
   rwy="2250"
   state="CA"
   var="13.0"/>
@@ -12915,7 +12915,7 @@
   id="1O6"
   lat="41.263"
   lon="-122.272"
-  name="Dunsmuir Muni-mott"
+  name="Dunsmuir Muni-Mott"
   rwy="2700"
   state="CA"
   var="17.0"/>
@@ -13045,7 +13045,7 @@
   id="37CL"
   lat="33.324"
   lon="-116.990"
-  name="Lyall-roberts"
+  name="Lyall-Roberts"
   rwy="1700"
   state="CA"
   var="13.0"/>
@@ -13135,7 +13135,7 @@
   id="CN29"
   lat="37.935"
   lon="-121.015"
-  name="J-b"
+  name="J-B"
   rwy="1700"
   state="CA"
   var="16.0"/>
@@ -15590,7 +15590,7 @@
   state="CA"
   var="12.5"/>
  <Airport
-  city="Riverside-rubidoux"
+  city="Riverside-Rubidoux"
   elev="764"
   id="RIR"
   lat="33.990"
@@ -17485,7 +17485,7 @@
   id="4CO0"
   lat="39.389"
   lon="-107.160"
-  name="Glen-aspen"
+  name="Glen-Aspen"
   rwy="3165"
   state="CO"
   var="12.0"/>
@@ -18055,7 +18055,7 @@
   id="6CO4"
   lat="40.510"
   lon="-105.001"
-  name="Hat-field"
+  name="Hat-Field"
   rwy="610"
   state="CO"
   var="11.0"/>
@@ -18285,7 +18285,7 @@
   id="CO73"
   lat="38.100"
   lon="-102.217"
-  name="Air-sprayers Nr 2"
+  name="Air-Sprayers Nr 2"
   rwy="3500"
   state="CO"
   var="10.0"/>
@@ -19205,7 +19205,7 @@
   id="74CO"
   lat="40.047"
   lon="-104.209"
-  name="Westberg-rosling Farms"
+  name="Westberg-Rosling Farms"
   rwy="2500"
   state="CO"
   var="11.0"/>
@@ -20300,7 +20300,7 @@
   state="DE"
   var="-11.5"/>
  <Airport
-  city="Dover-cheswold"
+  city="Dover-Cheswold"
   elev="56"
   id="33N"
   lat="39.218"
@@ -20465,7 +20465,7 @@
   id="DE25"
   lat="38.776"
   lon="-75.234"
-  name="Eagle Crest-hudson"
+  name="Eagle Crest-Hudson"
   rwy="3500"
   state="DE"
   var="-11.0"/>
@@ -21155,7 +21155,7 @@
   id="4FL2"
   lat="28.595"
   lon="-82.150"
-  name="Ko-kee"
+  name="Ko-Kee"
   rwy="1800"
   state="FL"
   var="-2.0"/>
@@ -21165,7 +21165,7 @@
   id="09FD"
   lat="28.671"
   lon="-82.087"
-  name="Cheryl-lane Landings"
+  name="Cheryl-Lane Landings"
   rwy="2649"
   state="FL"
   var="-3.0"/>
@@ -21375,7 +21375,7 @@
   id="12FA"
   lat="28.479"
   lon="-81.715"
-  name="Hi-acres"
+  name="Hi-Acres"
   rwy="1800"
   state="FL"
   var="-3.0"/>
@@ -21385,7 +21385,7 @@
   id="0FL0"
   lat="26.731"
   lon="-81.164"
-  name="Harper&apos;s Fly-in Ranch"
+  name="Harper&apos;s Fly-In Ranch"
   rwy="2300"
   state="FL"
   var="-4.0"/>
@@ -21895,7 +21895,7 @@
   id="9FL7"
   lat="25.857"
   lon="-81.035"
-  name="Oasis Ranger Station-u.s. Government"
+  name="Oasis Ranger Station-U.s. Government"
   rwy="2060"
   state="FL"
   var="-2.0"/>
@@ -21925,7 +21925,7 @@
   id="FL84"
   lat="30.601"
   lon="-81.570"
-  name="Flying-a-ranch"
+  name="Flying-A-ranch"
   rwy="2000"
   state="FL"
   var="-3.0"/>
@@ -22265,7 +22265,7 @@
   id="FL99"
   lat="28.876"
   lon="-81.889"
-  name="Flying-h"
+  name="Flying-H"
   rwy="2640"
   state="FL"
   var="-3.0"/>
@@ -22615,7 +22615,7 @@
   id="FL65"
   lat="26.045"
   lon="-80.373"
-  name="Mac-ivor &amp; Friends Airstrip"
+  name="Mac-Ivor &amp; Friends Airstrip"
   rwy="2300"
   state="FL"
   var="-3.0"/>
@@ -24955,7 +24955,7 @@
   id="FA50"
   lat="29.361"
   lon="-82.150"
-  name="Wings-n-wheels"
+  name="Wings-N-wheels"
   rwy="2500"
   state="FL"
   var="-2.0"/>
@@ -25140,7 +25140,7 @@
   state="FL"
   var="-5.3"/>
  <Airport
-  city="St Petersburg-clearwater"
+  city="St Petersburg-Clearwater"
   elev="10"
   id="PIE"
   lat="27.910"
@@ -26025,7 +26025,7 @@
   id="PDK"
   lat="33.876"
   lon="-84.302"
-  name="Dekalb Peachtree"
+  name="DeKalb Peachtree"
   rwy="6001"
   state="GA"
   var="-4.1"/>
@@ -26485,7 +26485,7 @@
   id="GA09"
   lat="34.452"
   lon="-83.789"
-  name="Fly-n-s Ranch"
+  name="Fly-N-s Ranch"
   rwy="1850"
   state="GA"
   var="-4.0"/>
@@ -28225,7 +28225,7 @@
   id="1GE6"
   lat="31.372"
   lon="-82.123"
-  name="Forestry-strip"
+  name="Forestry-Strip"
   rwy="2885"
   state="GA"
   var="-3.0"/>
@@ -29125,7 +29125,7 @@
   id="96GA"
   lat="33.186"
   lon="-84.368"
-  name="3-m&apos;s"
+  name="3-M&apos;s"
   rwy="3000"
   state="GA"
   var="-2.0"/>
@@ -34450,7 +34450,7 @@
   state="IL"
   var="-2.0"/>
  <Airport
-  city="Carbondale-murphysboro"
+  city="Carbondale-Murphysboro"
   elev="411"
   id="MDH"
   lat="37.778"
@@ -34735,7 +34735,7 @@
   id="DPA"
   lat="41.908"
   lon="-88.249"
-  name="Dupage"
+  name="DuPage"
   rwy="7570"
   state="IL"
   var="-2.4"/>
@@ -34990,7 +34990,7 @@
   state="IL"
   var=""/>
  <Airport
-  city="de Kalb"
+  city="DeKalb"
   elev="880"
   id="IS80"
   lat="41.918"
@@ -35000,7 +35000,7 @@
   state="IL"
   var=""/>
  <Airport
-  city="de Kalb"
+  city="DeKalb"
   elev="880"
   id="0IL9"
   lat="41.855"
@@ -35010,7 +35010,7 @@
   state="IL"
   var=""/>
  <Airport
-  city="de Kalb"
+  city="DeKalb"
   elev="890"
   id="0IL8"
   lat="41.873"
@@ -35020,12 +35020,12 @@
   state="IL"
   var=""/>
  <Airport
-  city="de Kalb"
+  city="DeKalb"
   elev="915"
   id="DKB"
   lat="41.934"
   lon="-88.706"
-  name="de Kalb Taylor Muni"
+  name="DeKalb Taylor Muni"
   rwy="7227"
   state="IL"
   var="-2.1"/>
@@ -35405,7 +35405,7 @@
   id="26IS"
   lat="40.767"
   lon="-88.506"
-  name="Ficklin-airtech"
+  name="Ficklin-Airtech"
   rwy="2300"
   state="IL"
   var=""/>
@@ -35585,7 +35585,7 @@
   id="3G8"
   lat="41.440"
   lon="-90.110"
-  name="Gen-airpark"
+  name="Gen-Airpark"
   rwy="2568"
   state="IL"
   var="1.0"/>
@@ -35965,7 +35965,7 @@
   id="H07"
   lat="38.779"
   lon="-89.640"
-  name="Highland-winet"
+  name="Highland-Winet"
   rwy="2692"
   state="IL"
   var="1.0"/>
@@ -36915,7 +36915,7 @@
   id="83IL"
   lat="40.893"
   lon="-89.104"
-  name="Oltman-shuck"
+  name="Oltman-Shuck"
   rwy="2200"
   state="IL"
   var=""/>
@@ -37450,7 +37450,7 @@
   state="IL"
   var="1.0"/>
  <Airport
-  city="Olney-noble"
+  city="Olney-Noble"
   elev="482"
   id="OLY"
   lat="38.722"
@@ -38185,7 +38185,7 @@
   id="LL81"
   lat="42.375"
   lon="-89.070"
-  name="Spickard-marshall"
+  name="Spickard-Marshall"
   rwy="4300"
   state="IL"
   var=""/>
@@ -38285,7 +38285,7 @@
   id="5K4"
   lat="40.118"
   lon="-90.590"
-  name="Schuy-rush"
+  name="Schuy-Rush"
   rwy="3565"
   state="IL"
   var="2.0"/>
@@ -38965,7 +38965,7 @@
   id="6IS0"
   lat="40.095"
   lon="-88.129"
-  name="Day Aero-place"
+  name="Day Aero-Place"
   rwy="2200"
   state="IL"
   var=""/>
@@ -39235,7 +39235,7 @@
   id="2C6"
   lat="40.774"
   lon="-90.074"
-  name="Tri-county"
+  name="Tri-County"
   rwy="2809"
   state="IL"
   var="1.0"/>
@@ -39435,7 +39435,7 @@
   id="99IN"
   lat="40.206"
   lon="-86.101"
-  name="Bee-acre Farm Strip"
+  name="Bee-Acre Farm Strip"
   rwy="1400"
   state="IN"
   var="-2.0"/>
@@ -39455,7 +39455,7 @@
   id="GWB"
   lat="41.307"
   lon="-85.064"
-  name="de Kalb Co"
+  name="DeKalb Co"
   rwy="5000"
   state="IN"
   var="-5.1"/>
@@ -39555,7 +39555,7 @@
   id="06IN"
   lat="39.283"
   lon="-87.304"
-  name="Ellis Fly-in"
+  name="Ellis Fly-In"
   rwy="1600"
   state="IN"
   var="-1.0"/>
@@ -39585,7 +39585,7 @@
   id="II01"
   lat="40.756"
   lon="-85.251"
-  name="Grandlienard-hogg"
+  name="Grandlienard-Hogg"
   rwy="1920"
   state="IN"
   var="-3.0"/>
@@ -40865,7 +40865,7 @@
   id="79II"
   lat="39.883"
   lon="-85.702"
-  name="Sauer-harter"
+  name="Sauer-Harter"
   rwy="2600"
   state="IN"
   var="-3.0"/>
@@ -41125,7 +41125,7 @@
   id="25IN"
   lat="41.703"
   lon="-85.419"
-  name="Reid-eash"
+  name="Reid-Eash"
   rwy="2635"
   state="IN"
   var="-3.0"/>
@@ -42565,7 +42565,7 @@
   id="2IG4"
   lat="38.851"
   lon="-87.500"
-  name="Ed-air"
+  name="Ed-Air"
   rwy="5800"
   state="IN"
   var="-1.0"/>
@@ -42645,7 +42645,7 @@
   id="1IN0"
   lat="40.133"
   lon="-85.231"
-  name="Belknap-icarus Acres"
+  name="Belknap-Icarus Acres"
   rwy="1900"
   state="IN"
   var="-3.0"/>
@@ -43275,7 +43275,7 @@
   id="3IN7"
   lat="41.663"
   lon="-86.354"
-  name="Chain-o-lakes"
+  name="Chain-O-lakes"
   rwy="2100"
   state="IN"
   var="-2.0"/>
@@ -43475,7 +43475,7 @@
   id="2II6"
   lat="40.265"
   lon="-86.103"
-  name="Baird-wolford"
+  name="Baird-Wolford"
   rwy="2085"
   state="IN"
   var="-2.0"/>
@@ -44035,7 +44035,7 @@
   id="3KS8"
   lat="37.256"
   lon="-95.334"
-  name="Reed-wilsonton"
+  name="Reed-Wilsonton"
   rwy="2300"
   state="KS"
   var="5.0"/>
@@ -44165,7 +44165,7 @@
   id="SN20"
   lat="37.719"
   lon="-97.049"
-  name="Brady-pippin"
+  name="Brady-Pippin"
   rwy="2000"
   state="KS"
   var="7.0"/>
@@ -45815,7 +45815,7 @@
   id="7KS6"
   lat="38.626"
   lon="-94.769"
-  name="Linders Cow-chip"
+  name="Linders Cow-Chip"
   rwy="2000"
   state="KS"
   var="5.0"/>
@@ -47450,7 +47450,7 @@
   state="KS"
   var=""/>
  <Airport
-  city="Winfield-arkansas City"
+  city="Winfield-Arkansas City"
   elev="1160"
   id="WLD"
   lat="37.169"
@@ -47605,7 +47605,7 @@
   id="2KY3"
   lat="36.835"
   lon="-86.458"
-  name="Plane-o-field"
+  name="Plane-O-field"
   rwy="2000"
   state="KY"
   var="-2.0"/>
@@ -47765,7 +47765,7 @@
   id="0KY7"
   lat="36.636"
   lon="-88.999"
-  name="Clinton-hickman County"
+  name="Clinton-Hickman County"
   rwy="2200"
   state="KY"
   var="1.0"/>
@@ -47775,7 +47775,7 @@
   id="I96"
   lat="37.085"
   lon="-85.347"
-  name="Columbia-adair Co."
+  name="Columbia-Adair Co."
   rwy="2600"
   state="KY"
   var="-2.0"/>
@@ -47920,7 +47920,7 @@
   state="KY"
   var="-3.0"/>
  <Airport
-  city="Falls-of-rough"
+  city="Falls-Of-rough"
   elev="577"
   id="2I3"
   lat="37.610"
@@ -48275,7 +48275,7 @@
   id="KY8"
   lat="37.953"
   lon="-86.857"
-  name="Hancock Co-ron Lewis Field"
+  name="Hancock Co-Ron Lewis Field"
   rwy="4000"
   state="KY"
   var="-3.0"/>
@@ -48435,7 +48435,7 @@
   id="M97"
   lat="38.215"
   lon="-83.588"
-  name="Morehead-rowan County Clyde A. Thomas Rgnl"
+  name="Morehead-Rowan County Clyde A. Thomas Rgnl"
   rwy="5500"
   state="KY"
   var="-6.0"/>
@@ -48545,7 +48545,7 @@
   id="2I2"
   lat="38.254"
   lon="-83.143"
-  name="Olive Hill-sellers&apos; Field"
+  name="Olive Hill-Sellers&apos; Field"
   rwy="2500"
   state="KY"
   var="-4.0"/>
@@ -49365,7 +49365,7 @@
   id="LA04"
   lat="30.050"
   lon="-91.067"
-  name="Cane-air"
+  name="Cane-Air"
   rwy="2650"
   state="LA"
   var="4.0"/>
@@ -49675,7 +49675,7 @@
   id="LA87"
   lat="30.510"
   lon="-90.153"
-  name="Covington-vincent"
+  name="Covington-Vincent"
   rwy="3400"
   state="LA"
   var="3.0"/>
@@ -49685,7 +49685,7 @@
   id="23LA"
   lat="30.630"
   lon="-90.080"
-  name="Warner-thunder Hill"
+  name="Warner-Thunder Hill"
   rwy="2400"
   state="LA"
   var="3.0"/>
@@ -49835,7 +49835,7 @@
   id="LA57"
   lat="30.399"
   lon="-92.409"
-  name="Mowata Flying Service-eunice"
+  name="Mowata Flying Service-Eunice"
   rwy="2200"
   state="LA"
   var="4.0"/>
@@ -51965,7 +51965,7 @@
   id="MA63"
   lat="42.074"
   lon="-70.798"
-  name="Sherman-pvt"
+  name="Sherman-Pvt"
   rwy="1500"
   state="MA"
   var="-16.0"/>
@@ -53095,7 +53095,7 @@
   id="MD83"
   lat="38.521"
   lon="-77.068"
-  name="Ty-ti-to"
+  name="Ty-Ti-to"
   rwy="2400"
   state="MD"
   var="-9.0"/>
@@ -54165,7 +54165,7 @@
   id="ME20"
   lat="44.599"
   lon="-69.624"
-  name="Bob-mar"
+  name="Bob-Mar"
   rwy="1400"
   state="ME"
   var="-18.0"/>
@@ -55495,7 +55495,7 @@
   id="28MI"
   lat="44.874"
   lon="-85.793"
-  name="Miller-herrold"
+  name="Miller-Herrold"
   rwy="2600"
   state="MI"
   var="-4.0"/>
@@ -55790,7 +55790,7 @@
   state="MI"
   var="-7.1"/>
  <Airport
-  city="Detroit-gross Ile"
+  city="Detroit-Gross Ile"
   elev="591"
   id="ONZ"
   lat="42.099"
@@ -55835,7 +55835,7 @@
   id="14MI"
   lat="42.851"
   lon="-85.567"
-  name="East-west Paris"
+  name="East-West Paris"
   rwy="900"
   state="MI"
   var="-3.0"/>
@@ -56115,7 +56115,7 @@
   id="39Z"
   lat="43.105"
   lon="-86.124"
-  name="Flying-a-ranch"
+  name="Flying-A-ranch"
   rwy="1925"
   state="MI"
   var="-3.0"/>
@@ -57285,7 +57285,7 @@
   id="MI43"
   lat="43.186"
   lon="-83.901"
-  name="Pewanogowink-banks"
+  name="Pewanogowink-Banks"
   rwy="2360"
   state="MI"
   var="-5.0"/>
@@ -57715,7 +57715,7 @@
   id="MI48"
   lat="41.833"
   lon="-83.683"
-  name="Ham-a-lot Field"
+  name="Ham-A-lot Field"
   rwy="2400"
   state="MI"
   var="-5.0"/>
@@ -57755,7 +57755,7 @@
   id="1D2"
   lat="42.348"
   lon="-83.456"
-  name="Canton-plymouth-mettetal"
+  name="Canton-Plymouth-mettetal"
   rwy="2303"
   state="MI"
   var="-5.0"/>
@@ -58095,7 +58095,7 @@
   id="6Y9"
   lat="46.517"
   lon="-88.700"
-  name="Prickett-grooms Fld"
+  name="Prickett-Grooms Fld"
   rwy="2000"
   state="MI"
   var="-2.0"/>
@@ -58165,7 +58165,7 @@
   id="8D4"
   lat="43.127"
   lon="-85.678"
-  name="Paul C. Miller-sparta"
+  name="Paul C. Miller-Sparta"
   rwy="4033"
   state="MI"
   var="-4.0"/>
@@ -58335,7 +58335,7 @@
   id="3TE"
   lat="42.025"
   lon="-83.939"
-  name="Meyers-diver&apos;s"
+  name="Meyers-Diver&apos;s"
   rwy="2660"
   state="MI"
   var="-5.0"/>
@@ -59025,7 +59025,7 @@
   id="MY54"
   lat="47.438"
   lon="-94.812"
-  name="Cloverleaf-east Bemidji"
+  name="Cloverleaf-East Bemidji"
   rwy="4200"
   state="MN"
   var="4.0"/>
@@ -59245,7 +59245,7 @@
   id="70MN"
   lat="45.352"
   lon="-93.246"
-  name="Harry-walt"
+  name="Harry-Walt"
   rwy="2000"
   state="MN"
   var="3.0"/>
@@ -59945,7 +59945,7 @@
   id="4MN5"
   lat="45.551"
   lon="-96.451"
-  name="Kapaun-wilson Field"
+  name="Kapaun-Wilson Field"
   rwy="2250"
   state="MN"
   var="6.0"/>
@@ -60195,7 +60195,7 @@
   id="07Y"
   lat="46.956"
   lon="-93.597"
-  name="Hill City-quadna Mountain"
+  name="Hill City-Quadna Mountain"
   rwy="2850"
   state="MN"
   var="3.0"/>
@@ -60245,7 +60245,7 @@
   id="MY58"
   lat="45.239"
   lon="-95.925"
-  name="Home-base"
+  name="Home-Base"
   rwy="2640"
   state="MN"
   var="5.0"/>
@@ -60295,7 +60295,7 @@
   id="3MN1"
   lat="47.449"
   lon="-92.645"
-  name="Stahlberg-mohr"
+  name="Stahlberg-Mohr"
   rwy="3400"
   state="MN"
   var="2.0"/>
@@ -60995,7 +60995,7 @@
   id="47MN"
   lat="44.700"
   lon="-93.867"
-  name="Sons Private-commercial"
+  name="Sons Private-Commercial"
   rwy="2100"
   state="MN"
   var="4.0"/>
@@ -61155,7 +61155,7 @@
   id="47Y"
   lat="46.642"
   lon="-96.105"
-  name="Pelican Rapids Muni-lyon&apos;s Field"
+  name="Pelican Rapids Muni-Lyon&apos;s Field"
   rwy="3260"
   state="MN"
   var="5.0"/>
@@ -61405,7 +61405,7 @@
   id="59MN"
   lat="48.599"
   lon="-95.187"
-  name="Cox-coyour Meml Air Field"
+  name="Cox-Coyour Meml Air Field"
   rwy="2550"
   state="MN"
   var="4.0"/>
@@ -61645,7 +61645,7 @@
   id="MN98"
   lat="45.411"
   lon="-93.385"
-  name="Aero-plain"
+  name="Aero-Plain"
   rwy="3000"
   state="MN"
   var="3.0"/>
@@ -62585,7 +62585,7 @@
   id="0MO2"
   lat="37.787"
   lon="-90.780"
-  name="Short-n-ruff"
+  name="Short-N-ruff"
   rwy="1200"
   state="MO"
   var="2.0"/>
@@ -62875,7 +62875,7 @@
   id="0MO0"
   lat="38.410"
   lon="-93.850"
-  name="Ferros Ranch-aero"
+  name="Ferros Ranch-Aero"
   rwy="1685"
   state="MO"
   var="4.0"/>
@@ -63185,7 +63185,7 @@
   id="9MO3"
   lat="39.642"
   lon="-94.814"
-  name="Lawlor-justus"
+  name="Lawlor-Justus"
   rwy="1800"
   state="MO"
   var="5.0"/>
@@ -63305,7 +63305,7 @@
   id="73MU"
   lat="38.886"
   lon="-91.969"
-  name="Sky-go Farms"
+  name="Sky-Go Farms"
   rwy="1800"
   state="MO"
   var="2.0"/>
@@ -63555,7 +63555,7 @@
   id="74MU"
   lat="39.040"
   lon="-91.130"
-  name="Koala-t-field"
+  name="Koala-T-field"
   rwy="1800"
   state="MO"
   var="2.0"/>
@@ -63585,7 +63585,7 @@
   id="MU68"
   lat="38.669"
   lon="-91.536"
-  name="Eu-wish"
+  name="Eu-Wish"
   rwy="1700"
   state="MO"
   var="3.0"/>
@@ -63605,7 +63605,7 @@
   id="69MO"
   lat="39.308"
   lon="-92.454"
-  name="Hess-mckeown"
+  name="Hess-Mckeown"
   rwy="1800"
   state="MO"
   var="3.0"/>
@@ -64015,7 +64015,7 @@
   id="MO89"
   lat="38.174"
   lon="-92.859"
-  name="Bar-vik"
+  name="Bar-Vik"
   rwy="2900"
   state="MO"
   var="4.0"/>
@@ -64355,7 +64355,7 @@
   id="MU38"
   lat="40.178"
   lon="-93.131"
-  name="Cowgill-roemer"
+  name="Cowgill-Roemer"
   rwy="2600"
   state="MO"
   var="4.0"/>
@@ -64425,7 +64425,7 @@
   id="MO45"
   lat="38.892"
   lon="-91.566"
-  name="Sky-vu"
+  name="Sky-Vu"
   rwy="1700"
   state="MO"
   var="1.0"/>
@@ -64455,7 +64455,7 @@
   id="4MO"
   lat="39.013"
   lon="-91.419"
-  name="Montgomery-wehrman"
+  name="Montgomery-Wehrman"
   rwy="2360"
   state="MO"
   var="3.0"/>
@@ -64925,7 +64925,7 @@
   id="MO29"
   lat="38.772"
   lon="-94.335"
-  name="Inter-state"
+  name="Inter-State"
   rwy="2035"
   state="MO"
   var="5.0"/>
@@ -64995,7 +64995,7 @@
   id="7MO"
   lat="40.421"
   lon="-93.600"
-  name="Princeton-kauffman Memorial"
+  name="Princeton-Kauffman Memorial"
   rwy="2475"
   state="MO"
   var="4.0"/>
@@ -65665,7 +65665,7 @@
   id="MO5"
   lat="37.009"
   lon="-91.007"
-  name="Bollinger-crass Memorial"
+  name="Bollinger-Crass Memorial"
   rwy="2600"
   state="MO"
   var="3.0"/>
@@ -66285,7 +66285,7 @@
   id="1MS9"
   lat="31.012"
   lon="-90.968"
-  name="Piker-too"
+  name="Piker-Too"
   rwy="2750"
   state="MS"
   var="3.0"/>
@@ -66565,7 +66565,7 @@
   id="11M"
   lat="34.352"
   lon="-88.377"
-  name="Fulton-itawamba County"
+  name="Fulton-Itawamba County"
   rwy="3000"
   state="MS"
   var="1.0"/>
@@ -68805,7 +68805,7 @@
   id="NC45"
   lat="36.217"
   lon="-77.638"
-  name="Enfield-shearin"
+  name="Enfield-Shearin"
   rwy="3200"
   state="NC"
   var="-9.0"/>
@@ -69075,7 +69075,7 @@
   id="6NC0"
   lat="35.289"
   lon="-78.180"
-  name="Cox-grantham Airfield"
+  name="Cox-Grantham Airfield"
   rwy="2800"
   state="NC"
   var="-7.0"/>
@@ -70505,7 +70505,7 @@
   id="IXA"
   lat="36.330"
   lon="-77.635"
-  name="Halifax-northampton County Regional"
+  name="Halifax-Northampton County Regional"
   rwy="5500"
   state="NC"
   var="-10.0"/>
@@ -70995,7 +70995,7 @@
   id="NC58"
   lat="35.921"
   lon="-81.120"
-  name="Gryder-teague"
+  name="Gryder-Teague"
   rwy="2000"
   state="NC"
   var="-5.0"/>
@@ -71280,7 +71280,7 @@
   state="NC"
   var="-6.0"/>
  <Airport
-  city="Winston-salem"
+  city="Winston-Salem"
   elev="969"
   id="INT"
   lat="36.134"
@@ -71815,7 +71815,7 @@
   id="ND10"
   lat="46.549"
   lon="-96.786"
-  name="Flying-n-ranch"
+  name="Flying-N-ranch"
   rwy="2200"
   state="ND"
   var="6.0"/>
@@ -74325,7 +74325,7 @@
   id="9NE1"
   lat="41.144"
   lon="-101.927"
-  name="El-co"
+  name="El-Co"
   rwy="2600"
   state="NE"
   var="10.0"/>
@@ -74385,7 +74385,7 @@
   id="30NE"
   lat="40.356"
   lon="-98.683"
-  name="Rs Ag-land"
+  name="Rs Ag-Land"
   rwy="2600"
   state="NE"
   var="8.0"/>
@@ -74555,7 +74555,7 @@
   id="68NE"
   lat="40.991"
   lon="-96.620"
-  name="Hall-feld"
+  name="Hall-Feld"
   rwy="1700"
   state="NE"
   var="6.0"/>
@@ -75545,7 +75545,7 @@
   id="4NE8"
   lat="40.383"
   lon="-101.152"
-  name="Malone M-bar Ranch"
+  name="Malone M-Bar Ranch"
   rwy="3000"
   state="NE"
   var="9.0"/>
@@ -76475,7 +76475,7 @@
   id="NH43"
   lat="43.180"
   lon="-71.137"
-  name="Murphy-sherwood Park"
+  name="Murphy-Sherwood Park"
   rwy="1750"
   state="NH"
   var="-16.0"/>
@@ -76700,7 +76700,7 @@
   state="NJ"
   var=""/>
  <Airport
-  city="Belmar-farmingdale"
+  city="Belmar-Farmingdale"
   elev="159"
   id="BLM"
   lat="40.187"
@@ -76745,7 +76745,7 @@
   id="6NJ9"
   lat="39.792"
   lon="-75.375"
-  name="Bridgeport-cahill Field"
+  name="Bridgeport-Cahill Field"
   rwy="2000"
   state="NJ"
   var="-11.0"/>
@@ -77085,7 +77085,7 @@
   id="92NJ"
   lat="40.468"
   lon="-75.002"
-  name="Fly-n-d Landing Strip"
+  name="Fly-N-d Landing Strip"
   rwy="2200"
   state="NJ"
   var="-12.0"/>
@@ -77595,7 +77595,7 @@
   id="28N"
   lat="39.538"
   lon="-74.966"
-  name="Vineland-downstown"
+  name="Vineland-Downstown"
   rwy="2251"
   state="NJ"
   var="-11.0"/>
@@ -77675,7 +77675,7 @@
   id="JY08"
   lat="39.650"
   lon="-75.284"
-  name="Var-sky"
+  name="Var-Sky"
   rwy="1165"
   state="NJ"
   var="-11.0"/>
@@ -78305,7 +78305,7 @@
   id="E94"
   lat="33.353"
   lon="-108.867"
-  name="Glenwood-catron County"
+  name="Glenwood-Catron County"
   rwy="3700"
   state="NM"
   var="12.0"/>
@@ -78505,7 +78505,7 @@
   id="NM89"
   lat="34.776"
   lon="-106.521"
-  name="Manzano-mountain Air Ranch"
+  name="Manzano-Mountain Air Ranch"
   rwy="5280"
   state="NM"
   var="10.0"/>
@@ -78955,7 +78955,7 @@
   id="1NM0"
   lat="33.212"
   lon="-108.026"
-  name="Me-own"
+  name="Me-Own"
   rwy="3700"
   state="NM"
   var="11.0"/>
@@ -79725,7 +79725,7 @@
   id="08U"
   lat="41.516"
   lon="-115.860"
-  name="Stevens-crosby"
+  name="Stevens-Crosby"
   rwy="3600"
   state="NV"
   var="16.0"/>
@@ -80035,7 +80035,7 @@
   id="NV12"
   lat="41.564"
   lon="-116.409"
-  name="I-l Ranch"
+  name="I-L Ranch"
   rwy="5200"
   state="NV"
   var="16.0"/>
@@ -80255,7 +80255,7 @@
   id="D23"
   lat="42.567"
   lon="-78.426"
-  name="Arcade Tri-county"
+  name="Arcade Tri-County"
   rwy="3220"
   state="NY"
   var="-10.0"/>
@@ -80325,7 +80325,7 @@
   id="4NK1"
   lat="43.145"
   lon="-76.311"
-  name="B-ville Airpark"
+  name="B-Ville Airpark"
   rwy="2000"
   state="NY"
   var="-13.0"/>
@@ -80445,7 +80445,7 @@
   id="8NY7"
   lat="41.571"
   lon="-74.402"
-  name="Sha-wan-ga Valley"
+  name="Sha-Wan-ga Valley"
   rwy="1860"
   state="NY"
   var="-13.0"/>
@@ -80905,7 +80905,7 @@
   id="K23"
   lat="42.629"
   lon="-74.891"
-  name="Cooperstown-westville"
+  name="Cooperstown-Westville"
   rwy="2337"
   state="NY"
   var="-13.0"/>
@@ -81715,7 +81715,7 @@
   id="1H4"
   lat="42.417"
   lon="-74.016"
-  name="Greenville-rainbow"
+  name="Greenville-Rainbow"
   rwy="1801"
   state="NY"
   var="-14.0"/>
@@ -81805,7 +81805,7 @@
   id="NY26"
   lat="42.983"
   lon="-74.900"
-  name="Sky-ranch"
+  name="Sky-Ranch"
   rwy="2141"
   state="NY"
   var="-13.0"/>
@@ -81945,7 +81945,7 @@
   id="6NY3"
   lat="42.644"
   lon="-76.730"
-  name="Airy-acres"
+  name="Airy-Acres"
   rwy="1600"
   state="NY"
   var="-11.0"/>
@@ -82275,7 +82275,7 @@
   id="59NY"
   lat="43.231"
   lon="-78.690"
-  name="Bent-wing"
+  name="Bent-Wing"
   rwy="2000"
   state="NY"
   var="-10.0"/>
@@ -82365,7 +82365,7 @@
   id="4NK6"
   lat="43.161"
   lon="-77.177"
-  name="Ag-alley"
+  name="Ag-Alley"
   rwy="3100"
   state="NY"
   var="-12.0"/>
@@ -82425,7 +82425,7 @@
   id="K27"
   lat="42.893"
   lon="-73.668"
-  name="Burrello-mechanicville"
+  name="Burrello-Mechanicville"
   rwy="2600"
   state="NY"
   var="-14.0"/>
@@ -82825,7 +82825,7 @@
   id="D80"
   lat="43.321"
   lon="-78.729"
-  name="Olcott-newfane"
+  name="Olcott-Newfane"
   rwy="2500"
   state="NY"
   var="-10.0"/>
@@ -83185,7 +83185,7 @@
   id="17NK"
   lat="42.462"
   lon="-76.966"
-  name="Re-dun Field"
+  name="Re-Dun Field"
   rwy="2800"
   state="NY"
   var=""/>
@@ -83415,7 +83415,7 @@
   id="46NY"
   lat="43.019"
   lon="-76.761"
-  name="Savannah Agri-air"
+  name="Savannah Agri-Air"
   rwy="2200"
   state="NY"
   var="-12.0"/>
@@ -83855,7 +83855,7 @@
   id="6B4"
   lat="43.021"
   lon="-75.170"
-  name="Frankfort-highland"
+  name="Frankfort-Highland"
   rwy="2550"
   state="NY"
   var="-13.0"/>
@@ -84125,7 +84125,7 @@
   id="SDC"
   lat="43.235"
   lon="-77.119"
-  name="Williamson-sodus"
+  name="Williamson-Sodus"
   rwy="3801"
   state="NY"
   var="-12.0"/>
@@ -84585,7 +84585,7 @@
   id="6OH1"
   lat="41.286"
   lon="-82.867"
-  name="Missler-bellevue"
+  name="Missler-Bellevue"
   rwy="1350"
   state="OH"
   var="-6.0"/>
@@ -84765,7 +84765,7 @@
   id="11OA"
   lat="39.643"
   lon="-82.467"
-  name="Hide-a-way Hills Resort"
+  name="Hide-A-way Hills Resort"
   rwy="2300"
   state="OH"
   var="-5.0"/>
@@ -84815,7 +84815,7 @@
   id="I62"
   lat="39.863"
   lon="-84.433"
-  name="Brookville Air-park"
+  name="Brookville Air-Park"
   rwy="2500"
   state="OH"
   var="-4.0"/>
@@ -85355,7 +85355,7 @@
   id="82OI"
   lat="40.154"
   lon="-83.275"
-  name="J-em Farm"
+  name="J-Em Farm"
   rwy="3000"
   state="OH"
   var="-4.0"/>
@@ -85645,7 +85645,7 @@
   id="OI12"
   lat="40.250"
   lon="-82.994"
-  name="Fly-a-way Farm"
+  name="Fly-A-way Farm"
   rwy="2500"
   state="OH"
   var="-5.0"/>
@@ -85675,7 +85675,7 @@
   id="2OH8"
   lat="39.795"
   lon="-83.223"
-  name="Port-o-john"
+  name="Port-O-john"
   rwy="2500"
   state="OH"
   var="-5.0"/>
@@ -86205,7 +86205,7 @@
   id="7OI5"
   lat="41.521"
   lon="-83.275"
-  name="Bea-d"
+  name="Bea-D"
   rwy="2650"
   state="OH"
   var="-5.0"/>
@@ -86635,7 +86635,7 @@
   id="18OH"
   lat="41.256"
   lon="-82.144"
-  name="Jer-mar Airpark"
+  name="Jer-Mar Airpark"
   rwy="2600"
   state="OH"
   var="-6.0"/>
@@ -86785,7 +86785,7 @@
   id="OI01"
   lat="39.514"
   lon="-82.449"
-  name="Lazy-w"
+  name="Lazy-W"
   rwy="1800"
   state="OH"
   var="-5.0"/>
@@ -87105,7 +87105,7 @@
   id="2OA5"
   lat="40.182"
   lon="-83.351"
-  name="Fl-airfield"
+  name="Fl-Airfield"
   rwy="2500"
   state="OH"
   var=""/>
@@ -87115,7 +87115,7 @@
   id="77OH"
   lat="39.363"
   lon="-84.341"
-  name="Collins-flege Airpark"
+  name="Collins-Flege Airpark"
   rwy="1500"
   state="OH"
   var="-4.0"/>
@@ -87185,7 +87185,7 @@
   id="3W9"
   lat="41.694"
   lon="-82.797"
-  name="Middle Bass-east Point"
+  name="Middle Bass-East Point"
   rwy="2085"
   state="OH"
   var="-7.0"/>
@@ -88795,7 +88795,7 @@
   id="79OH"
   lat="41.210"
   lon="-80.683"
-  name="Smith-stewart Field"
+  name="Smith-Stewart Field"
   rwy="1800"
   state="OH"
   var="-7.0"/>
@@ -88935,7 +88935,7 @@
   id="67D"
   lat="41.163"
   lon="-82.203"
-  name="Reader-botsford"
+  name="Reader-Botsford"
   rwy="2850"
   state="OH"
   var="-6.0"/>
@@ -88955,7 +88955,7 @@
   id="80G"
   lat="40.248"
   lon="-81.736"
-  name="Tri-city"
+  name="Tri-City"
   rwy="3000"
   state="OH"
   var="-6.0"/>
@@ -89365,7 +89365,7 @@
   id="OK83"
   lat="34.568"
   lon="-99.352"
-  name="Sheffield-smith Airstrip"
+  name="Sheffield-Smith Airstrip"
   rwy="1800"
   state="OK"
   var="8.0"/>
@@ -89575,7 +89575,7 @@
   id="OL92"
   lat="36.783"
   lon="-95.950"
-  name="Hi-way"
+  name="Hi-Way"
   rwy="4500"
   state="OK"
   var="6.0"/>
@@ -89625,7 +89625,7 @@
   id="BKN"
   lat="36.745"
   lon="-97.350"
-  name="Blackwell-tonkawa Muni"
+  name="Blackwell-Tonkawa Muni"
   rwy="3501"
   state="OK"
   var="6.0"/>
@@ -93425,7 +93425,7 @@
   id="33OR"
   lat="44.064"
   lon="-123.391"
-  name="Crow-mag"
+  name="Crow-Mag"
   rwy="3200"
   state="OR"
   var="19.0"/>
@@ -94760,7 +94760,7 @@
   state="OR"
   var="16.5"/>
  <Airport
-  city="Portland-mulino"
+  city="Portland-Mulino"
   elev="260"
   id="4S9"
   lat="45.216"
@@ -95265,7 +95265,7 @@
   id="98OR"
   lat="45.199"
   lon="-123.370"
-  name="Mach-o Acres"
+  name="Mach-O Acres"
   rwy="1300"
   state="OR"
   var="19.0"/>
@@ -96475,7 +96475,7 @@
   id="PS66"
   lat="41.211"
   lon="-79.361"
-  name="Parker-cramer"
+  name="Parker-Cramer"
   rwy="2000"
   state="PA"
   var="-8.0"/>
@@ -96625,7 +96625,7 @@
   id="PA65"
   lat="40.700"
   lon="-75.550"
-  name="Hi-vu"
+  name="Hi-Vu"
   rwy="1200"
   state="PA"
   var="-11.0"/>
@@ -97245,7 +97245,7 @@
   id="PA85"
   lat="40.305"
   lon="-75.534"
-  name="Drewniany-springmeadow"
+  name="Drewniany-Springmeadow"
   rwy="1350"
   state="PA"
   var="-11.0"/>
@@ -98365,7 +98365,7 @@
   id="3PS4"
   lat="40.724"
   lon="-77.987"
-  name="Mountain Hide-away"
+  name="Mountain Hide-Away"
   rwy="1400"
   state="PA"
   var=""/>
@@ -98405,7 +98405,7 @@
   id="4G0"
   lat="40.452"
   lon="-79.775"
-  name="Pittsburgh-monroeville"
+  name="Pittsburgh-Monroeville"
   rwy="2280"
   state="PA"
   var="-8.0"/>
@@ -98415,7 +98415,7 @@
   id="6PA3"
   lat="41.150"
   lon="-76.900"
-  name="Hackenburg-penny Hill"
+  name="Hackenburg-Penny Hill"
   rwy="2273"
   state="PA"
   var="-11.0"/>
@@ -98525,7 +98525,7 @@
   id="4PA1"
   lat="40.884"
   lon="-76.980"
-  name="Sauers-haven"
+  name="Sauers-Haven"
   rwy="1200"
   state="PA"
   var="-11.0"/>
@@ -99215,7 +99215,7 @@
   id="PN90"
   lat="41.749"
   lon="-78.100"
-  name="Ranch-aero"
+  name="Ranch-Aero"
   rwy="2500"
   state="PA"
   var="-10.0"/>
@@ -99225,7 +99225,7 @@
   id="5PN5"
   lat="39.742"
   lon="-77.535"
-  name="Bittner-whitsel"
+  name="Bittner-Whitsel"
   rwy="1400"
   state="PA"
   var="-11.0"/>
@@ -100260,7 +100260,7 @@
   state="PA"
   var="-11.0"/>
  <Airport
-  city="Wilkes-barre"
+  city="Wilkes-Barre"
   elev="545"
   id="WBW"
   lat="41.297"
@@ -100270,7 +100270,7 @@
   state="PA"
   var="-12.1"/>
  <Airport
-  city="Wilkes-barre/Scranton"
+  city="Wilkes-Barre/Scranton"
   elev="962"
   id="AVP"
   lat="41.338"
@@ -100315,7 +100315,7 @@
   id="2PN5"
   lat="40.248"
   lon="-78.361"
-  name="Baker-sell"
+  name="Baker-Sell"
   rwy="2000"
   state="PA"
   var="-9.0"/>
@@ -100675,7 +100675,7 @@
   id="RI07"
   lat="41.579"
   lon="-71.142"
-  name="Wing-over Farm"
+  name="Wing-Over Farm"
   rwy="1200"
   state="RI"
   var="-15.0"/>
@@ -101085,7 +101085,7 @@
   id="SC37"
   lat="33.272"
   lon="-80.254"
-  name="Crosswinds-wilson Pvt"
+  name="Crosswinds-Wilson Pvt"
   rwy="2700"
   state="SC"
   var="-5.0"/>
@@ -101885,7 +101885,7 @@
   id="SC23"
   lat="33.764"
   lon="-81.359"
-  name="Eagles Nest-fairview Airpark"
+  name="Eagles Nest-Fairview Airpark"
   rwy="2700"
   state="SC"
   var="-4.0"/>
@@ -102065,7 +102065,7 @@
   id="SC90"
   lat="33.676"
   lon="-80.948"
-  name="Do-little Field"
+  name="Do-Little Field"
   rwy="3200"
   state="SC"
   var="-5.0"/>
@@ -102315,7 +102315,7 @@
   id="SC08"
   lat="35.050"
   lon="-81.137"
-  name="Bethel-lake Wylie"
+  name="Bethel-Lake Wylie"
   rwy="1500"
   state="SC"
   var="-5.0"/>
@@ -104335,7 +104335,7 @@
   id="TN14"
   lat="35.690"
   lon="-86.636"
-  name="T-top Airfield"
+  name="T-Top Airfield"
   rwy="2600"
   state="TN"
   var="-2.0"/>
@@ -104385,7 +104385,7 @@
   id="TN67"
   lat="35.248"
   lon="-86.129"
-  name="Myers-smith"
+  name="Myers-Smith"
   rwy="2650"
   state="TN"
   var="-1.0"/>
@@ -104525,7 +104525,7 @@
   id="TN21"
   lat="35.448"
   lon="-87.506"
-  name="Palmer Village-napier Lake"
+  name="Palmer Village-Napier Lake"
   rwy="800"
   state="TN"
   var=""/>
@@ -104850,7 +104850,7 @@
   state="TN"
   var="-1.0"/>
  <Airport
-  city="Lexington-parsons"
+  city="Lexington-Parsons"
   elev="488"
   id="PVE"
   lat="35.656"
@@ -104955,7 +104955,7 @@
   id="TN43"
   lat="35.096"
   lon="-90.114"
-  name="Isle-a-port"
+  name="Isle-A-port"
   rwy="3200"
   state="TN"
   var="2.0"/>
@@ -104995,7 +104995,7 @@
   id="2TN4"
   lat="35.318"
   lon="-90.035"
-  name="Shoemaker-shelby Forest"
+  name="Shoemaker-Shelby Forest"
   rwy="2785"
   state="TN"
   var="1.0"/>
@@ -105955,7 +105955,7 @@
   id="43TX"
   lat="26.153"
   lon="-98.135"
-  name="Mid-valley Dusters Inc"
+  name="Mid-Valley Dusters Inc"
   rwy="1925"
   state="TX"
   var="7.0"/>
@@ -106115,7 +106115,7 @@
   id="3TS3"
   lat="29.375"
   lon="-95.290"
-  name="J-d Ranch"
+  name="J-D Ranch"
   rwy="1800"
   state="TX"
   var="6.0"/>
@@ -106755,7 +106755,7 @@
   id="3TS5"
   lat="29.471"
   lon="-95.886"
-  name="Purdy-nielsen Memorial Airpark"
+  name="Purdy-Nielsen Memorial Airpark"
   rwy="4200"
   state="TX"
   var="6.0"/>
@@ -106885,7 +106885,7 @@
   id="60TX"
   lat="30.034"
   lon="-96.264"
-  name="P-k Ranch"
+  name="P-K Ranch"
   rwy="3600"
   state="TX"
   var="6.0"/>
@@ -107035,7 +107035,7 @@
   id="78TA"
   lat="29.061"
   lon="-98.800"
-  name="Ranch-aero"
+  name="Ranch-Aero"
   rwy="3000"
   state="TX"
   var="7.0"/>
@@ -107095,7 +107095,7 @@
   id="TX41"
   lat="30.091"
   lon="-98.365"
-  name="Pippen-york Ranch"
+  name="Pippen-York Ranch"
   rwy="2000"
   state="TX"
   var="7.0"/>
@@ -107235,7 +107235,7 @@
   id="TA87"
   lat="33.107"
   lon="-97.548"
-  name="Carter-norman"
+  name="Carter-Norman"
   rwy="1000"
   state="TX"
   var=""/>
@@ -107755,7 +107755,7 @@
   id="4XA5"
   lat="34.038"
   lon="-98.496"
-  name="4-shipp"
+  name="4-Shipp"
   rwy="1849"
   state="TX"
   var=""/>
@@ -107795,7 +107795,7 @@
   id="89TX"
   lat="30.879"
   lon="-98.417"
-  name="Aero-bee Ranch Airstrip"
+  name="Aero-Bee Ranch Airstrip"
   rwy="2800"
   state="TX"
   var="7.0"/>
@@ -108145,7 +108145,7 @@
   id="XS86"
   lat="29.267"
   lon="-98.925"
-  name="T-ranch"
+  name="T-Ranch"
   rwy="1500"
   state="TX"
   var="8.0"/>
@@ -108565,7 +108565,7 @@
   id="85TA"
   lat="33.580"
   lon="-96.812"
-  name="J-bar Ranch"
+  name="J-Bar Ranch"
   rwy="2400"
   state="TX"
   var=""/>
@@ -109025,7 +109025,7 @@
   id="5TS2"
   lat="30.479"
   lon="-97.319"
-  name="Chan-c"
+  name="Chan-C"
   rwy="1500"
   state="TX"
   var="7.0"/>
@@ -109045,7 +109045,7 @@
   id="8TE2"
   lat="31.528"
   lon="-102.528"
-  name="J-bar Ranch"
+  name="J-Bar Ranch"
   rwy="3300"
   state="TX"
   var="9.0"/>
@@ -109420,7 +109420,7 @@
   state="TX"
   var="6.0"/>
  <Airport
-  city="Dallas-fort Worth"
+  city="Dallas-Fort Worth"
   elev="607"
   id="DFW"
   lat="32.897"
@@ -109825,7 +109825,7 @@
   id="TX12"
   lat="33.808"
   lon="-96.609"
-  name="Kidd-private"
+  name="Kidd-Private"
   rwy="2000"
   state="TX"
   var="6.0"/>
@@ -111355,7 +111355,7 @@
   id="05TE"
   lat="30.722"
   lon="-97.791"
-  name="Hilde-griff Field"
+  name="Hilde-Griff Field"
   rwy="1500"
   state="TX"
   var="7.0"/>
@@ -111365,7 +111365,7 @@
   id="30TA"
   lat="30.592"
   lon="-97.723"
-  name="Tri-modal Air Park"
+  name="Tri-Modal Air Park"
   rwy="4800"
   state="TX"
   var="7.0"/>
@@ -111405,7 +111405,7 @@
   id="07TS"
   lat="30.625"
   lon="-97.573"
-  name="Cross-country Estates"
+  name="Cross-Country Estates"
   rwy="2500"
   state="TX"
   var="7.0"/>
@@ -111505,7 +111505,7 @@
   id="8TS7"
   lat="32.245"
   lon="-97.726"
-  name="Wyatt 3-rivers"
+  name="Wyatt 3-Rivers"
   rwy="3000"
   state="TX"
   var="5.0"/>
@@ -111945,7 +111945,7 @@
   id="1TX2"
   lat="33.717"
   lon="-100.150"
-  name="J Y Ranch-r B Masterson Iii Estate"
+  name="J Y Ranch-R B Masterson Iii Estate"
   rwy="2600"
   state="TX"
   var="8.0"/>
@@ -112305,7 +112305,7 @@
   id="14TE"
   lat="30.917"
   lon="-99.484"
-  name="Smith I-ranch"
+  name="Smith I-Ranch"
   rwy="2700"
   state="TX"
   var="8.0"/>
@@ -113125,7 +113125,7 @@
   id="9X9"
   lat="29.913"
   lon="-95.827"
-  name="Sack-o-grande Acroport"
+  name="Sack-O-grande Acroport"
   rwy="3950"
   state="TX"
   var="6.0"/>
@@ -114780,7 +114780,7 @@
   state="TX"
   var="5.3"/>
  <Airport
-  city="Mc Clendon-chisholm"
+  city="Mc Clendon-Chisholm"
   elev="567"
   id="19TA"
   lat="32.822"
@@ -114975,7 +114975,7 @@
   id="31XS"
   lat="33.184"
   lon="-96.270"
-  name="Fly-n-ski"
+  name="Fly-N-ski"
   rwy="2325"
   state="TX"
   var="6.0"/>
@@ -115605,7 +115605,7 @@
   id="TE67"
   lat="29.429"
   lon="-98.132"
-  name="Cibolo Sea-willo Airpark"
+  name="Cibolo Sea-Willo Airpark"
   rwy="2500"
   state="TX"
   var="7.0"/>
@@ -115895,7 +115895,7 @@
   id="TS42"
   lat="34.196"
   lon="-102.128"
-  name="Del-tex"
+  name="Del-Tex"
   rwy="4500"
   state="TX"
   var="9.0"/>
@@ -116745,7 +116745,7 @@
   id="XS50"
   lat="27.384"
   lon="-98.310"
-  name="4-g Ranch"
+  name="4-G Ranch"
   rwy="3515"
   state="TX"
   var="7.0"/>
@@ -116935,7 +116935,7 @@
   id="XS58"
   lat="30.044"
   lon="-94.706"
-  name="Tri-county Air Service"
+  name="Tri-County Air Service"
   rwy="2200"
   state="TX"
   var="5.0"/>
@@ -117625,7 +117625,7 @@
   id="T94"
   lat="29.570"
   lon="-98.468"
-  name="Twin-oaks"
+  name="Twin-Oaks"
   rwy="2225"
   state="TX"
   var="7.0"/>
@@ -117685,7 +117685,7 @@
   id="24XA"
   lat="29.321"
   lon="-98.370"
-  name="Cross-b"
+  name="Cross-B"
   rwy="2000"
   state="TX"
   var=""/>
@@ -117935,7 +117935,7 @@
   id="5TA7"
   lat="29.421"
   lon="-95.159"
-  name="Kami-kazi"
+  name="Kami-Kazi"
   rwy="1400"
   state="TX"
   var="6.0"/>
@@ -119115,7 +119115,7 @@
   id="48TX"
   lat="33.454"
   lon="-96.382"
-  name="Tri-county Aerodrome"
+  name="Tri-County Aerodrome"
   rwy="3900"
   state="TX"
   var="6.0"/>
@@ -119215,7 +119215,7 @@
   id="TA42"
   lat="32.713"
   lon="-94.125"
-  name="Fly-n-fish Lodge"
+  name="Fly-N-fish Lodge"
   rwy="4000"
   state="TX"
   var="5.0"/>
@@ -119665,7 +119665,7 @@
   id="TE71"
   lat="29.611"
   lon="-96.028"
-  name="Ghsa-wallis Glideport"
+  name="Ghsa-Wallis Glideport"
   rwy="4000"
   state="TX"
   var="5.0"/>
@@ -120035,7 +120035,7 @@
   id="36TX"
   lat="33.721"
   lon="-96.861"
-  name="Bevoni-flying B"
+  name="Bevoni-Flying B"
   rwy="2000"
   state="TX"
   var="6.0"/>
@@ -120865,7 +120865,7 @@
   id="UT79"
   lat="40.416"
   lon="-109.344"
-  name="3-i Rocker Ranch"
+  name="3-I Rocker Ranch"
   rwy="1800"
   state="UT"
   var="13.0"/>
@@ -121045,7 +121045,7 @@
   id="UT68"
   lat="38.473"
   lon="-109.660"
-  name="Tangri-la"
+  name="Tangri-La"
   rwy="3000"
   state="UT"
   var="13.0"/>
@@ -122185,7 +122185,7 @@
   id="12VA"
   lat="37.788"
   lon="-79.768"
-  name="Hop-along"
+  name="Hop-Along"
   rwy="2150"
   state="VA"
   var="-8.0"/>
@@ -123160,7 +123160,7 @@
   state="VA"
   var="-9.0"/>
  <Airport
-  city="Marion-wytheville"
+  city="Marion-Wytheville"
   elev="2558"
   id="MKJ"
   lat="36.895"
@@ -123595,7 +123595,7 @@
   id="VA99"
   lat="37.906"
   lon="-76.290"
-  name="Federhart-ophelia"
+  name="Federhart-Ophelia"
   rwy="2200"
   state="VA"
   var="-10.0"/>
@@ -124055,7 +124055,7 @@
   id="XSA"
   lat="37.860"
   lon="-76.894"
-  name="Tappahannock-essex County"
+  name="Tappahannock-Essex County"
   rwy="4300"
   state="VA"
   var="-10.0"/>
@@ -124195,7 +124195,7 @@
   id="3VA0"
   lat="38.776"
   lon="-77.911"
-  name="Ayres-aicp"
+  name="Ayres-Aicp"
   rwy="1200"
   state="VA"
   var="-9.0"/>
@@ -124265,7 +124265,7 @@
   id="HWY"
   lat="38.586"
   lon="-77.711"
-  name="Warrenton-fauquier"
+  name="Warrenton-Fauquier"
   rwy="5000"
   state="VA"
   var="-10.0"/>
@@ -124505,7 +124505,7 @@
   id="VT11"
   lat="44.069"
   lon="-73.373"
-  name="Ass-pirin Acres"
+  name="Ass-Pirin Acres"
   rwy="3700"
   state="VT"
   var="-15.0"/>
@@ -124540,7 +124540,7 @@
   state="VT"
   var="-16.0"/>
  <Airport
-  city="Barre-montpelier"
+  city="Barre-Montpelier"
   elev="1165"
   id="MPV"
   lat="44.204"
@@ -125015,7 +125015,7 @@
   id="VT29"
   lat="44.226"
   lon="-72.795"
-  name="Mad River Fly-in"
+  name="Mad River Fly-In"
   rwy="1000"
   state="VT"
   var="-16.0"/>
@@ -125025,7 +125025,7 @@
   id="0B7"
   lat="44.117"
   lon="-72.827"
-  name="Warren-sugarbush"
+  name="Warren-Sugarbush"
   rwy="2575"
   state="VT"
   var="-16.0"/>
@@ -125515,7 +125515,7 @@
   id="8S2"
   lat="47.515"
   lon="-120.485"
-  name="Cashmere-dryden"
+  name="Cashmere-Dryden"
   rwy="1800"
   state="WA"
   var="20.0"/>
@@ -126525,7 +126525,7 @@
   id="4WA6"
   lat="46.618"
   lon="-118.595"
-  name="Hille-kimp Airstrip"
+  name="Hille-Kimp Airstrip"
   rwy="2600"
   state="WA"
   var="19.0"/>
@@ -126675,7 +126675,7 @@
   id="WA29"
   lat="45.896"
   lon="-122.594"
-  name="La Center View-air"
+  name="La Center View-Air"
   rwy="1700"
   state="WA"
   var="20.0"/>
@@ -127645,7 +127645,7 @@
   id="WN55"
   lat="46.511"
   lon="-122.006"
-  name="Randle-kiona Airpark"
+  name="Randle-Kiona Airpark"
   rwy="2400"
   state="WA"
   var="20.0"/>
@@ -127845,7 +127845,7 @@
   id="0WN1"
   lat="46.752"
   lon="-120.602"
-  name="Shangri-la"
+  name="Shangri-La"
   rwy="1800"
   state="WA"
   var=""/>
@@ -128010,7 +128010,7 @@
   state="WA"
   var=""/>
  <Airport
-  city="South Bend-raymond"
+  city="South Bend-Raymond"
   elev="13"
   id="2S9"
   lat="46.698"
@@ -129215,7 +129215,7 @@
   id="6WI3"
   lat="45.677"
   lon="-91.563"
-  name="Will-be-gone"
+  name="Will-Be-gone"
   rwy="2000"
   state="WI"
   var="1.0"/>
@@ -129595,7 +129595,7 @@
   id="WI32"
   lat="44.987"
   lon="-91.330"
-  name="T-bo Field"
+  name="T-Bo Field"
   rwy="2000"
   state="WI"
   var=""/>
@@ -129645,7 +129645,7 @@
   id="5WI8"
   lat="45.076"
   lon="-88.004"
-  name="Ermis-ridgeview"
+  name="Ermis-Ridgeview"
   rwy="1900"
   state="WI"
   var="-2.0"/>
@@ -130165,7 +130165,7 @@
   id="3D2"
   lat="45.135"
   lon="-87.186"
-  name="Ephraim-fish Creek"
+  name="Ephraim-Fish Creek"
   rwy="2700"
   state="WI"
   var="-4.0"/>
@@ -130185,7 +130185,7 @@
   id="26WI"
   lat="45.699"
   lon="-91.303"
-  name="Kitty-wompus"
+  name="Kitty-Wompus"
   rwy="3000"
   state="WI"
   var="1.0"/>
@@ -130815,7 +130815,7 @@
   id="17WI"
   lat="43.036"
   lon="-88.893"
-  name="Ha-rail"
+  name="Ha-Rail"
   rwy="2500"
   state="WI"
   var=""/>
@@ -130870,7 +130870,7 @@
   state="WI"
   var="-2.4"/>
  <Airport
-  city="Land-o-lakes"
+  city="Land-O-lakes"
   elev="1735"
   id="1WN5"
   lat="46.155"
@@ -130915,7 +130915,7 @@
   id="49WI"
   lat="43.379"
   lon="-90.015"
-  name="Tri-center"
+  name="Tri-Center"
   rwy="2200"
   state="WI"
   var="1.0"/>
@@ -130945,7 +130945,7 @@
   id="WI92"
   lat="42.661"
   lon="-88.361"
-  name="Wag-aero"
+  name="Wag-Aero"
   rwy="3100"
   state="WI"
   var="-1.0"/>
@@ -131220,7 +131220,7 @@
   state="WI"
   var=""/>
  <Airport
-  city="Minocqua-woodruff"
+  city="Minocqua-Woodruff"
   elev="1630"
   id="ARV"
   lat="45.928"
@@ -131725,7 +131725,7 @@
   id="0WI9"
   lat="42.931"
   lon="-89.339"
-  name="Mc Manus Hoonch-na-shee-kaw"
+  name="Mc Manus Hoonch-Na-shee-kaw"
   rwy="2600"
   state="WI"
   var=""/>
@@ -132055,7 +132055,7 @@
   id="91C"
   lat="43.298"
   lon="-89.756"
-  name="Sauk-prairie"
+  name="Sauk-Prairie"
   rwy="2936"
   state="WI"
   var=""/>
@@ -132095,7 +132095,7 @@
   id="1WI3"
   lat="43.850"
   lon="-89.117"
-  name="Bed-ah-wick Field"
+  name="Bed-Ah-wick Field"
   rwy="1800"
   state="WI"
   var=""/>
@@ -132255,7 +132255,7 @@
   id="WI28"
   lat="44.586"
   lon="-87.558"
-  name="Walter&apos;s Agri-center"
+  name="Walter&apos;s Agri-Center"
   rwy="1750"
   state="WI"
   var="-2.0"/>
@@ -132665,7 +132665,7 @@
   id="2WI1"
   lat="42.944"
   lon="-89.287"
-  name="Uff-da"
+  name="Uff-Da"
   rwy="1800"
   state="WI"
   var="-1.0"/>
@@ -132845,7 +132845,7 @@
   id="WI46"
   lat="43.883"
   lon="-88.540"
-  name="Fun-air"
+  name="Fun-Air"
   rwy="1400"
   state="WI"
   var="-2.0"/>
@@ -133255,7 +133255,7 @@
   id="WS42"
   lat="44.950"
   lon="-90.600"
-  name="Owen-withee"
+  name="Owen-Withee"
   rwy="2600"
   state="WI"
   var="1.0"/>
@@ -133545,7 +133545,7 @@
   id="4G7"
   lat="39.448"
   lon="-80.167"
-  name="Fairmont Muni-frankman Field"
+  name="Fairmont Muni-Frankman Field"
   rwy="2859"
   state="WV"
   var="-8.0"/>
@@ -133835,7 +133835,7 @@
   id="WV77"
   lat="37.680"
   lon="-80.710"
-  name="Hinton-alderson"
+  name="Hinton-Alderson"
   rwy="2700"
   state="WV"
   var="-6.0"/>
@@ -134465,7 +134465,7 @@
   id="48U"
   lat="41.458"
   lon="-109.490"
-  name="Gtr Green River Intergalactic Spaceport"
+  name="Greater Green River Intergalactic Spaceport"
   rwy="5800"
   state="WY"
   var="14.0"/>
