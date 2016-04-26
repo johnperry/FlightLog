@@ -28,6 +28,7 @@ public class FlightLogServer implements Runnable {
 	 * This method is used when running as a Windows service.
 	 * It does not return until the stopService method is called
 	 * independently by the service manager.
+	 * @param args command line arguments
 	 */
 	public static void startService(String[] args) {
 		thread = new Thread(new FlightLogServer());
@@ -41,6 +42,7 @@ public class FlightLogServer implements Runnable {
 	/**
 	 * The shutdown method.
 	 * This method is used when running as a Windows service.
+	 * @param args command line arguments
 	 */
 	public static void stopService(String[] args) {
 		String dateTime = StringUtil.getDateTime(" ");
@@ -71,6 +73,7 @@ public class FlightLogServer implements Runnable {
 
 	/**
 	 * The main method of the FlightLogServer program.
+	 * @param args command line arguments
 	 */
 	public static void main(String[] args) {
 		new FlightLogServer();

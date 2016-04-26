@@ -55,6 +55,13 @@ public class SearchServlet extends Servlet {
 					sc.latestDate = getDate(date, 15);
 					res.write(search(sc));
 				}
+				else if (req.hasParameter("recent")) {
+					sc = new SearchCriteria();
+					sc.earliestDate = getDate(null, -30);
+					sc.latestDate = getDate(null, 1);
+					logger.info("recent: "+sc.earliestDate+" - "+sc.latestDate);
+					res.write(search(sc));					
+				}
 				else {
 					if (sc != null) root.appendChild(sc.getElement(root));
 					Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("SearchServlet.xsl" ) );
@@ -121,14 +128,17 @@ public class SearchServlet extends Servlet {
 	}
 	
 	private String getDate(String date, int inc) {
-		int year = StringUtil.getInt(date.substring(0,4));
-		int month = StringUtil.getInt(date.substring(5,7)) - 1;
-		int day = StringUtil.getInt(date.substring(8,10));
-		GregorianCalendar gc = new GregorianCalendar(year, month, day);
+		GregorianCalendar gc;
+		if (date != null) {
+			int year = StringUtil.getInt(date.substring(0,4));
+			int month = StringUtil.getInt(date.substring(5,7)) - 1;
+			int day = StringUtil.getInt(date.substring(8,10));
+			gc = new GregorianCalendar(year, month, day);
+		}
+		else gc = new GregorianCalendar();
 		long time = gc.getTimeInMillis();
 		time += 24 * 60 * 60 * 1000 * (long)inc;
 		gc.setTimeInMillis(time);
 		return String.format("%4d.%02d.%02d", gc.get(gc.YEAR), (gc.get(gc.MONTH)+1), gc.get(gc.DAY_OF_MONTH));
 	}
-
 }

@@ -61,6 +61,16 @@ public class SummaryServlet extends Servlet {
 				sc.model = "ea*"; //Note: must be lower case
 				root.appendChild(search(root, "All Extras", sc));
 				
+				//Get the total in J3 Cubs
+				sc = new SearchCriteria();
+				sc.model = "j3"; //Note: must be lower case
+				root.appendChild(search(root, "J3 Cub", sc));
+				
+				//Get the total in all Cubs
+				sc = new SearchCriteria();
+				sc.model = "j*"; //Note: must be lower case
+				root.appendChild(search(root, "All Cubs", sc));
+				
 				//Get the total tailwheel time
 				sc = new SearchCriteria();
 				sc.tailwheel = true;
@@ -70,6 +80,16 @@ public class SummaryServlet extends Servlet {
 				sc = new SearchCriteria();
 				sc.retractable = true;
 				root.appendChild(search(root, "Retractable", sc));
+				
+				//Get the total lanmdplane time
+				sc = new SearchCriteria();
+				sc.asel = true;
+				root.appendChild(search(root, "ASEL", sc));
+				
+				//Get the total seaplane time
+				sc = new SearchCriteria();
+				sc.ases = true;
+				root.appendChild(search(root, "ASES", sc));
 				
 				//Get the total glider time
 				sc = new SearchCriteria();
@@ -81,7 +101,7 @@ public class SummaryServlet extends Servlet {
 				sc.helicopter = true;
 				root.appendChild(search(root, "Helicopter", sc));
 				
- 				//Get the total helicopter time
+ 				//Get the recent time
 				sc = new SearchCriteria();
 				sc.earliestDate = sixMonthsAgo();
 				root.appendChild(search(root, "Last 6 Months", sc));
