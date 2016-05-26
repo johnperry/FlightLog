@@ -77,7 +77,7 @@ public class SaveServlet extends Servlet {
 				res.disableCaching();
 				res.setContentType("txt");
 				res.write("Backup file created ["+backupFile.getAbsolutePath()+"]");
-				if (cloudFile != null) res.write("\nand copied to the cloud drive ["+cloudDir.getAbsolutePath()+"]");
+				if (cloudFile != null) res.write("\nand copied to the cloud drive ["+cloudFile.getAbsolutePath()+"]");
 			}
 			catch (Exception ex) {
 				StringWriter sw = new StringWriter();
