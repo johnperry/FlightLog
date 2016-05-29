@@ -78,7 +78,7 @@ public class SaveServlet extends Servlet {
 					}
 					else res.write("\nOld cloud backup file does not exist.");
 					*/
-					if (FileUtil.copy(backupFile, cloudFile)) res.write("\nNew backup copied ");
+					if (FileUtil.copy(backupFile, cloudFile)) res.write("\nBackup file copied ");
 					else res.write("\nBackup file could not be copied ");
 					res.write("to the cloud drive ["+cloudFile.getAbsolutePath()+"]");
 				}
