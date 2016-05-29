@@ -63,21 +63,25 @@ public class SaveServlet extends Servlet {
 				File backupFile = new File("FlightLog.xml");
 				backup(backupFile); //copy the previous backup
 				FileUtil.setText(backupFile, xml);
+				res.write("Backup file created ["+backupFile.getAbsolutePath()+"]");
 				
-				//Copy it to Google Drive, if available
+				//Copy it to the cloud drive, if available
 				String cloud = Configuration.getInstance().getProperty("cloud", "C:\\Users\\John\\Google Drive");
 				File cloudDir = new File(cloud);
 				File cloudFile = null;
 				if (cloudDir.exists()) {
 					cloudFile = new File(cloudDir, backupFile.getName());
-					FileUtil.copy(backupFile, cloudFile);
+					/*
+					if (cloudFile.exists()) {
+						if (cloudFile.delete()) res.write("\nOld cloud backup file deleted.");
+						else res.write("\nOld cloud backup file could not be deleted.");
+					}
+					else res.write("\nOld cloud backup file does not exist.");
+					*/
+					if (FileUtil.copy(backupFile, cloudFile)) res.write("\nNew backup copied ");
+					else res.write("\nBackup file could not be copied ");
+					res.write("to the cloud drive ["+cloudFile.getAbsolutePath()+"]");
 				}
-				
-				//Send a response
-				res.disableCaching();
-				res.setContentType("txt");
-				res.write("Backup file created ["+backupFile.getAbsolutePath()+"]");
-				if (cloudFile != null) res.write("\nand copied to the cloud drive ["+cloudFile.getAbsolutePath()+"]");
 			}
 			catch (Exception ex) {
 				StringWriter sw = new StringWriter();

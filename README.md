@@ -11,7 +11,7 @@ port - the port on which the server is to be opened
 
 name - the pilot's name to be printed on each page of the log book
 
-userhome - the path to the user's home directory (used when copying a backup to Google drive)
+cloud - the path to the cloud drive (used when copying a backup to Google drive)
 
 Defaults are provided which configure the program for me, so while I don't need a config file, you do.
 
@@ -23,3 +23,4 @@ The FlightLogServer program can be run as a Windows service. Launch a command wi
 
 The FlightLogPrinter program prints the flights in the FlightLog.xml file, so before printing, make sure you save the database.
 
+Note: If you run FlightLogServer as a service and specify a cloud drive, then make sure that you run the service under your account and that your account is enabled to run as a service. If you don't, then saves to the cloud will fail, although local saves will succeed.
