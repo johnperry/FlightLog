@@ -27,12 +27,12 @@ The FlightLogPrinter program prints the flights in the FlightLog.xml file, so be
 
 Note: If you run FlightLogServer as a service and specify a cloud drive, then make sure that you run the service under your account and that your account is enabled to run as a service. If you don't, then saves to the cloud will fail, although local saves will succeed. To configure the service user, add the ServiceUser and ServicePassword parameters to the FlightLog/windows/install.bat file like this:
 
-FlightLog.exe ^
- //IS//FlightLog ^
+FlightLog.exe ^<br>
+ //IS//FlightLog ^<br>
  --Install="${home}"\windows\FlightLog.exe ^
  --Description="Flight Log" ^
  --Startup=auto ^
  --Jvm=auto ^
- --ServiceUser=MyUsername ^
+ --ServiceUser=.\MyUsername ^
  --ServicePassword=MyPassword ^
  ...
