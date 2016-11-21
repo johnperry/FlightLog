@@ -29,10 +29,10 @@ Note: If you run FlightLogServer as a service and specify a cloud drive, then ma
 
 FlightLog.exe ^<br>
  //IS//FlightLog ^<br>
- --Install="${home}"\windows\FlightLog.exe ^
- --Description="Flight Log" ^
- --Startup=auto ^
- --Jvm=auto ^
- --ServiceUser=.\MyUsername ^
- --ServicePassword=MyPassword ^
+ --Install="${home}"\windows\FlightLog.exe ^<br>
+ --Description="Flight Log" ^<br>
+ --Startup=auto ^<br>
+ --Jvm=auto ^<br>
+ --ServiceUser=.\MyUsername ^<br>
+ --ServicePassword=MyPassword ^<br>
  ...
