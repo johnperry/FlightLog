@@ -17,9 +17,18 @@ Defaults are provided which configure the program for me, so while I don't need 
 
 The FlightLogServer program opens a server on the specified port. The server requires a login. A user (admin) with password (password) is provided. After logging in, you can change the password or make a different user through the User Manager link in the left pane.
 
-If the Save link in the left pane is clicked, the system saves the contents of the database as an XML file (FlightLog.xml) in the FlightLog directory. It also creates a zip file (FlightLog.zip) containing the XML backup plus the contents of the ROOT/images directory.
+If the Save link in the left pane is clicked, the system saves the contents of the database as an XML file (FlightLog.xml) in the FlightLog directory. It also creates a zip file (FlightLog.zip) containing the XML backup plus the contents of the ROOT/images directory. If the cloud parameter exists, the zip file is copied to that folder as well, providing a cloud backup. 
 
-If the cloud parameter exists, the zip file is copied to that folder as well, providing a cloud backup. If you ever need to re-install everything, install the program, copy the FlightLog.zip file to the FlightLog directory, unpack it, start FlightLogServer.jar, and click the Initialize link in the left pane. That will import the entire backup. Initialization is not allowed unless the existing database is empty.
+If you ever need to re-install everything from scratch:
+<ol>
+<li>install the program
+<li>copy the FlightLog.zip file to the FlightLog directory and unpack it
+<li>delete the FlightLog.db and FlightLog.lg files if they are present
+<li>start FlightLogServer.jar
+<li>launch your browser and go to the FlightLog home page
+<li>click the Initialize link in the left pane.
+</ol>
+That will import the entire backup. Initialization is not allowed unless the database is missing or empty.
 
 The FlightLogServer program can be run as a Windows service. Launch a command window with admin privileges, navigate to the FlightLog/windows directory and enter the command: install.bat. The uninstall.bat file uninstalls the service.
 
