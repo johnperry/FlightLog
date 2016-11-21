@@ -31,3 +31,7 @@ textarea {
 	width: 80%;
 }
 
+tr.outline {
+	outline: thin solid gray;
+}
+

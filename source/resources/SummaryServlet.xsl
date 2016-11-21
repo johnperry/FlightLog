@@ -19,6 +19,7 @@
 <center>
 
 	<h1>Summary</h1>
+	<h2><xsl:value-of select="@date"/></h2>
 	
 	<table>
 		<tr>

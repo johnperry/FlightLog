@@ -3,6 +3,7 @@ package org.jp.server;
 import java.io.*;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.zip.*;
 import org.apache.log4j.Logger;
 import org.jp.config.Configuration;
 import org.rsna.server.HttpRequest;
@@ -37,6 +38,8 @@ public class SaveServlet extends Servlet {
 	 */
 	public void doGet(HttpRequest req, HttpResponse res) {
 		if (req.isFromAuthenticatedUser()) {
+			res.setContentType("html");
+			res.write("<html><body><pre>");
 			try {
 				//Create the XML structure
 				Database db = Database.getInstance();
@@ -65,22 +68,21 @@ public class SaveServlet extends Servlet {
 				FileUtil.setText(backupFile, xml);
 				res.write("Backup file created ["+backupFile.getAbsolutePath()+"]");
 				
-				//Copy it to the cloud drive, if available
-				String cloud = Configuration.getInstance().getProperty("cloud", "C:\\Users\\John\\Google Drive");
-				File cloudDir = new File(cloud);
-				File cloudFile = null;
-				if (cloudDir.exists()) {
-					cloudFile = new File(cloudDir, backupFile.getName());
-					/*
-					if (cloudFile.exists()) {
-						if (cloudFile.delete()) res.write("\nOld cloud backup file deleted.");
-						else res.write("\nOld cloud backup file could not be deleted.");
+				//Make a zip file containing the XML and the images
+				File zipFile = new File("FlightLog.zip");
+				if (createZipBackup(zipFile)) {
+					res.write("\nBackup zip file created ["+zipFile.getAbsolutePath()+"]");
+					
+					//Copy it to the cloud drive, if available
+					String cloud = Configuration.getInstance().getProperty("cloud", "C:\\Users\\John\\Google Drive");
+					File cloudDir = new File(cloud);
+					File cloudFile = null;
+					if (cloudDir.exists()) {
+						cloudFile = new File(cloudDir, zipFile.getName());
+						if (FileUtil.copy(zipFile, cloudFile)) res.write("\nBackup zip file copied ");
+						else res.write("\nBackup zip file could not be copied ");
+						res.write("to the cloud drive ["+cloudFile.getAbsolutePath()+"]");
 					}
-					else res.write("\nOld cloud backup file does not exist.");
-					*/
-					if (FileUtil.copy(backupFile, cloudFile)) res.write("\nBackup file copied ");
-					else res.write("\nBackup file could not be copied ");
-					res.write("to the cloud drive ["+cloudFile.getAbsolutePath()+"]");
 				}
 			}
 			catch (Exception ex) {
@@ -93,6 +95,7 @@ public class SaveServlet extends Servlet {
 		else {
 			res.setResponseCode(res.forbidden);
 		}
+		res.write("</pre></body></html>");
 		res.send();
 	}
 	
@@ -127,4 +130,43 @@ public class SaveServlet extends Servlet {
 		}
 	}
 
+	public static boolean createZipBackup(File zipFile) {
+		try {
+			File dir = new File(System.getProperty("user.dir"));
+			int rootLength = dir.getAbsolutePath().length();
+
+			FileOutputStream fout = new FileOutputStream(zipFile);
+			ZipOutputStream zout = new ZipOutputStream(fout);
+
+			zipFile(zout, new File(dir, "FlightLog.xml"), rootLength);
+			
+			File rootDir = new File(dir, "ROOT");
+			File imagesDir = new File(rootDir, "images");
+			File[] list = imagesDir.listFiles();
+			for (File file : list) {
+				zipFile(zout, file, rootLength);
+			}
+			zout.close();
+			return true;
+		}
+		catch (Exception ex) { return false; }
+	}
+
+	private static synchronized void zipFile(ZipOutputStream zout, File file, int rootLength)
+												throws Exception {
+		FileInputStream fin;
+		ZipEntry ze;
+		byte[] buffer = new byte[10000];
+		int bytesread;
+		String entryname = file.getAbsolutePath().substring(rootLength);
+		entryname = entryname.replaceAll("\\\\", "/");
+		ze = new ZipEntry(entryname);
+		if (file.exists()) {
+			fin = new FileInputStream(file);
+			zout.putNextEntry(ze);
+			while ((bytesread = fin.read(buffer)) > 0) zout.write(buffer,0,bytesread);
+			zout.closeEntry();
+			fin.close();
+		}
+	}
 }

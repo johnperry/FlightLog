@@ -30,6 +30,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 	public Time		dual	= Time.zero();
 	public Time		pic		= Time.zero();
 	public String	notes	= "";
+	public String	images	= "";
 
 	public Flight() { }
 
@@ -50,6 +51,16 @@ public class Flight implements Serializable, Comparable<Flight> {
 		dual = getTime(req.getParameter("dual"));
 		pic = getTime(req.getParameter("pic"));
 		notes = trim(req.getParameter("notes", ""));
+		
+		//Set the images from the existing Flight, if it exists
+		if (!id.equals("")) {
+			try {
+				Database db = Database.getInstance();
+				Flight flight = db.getFlight(id);
+				if (flight != null) images = flight.images;
+			}
+			catch (Exception ex) { images = ""; }
+		}
 		
 		if (!date.equals("") && total.isZero() && !tach.isZero()) {
 			Flight prev = Database.getInstance().getPrevFlight(date, acid);
@@ -78,6 +89,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 		dual = getTime(el.getAttribute("dual"));
 		pic = getTime(el.getAttribute("pic"));
 		notes = trim(el.getAttribute("notes"));
+		images = el.getAttribute("images").trim();
 	}
 
 	public void set(String name, String value) {
@@ -97,6 +109,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 		else if (name.equals("dual")) 	dual 	= Time.valueOf(value);
 		else if (name.equals("pic")) 	pic 	= Time.valueOf(value);
 		else if (name.equals("notes")) 	notes 	= trim(value);
+		else if (name.equals("images")) images	= value.trim();
 	}
 	
 	public static String trim(String s) {
@@ -128,7 +141,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 
 	public int compareTo(Flight fl) {
 		//Compare the dates.
-		//Note the date may have an index indicating the 
+		//Note: the date may have an index indicating the 
 		//number of the flight on the day.
 		int c;
 		if ((date.length() <= 10) || (fl.date.length() <= 10)) {
@@ -186,6 +199,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 		flight.setAttribute("acid", acid);
 		flight.setAttribute("route", route);
 		if (!notes.equals("")) flight.setAttribute("notes", notes);
+		if (!images.equals("")) flight.setAttribute("images", images);
 		if (ldg > 0) flight.setAttribute("ldg", Integer.toString(ldg));
 		if (app > 0) flight.setAttribute("app", Integer.toString(app));
 		flight.setAttribute("total", total.toString());

@@ -10,6 +10,7 @@ import org.rsna.server.HttpResponse;
 import org.rsna.servlets.Servlet;
 import org.rsna.util.Cache;
 import org.rsna.util.FileUtil;
+import org.rsna.util.StringUtil;
 import org.rsna.util.XmlUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -40,6 +41,7 @@ public class SummaryServlet extends Servlet {
 			try {
 				Document doc = XmlUtil.getDocument();
 				Element root = doc.createElement("Summary");
+				root.setAttribute("date", StringUtil.getDate("."));
 				doc.appendChild(root);
 				
 				//Get the total time
@@ -106,6 +108,10 @@ public class SummaryServlet extends Servlet {
 				sc.earliestDate = sixMonthsAgo();
 				root.appendChild(search(root, "Last 6 Months", sc));
 				
+				sc = new SearchCriteria();
+				sc.earliestDate = oneYearAgo();
+				root.appendChild(search(root, "Last 12 Months", sc));
+				
 				Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("SummaryServlet.xsl" ) );
 				res.write( XmlUtil.getTransformedText(doc, xsl, null) );
 				res.disableCaching();
@@ -126,6 +132,12 @@ public class SummaryServlet extends Servlet {
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.roll(gc.MONTH, -6);
 		if (gc.get(gc.MONTH) >= 6) gc.roll(gc.YEAR, -1);
+		return String.format("%4d.%02d.%02d", gc.get(gc.YEAR), (gc.get(gc.MONTH)+1), gc.get(gc.DAY_OF_MONTH));
+	}
+
+	private String oneYearAgo() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.roll(gc.YEAR, -1);
 		return String.format("%4d.%02d.%02d", gc.get(gc.YEAR), (gc.get(gc.MONTH)+1), gc.get(gc.DAY_OF_MONTH));
 	}
 

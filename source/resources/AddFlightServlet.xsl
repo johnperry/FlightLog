@@ -91,17 +91,18 @@
 					<xsl:if test="Flight/@notes"><xsl:value-of select="Flight/@notes"/></xsl:if>
 					<xsl:if test="not(Flight/@notes)">&#160;</xsl:if>
 				</textarea>
-
 			</td>
 		</tr>
 	</table>
-
-	<p><input type="submit" value="Submit Flight" tabindex="17"/></p>
+	
+	<p>
+		<input type="submit" value="Submit Flight" tabindex="17"/>
+	</p>
 	
 	<p>
 		<input type="button" 
 			   value="Repeat Previous Search" 
-			   tabindex="18" 
+			   tabindex="19" 
 			   onclick="window.open('/search?repeat','_self');"/>
 	</p>
 	
@@ -109,8 +110,23 @@
 		<p>
 			<input type="button" 
 				   value="Flights around this date" 
-				   tabindex="19" 
+				   tabindex="20" 
 				   onclick="window.open('/search?date={Flight/@date}','_self');"/>
+		</p>
+	</xsl:if>
+
+	<xsl:if test="Flight/@images != ''">
+		<xsl:call-template name="makeImageElements">
+			<xsl:with-param name="list" select="Flight/@images"/>
+		</xsl:call-template>
+	</xsl:if>
+
+	<xsl:if test="Flight/@id != ''">
+		<p>
+			<input type="button" 
+				   value="Add Image" 
+				   tabindex="21" 
+				   onclick="window.open('/addimage?id={Flight/@id}','_self');"/>
 		</p>
 	</xsl:if>
 	</form>
@@ -120,6 +136,36 @@
 
 </html>
 
+</xsl:template>
+
+<xsl:template name="makeImageElements">
+	<xsl:param name="list"/>
+	<xsl:if test="$list != ''">
+		<xsl:variable name="first" select="substring-before($list,'/')"/>
+		<xsl:variable name="rest" select="substring-after($list,'/')"/>
+		<xsl:if test="$first != ''">
+			<xsl:call-template name="makeImageElement">
+				<xsl:with-param name="name" select="$first"/>
+			</xsl:call-template>
+			<xsl:call-template name="makeImageElements">
+				<xsl:with-param name="list" select="$rest"/>
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="$first = ''">
+			<xsl:call-template name="makeImageElement">
+				<xsl:with-param name="name" select="$list"/>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:if>
+</xsl:template>
+
+<xsl:template name="makeImageElement">
+	<xsl:param name="name"/>
+	<xsl:if test="$name != ''">
+		<p>
+			<img src="/images/{$name}" title="{$name}"/>
+		</p>
+	</xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>
