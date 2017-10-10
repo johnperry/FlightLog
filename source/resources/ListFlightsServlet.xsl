@@ -52,7 +52,10 @@
 							<xsl:attribute name="title"><xsl:value-of select="@notes"/></xsl:attribute>
 							<b><xsl:value-of select="position()"/></b>
 						</xsl:if>
-						<xsl:if test="not(@notes)">
+						<xsl:if test="@images and not(@notes)">
+							<b><xsl:value-of select="position()"/></b>
+						</xsl:if>
+						<xsl:if test="not(@notes) and not(@images)">
 							<xsl:value-of select="position()"/>
 						</xsl:if>
 					</td>

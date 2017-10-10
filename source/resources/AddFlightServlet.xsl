@@ -164,6 +164,8 @@
 	<xsl:if test="$name != ''">
 		<p>
 			<img src="/images/{$name}" title="{$name}"/>
+			<xsl:text> </xsl:text>
+			<a href="javascript:deleteImage('{Flight/@id}','{$name}');"><img src="/icons/closebox.gif"/></a>
 		</p>
 	</xsl:if>
 </xsl:template>

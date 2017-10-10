@@ -29,7 +29,7 @@ public class DDNS extends Thread {
 	}
 
 	public void run() {
-		if (url != null) {
+		if ((url != null) && !url.trim().equals("")) {
 			while (!interrupted()) {
 				try {
 					HttpURLConnection conn = HttpUtil.getConnection(url);

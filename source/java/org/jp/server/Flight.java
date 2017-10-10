@@ -220,6 +220,24 @@ public class Flight implements Serializable, Comparable<Flight> {
 		return id;
 	}
 	
+	public boolean deleteImage(String name) {
+		String[] imgs = images.split("/");
+		for (int i=0; i<imgs.length; i++) {
+			if (imgs[i].equals(name)) {
+				StringBuffer sb = new StringBuffer();
+				for (int k=0; k<imgs.length; k++) {
+					if (k != i) {
+						if (sb.length() != 0) sb.append("/");
+						sb.append(imgs[k]);
+					}
+				}
+				images = sb.toString();
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(id+"/");

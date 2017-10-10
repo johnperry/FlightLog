@@ -17,7 +17,7 @@ import org.w3c.dom.*;
  */
 public class FlightLogPrinter extends JFrame {
 
-	String windowTitle = "PrintTest";
+	String windowTitle = "FlightLog Printer";
 	JFileChooser chooser = null;
 	File currentFile;
 	JScrollPane jsp;
@@ -87,6 +87,7 @@ public class FlightLogPrinter extends JFrame {
 			scrollToTop();
 		}
 		catch (Exception ex) {
+			ex.printStackTrace();
 			pageItem.setEnabled(false);
 			printItem.setEnabled(false);
 			doc = null;
@@ -140,7 +141,7 @@ public class FlightLogPrinter extends JFrame {
 		ArrayList<Row> rows;
 		
 		public FlightPrinter(Document doc) {
-			name = Configuration.getInstance().getProperty("name", "John Howard Perry");
+			name = Configuration.getInstance().getProperty("name");
 			Element root = doc.getDocumentElement();
 			NodeList flights = root.getElementsByTagName("Flight");
 			nFlights = flights.getLength();

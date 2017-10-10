@@ -78,12 +78,17 @@ public class SummaryServlet extends Servlet {
 				sc.tailwheel = true;
 				root.appendChild(search(root, "Tailwheel", sc));
 				
+				//Get the total in Mooney 201
+				sc = new SearchCriteria();
+				sc.model = "m20j"; //Note: must be lower case
+				root.appendChild(search(root, "Mooney 201", sc));
+				
 				//Get the total retractable time
 				sc = new SearchCriteria();
 				sc.retractable = true;
 				root.appendChild(search(root, "Retractable", sc));
 				
-				//Get the total lanmdplane time
+				//Get the total landplane time
 				sc = new SearchCriteria();
 				sc.asel = true;
 				root.appendChild(search(root, "ASEL", sc));

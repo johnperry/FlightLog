@@ -18,7 +18,9 @@
 	</head>
 	<body>
 		<h1>Images</h1>
-		<xsl:apply-templates select="Flight"/>
+		<xsl:apply-templates select="Flight">
+			<xsl:sort select="@date" order="descending"/>
+		</xsl:apply-templates>
 	</body>
 	</html>
 </xsl:template>

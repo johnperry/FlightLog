@@ -71,17 +71,23 @@ public class SaveServlet extends Servlet {
 				//Make a zip file containing the XML and the images
 				File zipFile = new File("FlightLog.zip");
 				if (createZipBackup(zipFile)) {
-					res.write("\nBackup zip file created ["+zipFile.getAbsolutePath()+"]");
+					res.write(
+						String.format(
+							"\nBackup zip file created [%s] (%,d bytes)",
+							zipFile.getAbsolutePath(),
+							zipFile.length()));
 					
 					//Copy it to the cloud drive, if available
-					String cloud = Configuration.getInstance().getProperty("cloud", "C:\\Users\\John\\Google Drive");
-					File cloudDir = new File(cloud);
-					File cloudFile = null;
-					if (cloudDir.exists()) {
-						cloudFile = new File(cloudDir, zipFile.getName());
-						if (FileUtil.copy(zipFile, cloudFile)) res.write("\nBackup zip file copied ");
-						else res.write("\nBackup zip file could not be copied ");
-						res.write("to the cloud drive ["+cloudFile.getAbsolutePath()+"]");
+					String cloud = Configuration.getInstance().getProperty("cloud");
+					if ((cloud != null) && !cloud.trim().equals("")) {
+						File cloudDir = new File(cloud.trim());
+						File cloudFile = null;
+						if (cloudDir.exists()) {
+							cloudFile = new File(cloudDir, zipFile.getName());
+							if (FileUtil.copy(zipFile, cloudFile)) res.write("\nBackup zip file copied ");
+							else res.write("\nBackup zip file could not be copied ");
+							res.write("to the cloud drive ["+cloudFile.getAbsolutePath()+"]");
+						}
 					}
 				}
 			}

@@ -96,8 +96,8 @@ public class FlightLogServer implements Runnable {
 		PropertyConfigurator.configure(logProps.getAbsolutePath());
 		logger = Logger.getLogger(FlightLogServer.class);
 
-		//Instantiate the singleton Cache, clear it, and preload
-		//files from the jars. Other files will be loaded as required.
+		//Instantiate the singleton Cache and clear it.
+		//Files will be loaded as required.
 		Cache cache = Cache.getInstance(new File("CACHE"));
 		cache.clear();
 		logger.info("Cache cleared");
@@ -147,9 +147,19 @@ public class FlightLogServer implements Runnable {
 				Database.getInstance().close();
 			}
 		});
+		
+		//List the configuration
+		Configuration config = Configuration.getInstance();
+		logger.info("Configuration:");
+		logger.info("    port       : " + config.getProperty("port"));
+		logger.info("    name       : " + config.getProperty("name"));
+		logger.info("    baseAP     : " + config.getProperty("baseAP"));
+		logger.info("    defNNumber : " + config.getProperty("defNNumber"));
+		logger.info("    cloud      : " + config.getProperty("cloud"));
+		logger.info("    ddnsURL    : " + config.getProperty("ddnsURL"));
 
 		//Set the server parameters
-		int port = StringUtil.getInt(Configuration.getInstance().getProperty("port"), 8080);
+		int port = StringUtil.getInt(config.getProperty("port"), 8080);
 		boolean ssl = false;
 		int maxThreads = 10;
 

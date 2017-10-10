@@ -3,6 +3,7 @@ package org.jp.server;
 import java.io.File;
 import java.util.Hashtable;
 import org.apache.log4j.Logger;
+import org.jp.config.Configuration;
 import org.rsna.server.HttpRequest;
 import org.rsna.server.HttpResponse;
 import org.rsna.servlets.Servlet;
@@ -46,15 +47,27 @@ public class AddFlightServlet extends Servlet {
 				Flight flight = null;
 				if (!id.equals("")) {
 					flight = db.getFlight(id);
+					String deleteImage = req.getParameter("deleteImage");
+					if (deleteImage != null) {
+						if (flight.deleteImage(deleteImage)) {
+							File imageFile = new File("ROOT/images/"+deleteImage);
+							if (imageFile.delete()) {
+								db.addFlight(flight);
+								String username = req.getUser().getUsername();
+								lastFlights.put(username, flight);
+							}
+						}
+					}
 				}
 				if (flight == null) {
+					Configuration config = Configuration.getInstance();
 					String username = req.getUser().getUsername();
 					Flight lastFlight = lastFlights.get(username);
 					flight = new Flight();
 					if (lastFlight == null) {
 						flight.set("date", StringUtil.getDate("."));
-						flight.set("acid", "N32CP");
-						flight.set("route", "68IS");
+						flight.set("acid", config.getProperty("defNNumber"));
+						flight.set("route", config.getProperty("baseAP"));
 					}
 					else {
 						flight.set("date", lastFlight.date);
