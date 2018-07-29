@@ -32,7 +32,7 @@ public class AddImageServlet extends Servlet {
 	}
 
 	/**
-	 * The GET handler: return the add flight page.
+	 * The GET handler: return the add image page.
 	 * @param req the request object
 	 * @param res the response object
 	 */

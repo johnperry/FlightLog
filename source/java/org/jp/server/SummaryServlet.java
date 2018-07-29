@@ -88,6 +88,11 @@ public class SummaryServlet extends Servlet {
 				sc.retractable = true;
 				root.appendChild(search(root, "Retractable", sc));
 				
+				//Get the total in 172s
+				sc = new SearchCriteria();
+				sc.model = "c172*"; //Note: must be lower case
+				root.appendChild(search(root, "C172", sc));
+
 				//Get the total landplane time
 				sc = new SearchCriteria();
 				sc.asel = true;

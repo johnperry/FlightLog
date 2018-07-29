@@ -70,6 +70,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 		}
 		if (tday.isZero() && !total.isZero()) tday = new Time(total.subtract(tnt));
 		if (pic.isZero()) pic = new Time(total.subtract(dual));
+		if (txc.isZero() && isXC()) txc = total;
 	}
 	
 	public Flight(Element el) {
@@ -188,7 +189,7 @@ public class Flight implements Serializable, Comparable<Flight> {
 	}
 	
 	public boolean isXC() {
-		return (Airports.getInstance().getXCDistance(route) > 49.9);
+		return (Airports.getInstance().getXCDistance(route) >= 50.0);
 	}
 
 	public Element getElement(Element parent) {

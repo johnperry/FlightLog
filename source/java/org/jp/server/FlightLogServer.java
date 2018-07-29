@@ -37,6 +37,10 @@ public class FlightLogServer implements Runnable {
 			try { thread.join(); }
 			catch (InterruptedException ignore) { }
 		}
+		String dateTime = StringUtil.getDateTime(" ");
+		System.out.println(dateTime+" startService: exit");
+		logger.info("startService: exit");
+		System.exit(0);
 	}
 
 	/**
@@ -46,15 +50,15 @@ public class FlightLogServer implements Runnable {
 	 */
 	public static void stopService(String[] args) {
 		String dateTime = StringUtil.getDateTime(" ");
-		System.out.println(dateTime+" Stopping the service");
-		logger.info("Stopping the service");
+		System.out.println(dateTime+" stopService: stopping the service");
+		logger.info("stopService: stopping the service");
 		if (thread != null) {
 			Database.getInstance().close();
-			System.out.println(dateTime+" Database closed");
-			logger.info("Database closed");
+			System.out.println(dateTime+" stopService: database closed");
+			logger.info("stopService: database closed");
+			System.out.println(dateTime+" stopService: thread interrupted");
+			logger.info("stopService: thread interrupted");
 			thread.interrupt();
-			System.out.println(dateTime+" Thread interrupted");
-			logger.info("Thread interrupted");
 		}
 	}
 	
