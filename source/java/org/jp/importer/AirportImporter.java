@@ -1,4 +1,4 @@
-package org.jp.importer;
+package org.jp.faa;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -7,7 +7,6 @@ import java.net.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import org.jp.config.Configuration;
 import org.rsna.ui.*;
 import org.rsna.util.*;
 import org.w3c.dom.*;
@@ -18,77 +17,19 @@ import org.w3c.dom.*;
  */
 public class AirportImporter extends JFrame {
 
-	String windowTitle = "AirportImporter";
+	String windowTitle = "Airport Importer";
 	ColorPane cpProgress;
 	ColorPane cpXML;
 	ColorPane cpTXT;
 	FooterPanel footer;
     Color background = new Color(0xC6D8F9);
     
-    String[] states = {
-		"AK",
-		"AL",
-		"AR",
-		"AS",
-		"AZ",
-		"CA",
-		"CO",
-		"CT",
-		"DC",
-		"DE",
-		"FL",
-		"FM",
-		"GA",
-		"GU",
-		"HI",
-		"IA",
-		"ID",
-		"IL",
-		"IN",
-		"KS",
-		"KY",
-		"LA",
-		"MA",
-		"MD",
-		"ME",
-		"MH",
-		"MI",
-		"MN",
-		"MO",
-		"MP",
-		"MS",
-		"NC",
-		"ND",
-		"NE",
-		"NH",
-		"NJ",
-		"NM",
-		"NV",
-		"NY",
-		"OH",
-		"OK",
-		"OR",
-		"PA",
-		"PR",
-		"PW",
-		"RI",
-		"SC",
-		"SD",
-		"TN",
-		"TX",
-		"UM",
-		"UT",
-		"VA",
-		"VI",
-		"VT",
-		"WA",
-		"WI",
-		"WV",
-		"WY"
-	};
+    JFileChooser chooser = null;
+    File aptFile = new File("APT.txt");
+    File txtFile = new File("Airports.txt");
+    File xmlFile = new File("Airports.xml");
     
-	Document doc = null;
-	Element root = null;
+	Hashtable<String,Airport> index = null;
 	
 	public static void main(String args[]) {
 		new AirportImporter();
@@ -101,247 +42,234 @@ public class AirportImporter extends JFrame {
 		super();
 		initComponents();
 		setVisible(true);
-		new Importer().start();
-	}
-
-	class Importer extends Thread {
-		public Importer() {
-			super("Importer");
-		}
-		public void run() {
-			try {
-				int count = 0;
-				Hashtable<String,String> index = new Hashtable<String,String>();
-				StringBuffer txtBuffer = new StringBuffer();
-				doc = XmlUtil.getDocument();
-				root = doc.createElement("Airports");
-				doc.appendChild(root);
-				for (String state : states) {
-					int stateCount = 0;
-					footer.setMessage("Processing "+state);
-					Element table = getStateTable(state);
-					if (table != null) {
-						NodeList trs = table.getElementsByTagName("tr");
-						for (int i=1; i<trs.getLength(); i++) { //(skip the title row)
-							Element tr = (Element)doc.importNode(trs.item(i), true);
-							NodeList tds = tr.getElementsByTagName("td");
-							if (tds.getLength() >= 8) {
-								String id = tds.item(2).getTextContent().trim().toUpperCase();
-								if (id.equals("")) {
-									id = tds.item(1).getTextContent().trim().toUpperCase();
-								}
-								footer.setMessage("Processing "+state+": "+id);
-
-								String city = capitalize(tds.item(4).getTextContent().trim(), state);
-								String name = capitalize(tds.item(5).getTextContent().trim(), state);
-								String lat = filter(tds.item(6).getTextContent());
-								String lon = filter(tds.item(7).getTextContent());
-								String rwy = filter(tds.item(8).getTextContent());
-								
-								String elev = "";
-								String var = "";
-								Element airportTable = getAirportTable((Element)tds.item(5));
-								NodeList aptrs = airportTable.getElementsByTagName("tr");
-								if (aptrs.getLength() > 1) {
-									NodeList aptds = ((Element)aptrs.item(1)).getElementsByTagName("td");
-									if (aptds.getLength() > 2) {
-										String s = filter(aptds.item(2).getTextContent());
-										if (!s.equals("")) elev = s;
-									}
-									if (aptrs.getLength() > 2) {
-										aptds = ((Element)aptrs.item(2)).getElementsByTagName("td");
-										if (aptds.getLength() > 2) {
-											String s = aptds.item(0).getTextContent().trim();
-											String sign = s.endsWith("W") ? "-" : "+";
-											s = filter(s);
-											if (!s.equals("")) {
-												try {
-													double d = Double.parseDouble(sign + s);
-													var = String.format("%.1f", d);
-												}
-												catch (Exception unable) { }
-											}
-										}
-									}
-								}
-								
-								Element ap = doc.createElement("Airport");
-								ap.setAttribute("state", state);
-								ap.setAttribute("id", id);
-								ap.setAttribute("city", city);
-								ap.setAttribute("name", name);
-								ap.setAttribute("lat", lat);
-								ap.setAttribute("lon", lon);
-								ap.setAttribute("elev", elev);
-								ap.setAttribute("rwy", rwy);
-								ap.setAttribute("var", var);
-								
-								StringBuffer sb = new StringBuffer();
-								sb.append(id + "|");
-								sb.append(name + "|");
-								sb.append(city + "|");
-								sb.append(state + "|");
-								sb.append(lat + "," +lon + "|");
-								sb.append(elev + "|");
-								sb.append(rwy + "|");
-								sb.append(var);
-								sb.append("\n");
-								String apString = sb.toString().trim();
-								
-								if (!id.equals("")) {
-									String s = index.get(id);
-									if (s != null) {
-										if (!s.equals(apString)) {
-											cpProgress.println("    Non-identical duplicate for ID "+id);
-											cpProgress.println("    (1): "+s);
-											cpProgress.println("    (2): "+apString);
-										}
-									}
-									else {
-										index.put(id, apString);
-										root.appendChild(ap);
-										txtBuffer.append(apString + "\n");
-										cpTXT.println(apString);
-										count++;
-										stateCount++;
-									}
-								}
-								else {
-									cpProgress.println("    Empty ID: \""+apString+"\"");
-								}
-							}
-						}
-						cpProgress.println("Done importing "+state+": "+stateCount+" airport"+((stateCount!=1)?"s":""));
+		
+		int count = 0;
+		index = new Hashtable<String,Airport>();
+		try {
+			if (aptFile.exists()) {
+				BufferedReader reader = new BufferedReader(new FileReader(aptFile));
+				String line;
+				while ( (line = reader.readLine()) != null ) {
+					String type = line.substring(0,3);
+					String lineID = line.substring(3,14);
+					if (type.equals("APT") && line.substring(14,21).equals("AIRPORT")) {
+						Airport airport = new Airport(line);
+						index.put(lineID, airport);
+						footer.setMessage((++count)+": "+airport.id+" "+airport.state + " " + lineID);
 					}
-					else cpProgress.println("Null table received for "+state+".");
+					else if (type.equals("RWY")) {
+						Runway runway = new Runway(line);
+						Airport airport = index.get(lineID);
+						if (airport != null) airport.add(runway);
+					}
 				}
-				String xml = XmlUtil.toPrettyString(doc);
-				cpXML.println(xml);
-				xml = xml.replace("    ", " ");
-				FileUtil.setText(new File("Airports.xml"), xml);
-				FileUtil.setText(new File("Airports.txt"), txtBuffer.toString());
-				cpProgress.println(count + " airports in all");
+				Airport[] airports = new Airport[index.size()];
+				airports = index.values().toArray(airports);
+				Arrays.sort(airports);
+				String text = getText(airports);
+				cpTXT.append(text);
+				FileUtil.setText(txtFile, text);
+				Document doc = getXML(airports);
+				text = XmlUtil.toPrettyString(doc);
+				text = text.replace("    ", " ");
+				cpXML.setText(text);
+				FileUtil.setText(xmlFile, text);
+				cpProgress.println("\nDone.");
 			}
-			catch (Exception ex) {
+			else footer.setMessage("File "+aptFile+" not found.");
+		}
+		catch (Exception ex) {
+			try {
 				StringWriter sw = new StringWriter();
 				ex.printStackTrace(new PrintWriter(sw));
 				cpProgress.println(sw.toString());
 			}
-			footer.setMessage("Done");
+			catch (Exception x) { }			
 		}
-		private Element getStateTable(String state) {
-			Element table = null;
-			String url = "http://www.fallingrain.com/world/US/"+state+"/airports.html";
-			try {
-				HttpURLConnection conn = HttpUtil.getConnection(url);
-				conn.setRequestMethod("GET");
-				conn.connect();
-				String page = FileUtil.getText( conn.getInputStream() );
-				int tableStart = page.indexOf("<table");
-				if (tableStart >= 0) {
-					int tableEnd = page.indexOf("</table>", tableStart);
-					if (tableEnd > tableStart) {
-						String tableText = page.substring(tableStart, tableEnd+8);
-						tableText = tableText.replace("&", "&amp;");
-						Document doc = XmlUtil.getDocument(tableText);
-						table = doc.getDocumentElement();
-					}
-				}
-			}
-			catch (Exception unable) { }
-			return table;			
+	}
+	
+	private String getText(Airport[] airports) {
+		StringBuffer sb = new StringBuffer();
+		for (Airport a : airports) {
+			sb.append(a.toString());
 		}
-		private Element getAirportTable(Element td) {
-			Element table = null;
-			String tableText = null;
-			try {
-				NodeList nl = td.getElementsByTagName("a");
-				if (nl.getLength() > 0) {
-					String path = ((Element)nl.item(0)).getAttribute("href");
-					String url = "http://www.fallingrain.com" + path;
-					HttpURLConnection conn = HttpUtil.getConnection(url);
-					conn.setRequestMethod("GET");
-					conn.connect();
-					String page = FileUtil.getText( conn.getInputStream() );
-					int tableStart = page.indexOf("<table");
-					if (tableStart >= 0) {
-						int tableEnd = page.indexOf("</table>", tableStart);
-						if (tableEnd > tableStart) {
-							int k = page.indexOf("</tr>", tableStart) + 5;
-							k = page.indexOf("</tr>", k) + 5;
-							k = page.indexOf("</tr>", k) + 5;
-							
-							tableText = page.substring(tableStart, k) 
-											+ page.substring(tableEnd, tableEnd+8);
-							tableText = filterAmpersands(tableText);
-							Document doc = XmlUtil.getDocument(tableText);
-							table = doc.getDocumentElement();
-						}
-					}
-				}
-			}
-			catch (Exception unable) { 
-				System.out.println(tableText);
-			}
-			return table;			
+		return sb.toString();
+	}
+	
+	private Document getXML(Airport[] airports) throws Exception {
+		Document doc = XmlUtil.getDocument();
+		Element root = doc.createElement("Airports");
+		doc.appendChild(root);
+		for (Airport a : airports) {
+			root.appendChild(a.toXML(doc));
 		}
-		private String filter(String s) {
-			return s.replaceAll("[^0-9\\.+-]", "").trim();
+		return doc;
+	}
+	
+	class Airport implements Comparable<Airport> {
+		String lineID;
+		String id;
+		String name;
+		String city;
+		String state;
+		LinkedList<Runway> runways;
+		String lat = "lat";
+		String lon = "lon";
+		String elev = "elev";
+		String var = "var";
+		
+		public Airport(String line) {
+			lineID = line.substring(3, 14);
+			id = line.substring(21,31).trim();
+			state = line.substring(91,93);
+			city = capitalize(line.substring(93,133), state);
+			name = capitalize(line.substring(133,183), state);
+			elev = line.substring(578, 583).trim();
+			lat = getLat(line.substring(523, 537));
+			lon = getLon(line.substring(550, 565));
+			var = line.substring(586,589).trim();
+			if (var.startsWith("0")) var = var.substring(1);
+			runways = new LinkedList<Runway>();
 		}
-		private String filterAmpersands(String s) {
-			return s.replaceAll("&([^agl#])", "&amp;$1");
-		}		
-		private String capitalize(String s, String state) {
-			if (s == null) s = "";
-			s = s.replace("\"", "");
-			//s = s.replace("'", "");
-			s = s.replace("/", " / ");
-			s = s.replaceAll("\\s+"," ");
-			s = s.trim();
-			String[] words = s.split("\\s");
+		
+		//42-08-54.9590N
+		private String getLat(String s) {
+			double deg = Double.parseDouble(s.substring(0,2));
+			double min = Double.parseDouble(s.substring(3,5));
+			double sec = Double.parseDouble(s.substring(6,13));
+			double lat = deg + min/60 + sec/3600;
+			if (s.charAt(13) == 'S') lat = -lat;
+			return String.format("%.3f",lat);
+		}
+		
+		//088-33-43.0095W
+		private String getLon(String s) {
+			double deg = Double.parseDouble(s.substring(0,3));
+			double min = Double.parseDouble(s.substring(4,6));
+			double sec = Double.parseDouble(s.substring(7,14));
+			double lon = deg + min/60 + sec/3600;
+			if (s.charAt(14) == 'W') lon = -lon;
+			return String.format("%.3f",lon);
+		}
+		
+		public void add(Runway runway) {
+			if (!runway.length.equals("0") 
+				  && !runway.id.endsWith("X")
+					&& !runway.id.endsWith("W")) runways.add(runway);
+		}
+		
+		public int compareTo(Airport a) {
+			return id.compareTo(a.id);
+		}
+		
+		public String toString() {
 			StringBuffer sb = new StringBuffer();
-			for (String w : words) {
-				w = w.toUpperCase();
-				if (w.length() > 0) {
-					if (w.matches("'[A-Z]'") || w.equals(state)) {
-						sb.append(w);
-					}
-					else if (w.equals("OHARE")) {
-						sb.append("O'Hare");
-					}
-					else if (w.equals("DUPAGE")) {
-						sb.append("DuPage");
-					}
-					else if (w.equals("DEKALB")) {
-						sb.append("DeKalb");
-					}
-					else if (w.equals("GTR")) {
-						sb.append("Greater");
-					}
-					else if (w.equals("DE")) {
-						sb.append("de");
-					}
-					else if (w.startsWith("O'") && (w.length() > 2)) {
-						sb.append(w.substring(0,3) + w.substring(3).toLowerCase());
-					}
-					else {
-						sb.append(w.substring(0,1));
-						sb.append(w.substring(1).toLowerCase());
-					}
-					sb.append(" ");
-				}
+			sb.append(id + "|");
+			sb.append(name + "|");
+			sb.append(city + "|");
+			sb.append(state + "|");
+			sb.append(lat + "," +lon + "|");
+			sb.append(elev + "|");
+			StringBuffer rwys = new StringBuffer();
+			for (Runway runway : runways) {
+				if (rwys.length() > 0) rwys.append(";");
+				rwys.append(runway.toString());
 			}
-			s = sb.toString().replace(" / ", "/").replaceAll("\\s+"," ").trim();
-			if (s.endsWith("/")) s = s.substring(0, s.length()-2);
-			s = s.replace("de Kalb", "DeKalb");
-			int k = s.indexOf("-");
-			if ((k > 0) && (k < s.length()-1)) {
-				s = s.substring(0, k+1) 
-						+ s.substring(k+1, k+2).toUpperCase() 
-							+ s.substring(k+2);
-			}
-			return s;
+			sb.append(rwys.toString() + "|");
+			sb.append(var);
+			sb.append("\n");
+			return sb.toString();
 		}
+		
+
+		public Element toXML(Document doc) {
+			Element a = doc.createElement("Airport");
+			a.setAttribute("id", id);
+			a.setAttribute("name", name);
+			a.setAttribute("city", city);
+			a.setAttribute("state", state);
+			a.setAttribute("lat", lat);
+			a.setAttribute("lon", lon);
+			a.setAttribute("elev", elev);
+			a.setAttribute("var", var);
+			for (Runway r : runways) {
+				Element rwy = doc.createElement("rwy");
+				rwy.setAttribute("id", r.id);
+				rwy.setAttribute("len", r.length);
+				rwy.setAttribute("wid", r.width);
+				rwy.setAttribute("type", r.type);
+				a.appendChild(rwy);
+			}
+			return a;
+		}
+	}
+
+	class Runway {
+		String id;
+		String length;
+		String width;
+		String type;
+		
+		public Runway(String line) {
+			id = line.substring(16,23);
+			if (id.startsWith("0")) id = id.substring(1);
+			id = id.trim();
+			length = line.substring(23,28).trim();
+			width = line.substring(28,32).trim();
+			type = line.substring(32,44).trim();
+		}
+		
+		public String toString() {
+			return id + ":" + length + "x" + width + "," + type;
+		}
+	}			
+
+	private String capitalize(String s, String state) {
+		s = s.replaceAll("\\s+"," ");
+		s = s.trim();
+		String[] words = s.split("\\s");
+		StringBuffer sb = new StringBuffer();
+		for (String w : words) {
+			w = w.toUpperCase();
+			if (w.length() > 0) {
+				if (w.equals(state)) {
+					sb.append(w);
+				}
+				else if (w.equals("OHARE")) {
+					sb.append("O'Hare");
+				}
+				else if (w.equals("DUPAGE")) {
+					sb.append("DuPage");
+				}
+				else if (w.equals("DEKALB")) {
+					sb.append("DeKalb");
+				}
+				else if (w.equals("GTR")) {
+					sb.append("Greater");
+				}
+				else if (w.equals("DE")) {
+					sb.append("de");
+				}
+				else if (w.startsWith("O'") && (w.length() > 2)) {
+					sb.append(w.substring(0,3) + w.substring(3).toLowerCase());
+				}
+				else {
+					sb.append(w.substring(0,1));
+					sb.append(w.substring(1).toLowerCase());
+				}
+				sb.append(" ");
+			}
+		}
+		s = sb.toString().replace(" / ", "/").replaceAll("\\s+"," ").trim();
+		if (s.endsWith("/")) s = s.substring(0, s.length()-2);
+		s = s.replace("de Kalb", "DeKalb");
+		int k = s.indexOf("-");
+		if ((k > 0) && (k < s.length()-1)) {
+			s = s.substring(0, k+1) 
+					+ s.substring(k+1, k+2).toUpperCase() 
+						+ s.substring(k+2);
+		}
+		return s;
 	}
 	
 	void initComponents() {

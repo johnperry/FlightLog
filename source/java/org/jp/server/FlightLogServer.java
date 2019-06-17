@@ -71,8 +71,8 @@ public class FlightLogServer implements Runnable {
 			try { Thread.sleep(1000); }
 			catch (InterruptedException ex) { break; }
 		}
-		System.out.println(StringUtil.getDateTime(" ")+" Service returned to the Service Manager");
-		logger.info("Service returned to the Service Manager");
+		System.out.println(StringUtil.getDateTime(" ")+" run: exiting the thread");
+		logger.info("run: exiting the thread");
 	}
 
 	/**

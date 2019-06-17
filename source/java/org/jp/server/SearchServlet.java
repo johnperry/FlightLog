@@ -59,7 +59,6 @@ public class SearchServlet extends Servlet {
 					sc = new SearchCriteria();
 					sc.earliestDate = getDate(null, -30);
 					sc.latestDate = getDate(null, 1);
-					logger.info("recent: "+sc.earliestDate+" - "+sc.latestDate);
 					res.write(search(sc));					
 				}
 				else {

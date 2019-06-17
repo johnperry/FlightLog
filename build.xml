@@ -68,7 +68,6 @@
 				<attribute name="Implementation-Version" value="${today} @ ${now}"/>
 			</manifest>
 			<fileset dir="${build}" includes="${importer}/*.*" />
-			<fileset dir="${build}" includes="${config}/**" />
 		</jar>
 	
 		<jar jarfile="${products}/FlightLogPrinter.jar">
@@ -131,7 +130,7 @@
 			<package name="org.*"/>
 		</javadoc>
 	</target>
-
+	
 	<target name="all" depends="clean, jar, javadocs">
 		<tstamp>
 			<format property="end" pattern="HH:mm:ss"/>
