@@ -1,4 +1,4 @@
-package org.jp.faa;
+package org.jp.importer;
 
 import java.awt.*;
 import java.awt.event.*;
