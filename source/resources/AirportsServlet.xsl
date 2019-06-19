@@ -87,6 +87,7 @@
 				<th>Lon</th>
 				<th>Elev</th>
 				<th>Var</th>
+				<th>Runways</th>
 			</tr>
 			<xsl:for-each select="Airport">
 				<xsl:sort select="@state"/>
@@ -104,6 +105,18 @@
 					<td class="right"><xsl:value-of select="@lon"/></td>
 					<td class="right"><xsl:value-of select="@elev"/></td>
 					<td class="right"><xsl:value-of select="@var"/></td>
+					<td class="left">
+						<xsl:for-each select="rwy">
+							<xsl:value-of select="@id"/>
+							<xsl:text>: </xsl:text>
+							<xsl:value-of select="@len"/>
+							<xsl:text>x</xsl:text>
+							<xsl:value-of select="@wid"/>
+							<xsl:text> </xsl:text>
+							<xsl:value-of select="@type"/>
+							<br/>
+						</xsl:for-each>
+					</td>
 				</tr>
 			</xsl:for-each>
 		</table>

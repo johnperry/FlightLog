@@ -139,7 +139,7 @@ public class AirportImporter extends JFrame {
 			double sec = Double.parseDouble(s.substring(6,13));
 			double lat = deg + min/60 + sec/3600;
 			if (s.charAt(13) == 'S') lat = -lat;
-			return String.format("%.3f",lat);
+			return String.format("%.4f",lat);
 		}
 		
 		//088-33-43.0095W
@@ -149,7 +149,7 @@ public class AirportImporter extends JFrame {
 			double sec = Double.parseDouble(s.substring(7,14));
 			double lon = deg + min/60 + sec/3600;
 			if (s.charAt(14) == 'W') lon = -lon;
-			return String.format("%.3f",lon);
+			return String.format("%.4f",lon);
 		}
 		
 		public void add(Runway runway) {
@@ -168,7 +168,7 @@ public class AirportImporter extends JFrame {
 			sb.append(name + "|");
 			sb.append(city + "|");
 			sb.append(state + "|");
-			sb.append(lat + "," +lon + "|");
+			sb.append(lat + "," + lon + "|");
 			sb.append(elev + "|");
 			StringBuffer rwys = new StringBuffer();
 			for (Runway runway : runways) {

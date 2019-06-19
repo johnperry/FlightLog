@@ -53,7 +53,7 @@ public class AirportsServlet extends Servlet {
 							Airport ap = aps.getAirport(wp);
 							if (ap != null) {
 								double dist = 0.0;
-								sb.append(ap.toString());
+								sb.append(ap.toString(true));
 							}
 							else {
 								sb.append(wp + " not found in database\n");
