@@ -52,7 +52,9 @@ public class AirportImporter extends JFrame {
 				while ( (line = reader.readLine()) != null ) {
 					String type = line.substring(0,3);
 					String lineID = line.substring(3,14);
-					if (type.equals("APT") && line.substring(14,21).equals("AIRPORT")) {
+					String base = line.substring(14,27);
+					if (type.equals("APT") &&
+						(base.equals("AIRPORT      ") || base.equals("SEAPLANE BASE"))) {
 						Airport airport = new Airport(line);
 						index.put(lineID, airport);
 						footer.setMessage((++count)+": "+airport.id+" "+airport.state + " " + lineID);
@@ -120,7 +122,7 @@ public class AirportImporter extends JFrame {
 		
 		public Airport(String line) {
 			lineID = line.substring(3, 14);
-			id = line.substring(21,31).trim();
+			id = line.substring(27,31).trim();
 			state = line.substring(91,93);
 			city = capitalize(line.substring(93,133), state);
 			name = capitalize(line.substring(133,183), state);
@@ -153,9 +155,9 @@ public class AirportImporter extends JFrame {
 		}
 		
 		public void add(Runway runway) {
-			if (!runway.length.equals("0") 
-				  && !runway.id.endsWith("X")
-					&& !runway.id.endsWith("W")) runways.add(runway);
+			if (!runway.length.equals("0") && !runway.id.endsWith("X")) {
+				runways.add(runway);
+			}
 		}
 		
 		public int compareTo(Airport a) {

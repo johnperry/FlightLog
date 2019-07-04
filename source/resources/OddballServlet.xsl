@@ -15,94 +15,25 @@
 	<link rel="stylesheet" href="/ListFlightsServlet.css" type="text/css"/>
 	<script language="JavaScript" type="text/javascript" src="/JSUtil.js">;</script>
 	<script language="JavaScript" type="text/javascript" src="/JSAJAX.js">;</script>
-	<script language="JavaScript" type="text/javascript" src="/ListFlightsServlet.js">;</script>
 </head>
 
 <body>
 <center>
-
-	<h1><xsl:value-of select="@title"/></h1>
 	
+	<h1><xsl:value-of select="@title"/></h1>
 	<xsl:if test="Flight">
 		<table>
-			<tr>
-				<th/>
-				<th>Date</th>
-				<th>A/C ID</th>
-				<th>Route</th>
-				<th>Total</th>
-				<th>Ldg</th>
-				<th>App</th>
-				<th>Day</th>
-				<th>Night</th>
-				<th>XC</th>
-				<th>Inst</th>
-				<th>Hood</th>
-				<th>Dual</th>
-				<th>PIC</th>
-			</tr>
-			<xsl:for-each select="Flight">
-				<tr>
-					<td class="number">
-						<xsl:if test="@notes">
-							<xsl:attribute name="title"><xsl:value-of select="@notes"/></xsl:attribute>
-							<b><xsl:value-of select="position()"/></b>
-						</xsl:if>
-						<xsl:if test="not(@notes)">
-							<xsl:value-of select="position()"/>
-						</xsl:if>
-					</td>
-					<td>
-						<a href="/addflight?id={@id}">
-							<xsl:value-of select="substring(@date,1,10)"/>
-							<xsl:if test="string-length(@date)&gt;10">
-								<span class="index">
-									<xsl:value-of select="substring(@date,11)"/>
-								</span>
-							</xsl:if>
-						</a>
-					</td>
-					<td><a href="/addaircraft?acid={@acid}"><xsl:value-of select="@acid"/></a></td>
-					<td>
-						<a href="javascript:getAirports('{@id}');">
-							<xsl:value-of select="@route"/>
-						</a>
-					</td>
-					<td class="right">
-						<xsl:if test="@tach">
-							<xsl:attribute name="title">tach=<xsl:value-of select="@tach"/></xsl:attribute>
-						</xsl:if>
-						<xsl:value-of select="@total"/>
-					</td>
-					<td class="right"><xsl:value-of select="@ldg"/></td>
-					<td class="right"><xsl:value-of select="@app"/></td>
-					<td class="right"><xsl:value-of select="@tday"/></td>
-					<td class="right"><xsl:value-of select="@tnt"/></td>
-					<td class="right"><xsl:value-of select="@txc"/></td>
-					<td class="right"><xsl:value-of select="@inst"/></td>
-					<td class="right"><xsl:value-of select="@hood"/></td>
-					<td class="right"><xsl:value-of select="@dual"/></td>
-					<td class="right"><xsl:value-of select="@pic"/></td>
-				</tr>
-			</xsl:for-each>
-			<xsl:if test="Totals">
-				<tr/>
-				<tr>
-					<td class="totals"/>
-					<td class="totals">Totals:</td>
-					<td class="totals" colspan="2"/>
-					<td class="right"><xsl:value-of select="Totals/@total"/></td>
-					<td class="right"><xsl:value-of select="Totals/@ldg"/></td>
-					<td class="right"><xsl:value-of select="Totals/@app"/></td>
-					<td class="right"><xsl:value-of select="Totals/@tday"/></td>
-					<td class="right"><xsl:value-of select="Totals/@tnt"/></td>
-					<td class="right"><xsl:value-of select="Totals/@txc"/></td>
-					<td class="right"><xsl:value-of select="Totals/@inst"/></td>
-					<td class="right"><xsl:value-of select="Totals/@hood"/></td>
-					<td class="right"><xsl:value-of select="Totals/@dual"/></td>
-					<td class="right"><xsl:value-of select="Totals/@pic"/></td>
-				</tr>
-			</xsl:if>
+			<xsl:call-template name="ColumnHeadings"/>
+			<xsl:apply-templates select="Flight"/>
+		</table>
+	</xsl:if>
+	
+	<xsl:apply-templates select="OddRoutes"/>
+	
+	<xsl:if test="MissingAirport">
+		<h2>Missing Airports</h2>
+		<table>
+			<xsl:apply-templates select="MissingAirport"/>
 		</table>
 	</xsl:if>
 	
@@ -130,9 +61,87 @@
 </html>
 
 </xsl:template>
+	
+<xsl:template name="ColumnHeadings">
+	<tr>
+		<th/>
+		<th>Date</th>
+		<th>A/C ID</th>
+		<th>Route</th>
+		<th>Total</th>
+		<th>Ldg</th>
+		<th>App</th>
+		<th>Day</th>
+		<th>Night</th>
+		<th>XC</th>
+		<th>Inst</th>
+		<th>Hood</th>
+		<th>Dual</th>
+		<th>PIC</th>
+	</tr>
+</xsl:template>
+
+<xsl:template match="Flight">
+	<tr>
+		<td class="number">
+			<xsl:if test="@notes">
+				<xsl:attribute name="title"><xsl:value-of select="@notes"/></xsl:attribute>
+				<b><xsl:value-of select="position()"/></b>
+			</xsl:if>
+			<xsl:if test="not(@notes)">
+				<xsl:value-of select="position()"/>
+			</xsl:if>
+		</td>
+		<td>
+			<a href="/addflight?id={@id}">
+				<xsl:value-of select="substring(@date,1,10)"/>
+				<xsl:if test="string-length(@date)&gt;10">
+					<span class="index">
+						<xsl:value-of select="substring(@date,11)"/>
+					</span>
+				</xsl:if>
+			</a>
+		</td>
+		<td><a href="/addaircraft?acid={@acid}"><xsl:value-of select="@acid"/></a></td>
+		<td>
+			<a href="/airports?id={@id}" target="Route">
+				<xsl:value-of select="@route"/>
+			</a>
+		</td>
+		<td class="right">
+			<xsl:if test="@tach">
+				<xsl:attribute name="title">tach=<xsl:value-of select="@tach"/></xsl:attribute>
+			</xsl:if>
+			<xsl:value-of select="@total"/>
+		</td>
+		<td class="right"><xsl:value-of select="@ldg"/></td>
+		<td class="right"><xsl:value-of select="@app"/></td>
+		<td class="right"><xsl:value-of select="@tday"/></td>
+		<td class="right"><xsl:value-of select="@tnt"/></td>
+		<td class="right"><xsl:value-of select="@txc"/></td>
+		<td class="right"><xsl:value-of select="@inst"/></td>
+		<td class="right"><xsl:value-of select="@hood"/></td>
+		<td class="right"><xsl:value-of select="@dual"/></td>
+		<td class="right"><xsl:value-of select="@pic"/></td>
+	</tr>
+</xsl:template>
+
+<xsl:template match="OddRoutes">
+	<h2>Odd Routes</h2>
+	<table>
+		<xsl:call-template name="ColumnHeadings"/>
+		<xsl:apply-templates select="Flight"/>
+	</table>
+</xsl:template>
+
+<xsl:template match="MissingAirport">
+	<tr>
+		<td><xsl:value-of select="@id"/></td>
+	</tr>
+</xsl:template>
 
 <xsl:template match="UnreferencedAC">
-	<h1>Unreferenced Aircraft</h1>
+	<h2>Unreferenced Aircraft</h2>
 	<table>
 		<tr>
 			<th>A/C ID</th>

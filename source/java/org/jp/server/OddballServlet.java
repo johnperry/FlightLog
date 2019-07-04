@@ -1,6 +1,7 @@
 package org.jp.server;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -54,11 +55,13 @@ public class OddballServlet extends Servlet {
 					unreferencedAC.add(ac.acid);
 				}
 				LinkedList<Flight> flightList = db.getFlightList();
+				Flight[] flightArray = flightList.toArray(new Flight[flightList.size()]);
+				Arrays.sort(flightArray);
 				Document doc = XmlUtil.getDocument();
 				Element root = doc.createElement("Oddballs");
 				root.setAttribute("title", "Oddballs");
 				doc.appendChild(root);
-				for (Flight flight : flightList) {
+				for (Flight flight : flightArray) {
 					unreferencedAC.remove(flight.acid);
 					if (!acTable.containsKey(flight.acid)) missingAC.add(flight.acid);
 					double totalTime = flight.total.doubleValue();
@@ -85,6 +88,47 @@ public class OddballServlet extends Servlet {
 						uac.appendChild(ac.getElement(uac));
 					}
 				}
+				
+				Airports airports = Airports.getInstance();
+				Hashtable<String,Flight> longLegs = new Hashtable<String,Flight>();
+				HashSet<String> missingAirports = new HashSet<String>();
+				double d;
+				for (Flight flight : flightList) {
+					String[] wps = flight.route.split(" ");
+					String last = null;
+					for (String wp : wps) {
+						if (airports.getAirport(wp) == null) {
+							missingAirports.add(wp);
+							last = null;
+						}
+						else if (last != null) {
+							if ((d = airports.getDistance(last, wp)) > 600d) {
+								longLegs.put(flight.id, flight);
+								//System.out.println(String.format("%s-%s: %.0f", last, wp, d));
+							}
+							last = wp;
+						}
+						else last = wp;
+					}
+				}
+				if (!missingAirports.isEmpty()) {
+					String[] mas = missingAirports.toArray(new String[missingAirports.size()]);
+					Arrays.sort(mas);
+					for (String ma : mas) {
+						Element e = doc.createElement("MissingAirport");
+						e.setAttribute("id", ma);
+						root.appendChild(e);
+					}
+				}
+				if (longLegs.size() > 0) {
+					Element oddRoutes = doc.createElement("OddRoutes");
+					root.appendChild(oddRoutes);
+					Flight[] flights = longLegs.values().toArray(new Flight[longLegs.size()]);
+					for (Flight flight : flights) {
+						oddRoutes.appendChild(flight.getElement(root));
+					}
+				}
+				
 				//System.out.println(XmlUtil.toPrettyString(root));
 				Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("OddballServlet.xsl" ) );
 				res.write( XmlUtil.getTransformedText(doc, xsl, null) );

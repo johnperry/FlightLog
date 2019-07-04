@@ -15,7 +15,6 @@
 	<link rel="stylesheet" href="/ListFlightsServlet.css" type="text/css"/>
 	<script language="JavaScript" type="text/javascript" src="/JSUtil.js">;</script>
 	<script language="JavaScript" type="text/javascript" src="/JSAJAX.js">;</script>
-	<script language="JavaScript" type="text/javascript" src="/ListFlightsServlet.js">;</script>
 </head>
 
 <body>
@@ -71,7 +70,7 @@
 					</td>
 					<td><a href="/addaircraft?acid={@acid}"><xsl:value-of select="@acid"/></a></td>
 					<td>
-						<a href="javascript:getAirports('{@id}');">
+						<a href="/airports?id={@id}" target="Route">
 							<xsl:value-of select="@route"/>
 						</a>
 					</td>
