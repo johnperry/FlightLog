@@ -15,9 +15,9 @@ import org.w3c.dom.*;
  * A program to assemble an XML structure containing
  * airport identifiers and lat/long coordinates.
  */
-public class AirportImporter extends JFrame {
+public class FAAImporter extends JFrame {
 
-	String windowTitle = "Airport Importer";
+	String windowTitle = "FAA Data Importer";
 	ColorPane cpProgress;
 	ColorPane cpXML;
 	ColorPane cpTXT;
@@ -38,7 +38,7 @@ public class AirportImporter extends JFrame {
 	/**
 	 * Constructor
 	 */
-	public AirportImporter() {
+	public FAAImporter() {
 		super();
 		initComponents();
 		setVisible(true);
@@ -183,7 +183,6 @@ public class AirportImporter extends JFrame {
 			return sb.toString();
 		}
 		
-
 		public Element toXML(Document doc) {
 			Element a = doc.createElement("Airport");
 			a.setAttribute("id", id);
