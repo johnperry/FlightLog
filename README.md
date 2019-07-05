@@ -34,7 +34,7 @@ The FlightLogServer program can be run as a Windows service. Launch a command wi
 
 The FlightLogPrinter program prints the flights in the FlightLog.xml file, so before printing, make sure you save the database.
 
-Note: The installer includes the version of the FAA airports database thast was current at the time the installer was built. If you want to update to a newer version, go to:
+Note: The installer includes the version of the FAA airports database that was current at the time the installer was built. If you want to update to a newer version, go to:
 
 https://www.faa.gov/air_traffic/flight_info/aeronav/aero_data/NASR_Subscription/
 
