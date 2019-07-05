@@ -38,7 +38,7 @@ Note: The installer includes the version of the FAA airports database that was c
 
 https://www.faa.gov/air_traffic/flight_info/aeronav/aero_data/NASR_Subscription/
 
-and download the file you want. Put the file in the FlightLog directory and then run the FAAImporter.jar program.
+and download the zip file you want. The files are called <tt>28DaySubscription_Effective-[date].zip</tt>.Put the file in the FlightLog directory and then run the FAAImporter.jar program. The program creates an FAAFiles working directory that can be deleted after the program is finished. It creates the Airports.xml file that is used by the FlightLogServer program to find airports. It also creates the Airports.txt file, which can be deleted (that file is used by a completely separate Android app, and it was convenient to make all the files in one program).
 
 Note: If you run FlightLogServer as a service and specify a cloud drive, then make sure that you run the service under your account and that your account is enabled to run as a service. If you don't, then saves to the cloud will fail, although local saves will succeed. To configure the service user, add the ServiceUser and ServicePassword parameters to the FlightLog/windows/install.bat file like this:
 
