@@ -12,8 +12,10 @@ import org.rsna.util.*;
 import org.w3c.dom.*;
 
 /**
- * A program to assemble an XML structure containing
- * airport identifiers and lat/long coordinates.
+ * A program to assemble XML and text files containing airport identifiers and
+ * lat/long coordinates from the text contained in the FAA 28-day-subscription
+ * zip file. The current FAA zip file is available at:
+ * https://www.faa.gov/air_traffic/flight_info/aeronav/aero_data/NASR_Subscription/
  */
 public class FAAImporter extends JFrame {
 
@@ -24,15 +26,15 @@ public class FAAImporter extends JFrame {
 	FooterPanel footer;
     Color background = new Color(0xC6D8F9);
     
-    JFileChooser chooser = null;
-    File aptFile = new File("APT.txt");
+    File faaZipFile;
+    ZipObject zob;
     File txtFile = new File("Airports.txt");
     File xmlFile = new File("Airports.xml");
     
 	Hashtable<String,Airport> index = null;
 	
 	public static void main(String args[]) {
-		new AirportImporter();
+		new FAAImporter();
 	}
 
 	/**
@@ -43,10 +45,27 @@ public class FAAImporter extends JFrame {
 		initComponents();
 		setVisible(true);
 		
-		int count = 0;
-		index = new Hashtable<String,Airport>();
 		try {
+			faaZipFile = getFAAFile();
+			if (faaZipFile == null) System.exit(0);
+			zob = new ZipObject(faaZipFile);
+			cpProgress.println("Creating the FAAFiles directory");
+			File faaFiles = new File("FAAFiles");
+			faaFiles.mkdirs();
+			cpProgress.print("Expanding the APT.txt file ");
+			File aptFile = zob.extractFile(zob.getEntry("APT.txt"), faaFiles);
+			cpProgress.println(aptFile.getAbsolutePath());
+			cpProgress.print("Expanding the NAV.txt file ");
+			File navFile = zob.extractFile(zob.getEntry("NAV.txt"), faaFiles);
+			cpProgress.println(navFile.getAbsolutePath());
+			cpProgress.print("Expanding the README.txt file ");
+			File readMe = zob.extractFile(zob.getEntry("README.txt"), faaFiles);
+			cpProgress.println(readMe.getAbsolutePath());
+
+			int count = 0;
+			index = new Hashtable<String,Airport>();
 			if (aptFile.exists()) {
+				cpProgress.println("Processing the APT.txt file.");
 				BufferedReader reader = new BufferedReader(new FileReader(aptFile));
 				String line;
 				while ( (line = reader.readLine()) != null ) {
@@ -90,6 +109,18 @@ public class FAAImporter extends JFrame {
 		}
 	}
 	
+	private File getFAAFile() {
+		JFileChooser chooser = new JFileChooser();
+		File here = new File(System.getProperty("user.dir"));
+		chooser = new JFileChooser(here);
+		chooser.setDialogTitle("Select the FAA 28DaySubscription zip file");
+		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+			return chooser.getSelectedFile();
+		}
+		else return null;
+	}
+
 	private String getText(Airport[] airports) {
 		StringBuffer sb = new StringBuffer();
 		for (Airport a : airports) {

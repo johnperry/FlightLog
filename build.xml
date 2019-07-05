@@ -61,9 +61,9 @@
 
 	<target name="jar" depends="compile">
 
-		<jar jarfile="${products}/AirportImporter.jar">
+		<jar jarfile="${products}/FAAImporter.jar">
 			<manifest>
-				<attribute name="Main-Class" value="org.jp.importer.AirportImporter"/>
+				<attribute name="Main-Class" value="org.jp.importer.FAAImporter"/>
 				<attribute name="Class-Path" value="libraries/util.jar"/>
 				<attribute name="Implementation-Version" value="${today} @ ${now}"/>
 			</manifest>
@@ -100,7 +100,7 @@
       <copy overwrite="true" todir="${build}/FlightLog">
          <fileset dir="${products}" includes="FlightLogServer.jar"/>
          <fileset dir="${products}" includes="FlightLogPrinter.jar"/>
-         <fileset dir="${products}" includes="AirportImporter.jar"/>
+         <fileset dir="${products}" includes="FAAImporter.jar"/>
          <fileset dir="${files}"/>
       </copy>
 

@@ -34,6 +34,12 @@ The FlightLogServer program can be run as a Windows service. Launch a command wi
 
 The FlightLogPrinter program prints the flights in the FlightLog.xml file, so before printing, make sure you save the database.
 
+Note: The installer includes the version of the FAA airports database thast was current at the time the installer was built. If you want to update to a newer version, go to:
+
+https://www.faa.gov/air_traffic/flight_info/aeronav/aero_data/NASR_Subscription/
+
+and download the file you want. Put the file in the FlightLog directory and then run the FAAImporter.jar program.
+
 Note: If you run FlightLogServer as a service and specify a cloud drive, then make sure that you run the service under your account and that your account is enabled to run as a service. If you don't, then saves to the cloud will fail, although local saves will succeed. To configure the service user, add the ServiceUser and ServicePassword parameters to the FlightLog/windows/install.bat file like this:
 
 FlightLog.exe ^<br>
