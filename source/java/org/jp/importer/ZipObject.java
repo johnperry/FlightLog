@@ -4,7 +4,6 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
 import java.util.zip.*;
-import org.rsna.util.FileUtil;
 
 /**
  * A generic Zip File class.

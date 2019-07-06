@@ -64,7 +64,6 @@
 		<jar jarfile="${products}/FAAImporter.jar">
 			<manifest>
 				<attribute name="Main-Class" value="org.jp.importer.FAAImporter"/>
-				<attribute name="Class-Path" value="libraries/util.jar"/>
 				<attribute name="Implementation-Version" value="${today} @ ${now}"/>
 			</manifest>
 			<fileset dir="${build}" includes="${importer}/*.*" />
