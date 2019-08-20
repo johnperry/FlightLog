@@ -12,7 +12,6 @@
 	<property name="copyright" value="Copyright 2014 John Perry"/>
 	<property name="ctp" value="D:/Development/CTP"/>
 	<property name="printer" value="org/jp/printer"/>
-	<property name="importer" value="org/jp/importer"/>
 	<property name="server" value="org/jp/server"/>
 	<property name="installer" value="org/jp/installer"/>
 	<property name="config" value="org/jp/config"/>
@@ -61,14 +60,6 @@
 
 	<target name="jar" depends="compile">
 
-		<jar jarfile="${products}/FAAImporter.jar">
-			<manifest>
-				<attribute name="Main-Class" value="org.jp.importer.FAAImporter"/>
-				<attribute name="Implementation-Version" value="${today} @ ${now}"/>
-			</manifest>
-			<fileset dir="${build}" includes="${importer}/*.*" />
-		</jar>
-	
 		<jar jarfile="${products}/FlightLogPrinter.jar">
 			<manifest>
 				<attribute name="Main-Class" value="org.jp.printer.FlightLogPrinter"/>
@@ -99,7 +90,6 @@
       <copy overwrite="true" todir="${build}/FlightLog">
          <fileset dir="${products}" includes="FlightLogServer.jar"/>
          <fileset dir="${products}" includes="FlightLogPrinter.jar"/>
-         <fileset dir="${products}" includes="FAAImporter.jar"/>
          <fileset dir="${files}"/>
       </copy>
 
