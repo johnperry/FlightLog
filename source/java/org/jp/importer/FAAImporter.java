@@ -26,6 +26,8 @@ public class FAAImporter extends JFrame {
     ZipObject zob;
     File aptFile = new File("APT.txt");
     File navFile = new File("NAV.txt");
+    File twrFile = new File("TWR.txt");
+    File awosFile = new File("AWOS.txt");
     File airFile = new File("FAAFiles/Airports.txt");
     File seaFile = new File("FAAFiles/Seaports.txt");
     File ndbFile = new File("FAAFiles/NDBs.txt");
@@ -33,6 +35,7 @@ public class FAAImporter extends JFrame {
     File xmlFile = new File("Airports.xml");
     
 	Hashtable<String,Airport> aptIndex = null;
+	Hashtable<String,Airport> aptTable = null;
 	Hashtable<String,NAV> navIndex = null;
 	
 	public static void main(String args[]) {
@@ -46,6 +49,9 @@ public class FAAImporter extends JFrame {
 		super();
 		initComponents();
 		setVisible(true);
+		BufferedReader reader;
+		String line;
+		String text;
 		
 		try {
 			faaZipFile = getFAAFile();
@@ -54,83 +60,136 @@ public class FAAImporter extends JFrame {
 			cpProgress.println("Creating the FAAFiles directory");
 			File faaFiles = new File("FAAFiles");
 			faaFiles.mkdirs();
+			
 			cpProgress.print("Expanding the APT.txt file ");
 			File aptFile = zob.extractFile(zob.getEntry("APT.txt"), faaFiles);
 			cpProgress.println(aptFile.getAbsolutePath());
+			
 			cpProgress.print("Expanding the NAV.txt file ");
 			File navFile = zob.extractFile(zob.getEntry("NAV.txt"), faaFiles);
 			cpProgress.println(navFile.getAbsolutePath());
+			
+			cpProgress.print("Expanding the TWR.txt file ");
+			File twrFile = zob.extractFile(zob.getEntry("TWR.txt"), faaFiles);
+			cpProgress.println(twrFile.getAbsolutePath());
+			
+			cpProgress.print("Expanding the AWOS.txt file ");
+			File awosFile = zob.extractFile(zob.getEntry("AWOS.txt"), faaFiles);
+			cpProgress.println(awosFile.getAbsolutePath());
+			
 			cpProgress.print("Expanding the README.txt file ");
 			File readMe = zob.extractFile(zob.getEntry("README.txt"), faaFiles);
 			cpProgress.println(readMe.getAbsolutePath());
 
 			int count = 0;
 			aptIndex = new Hashtable<String,Airport>();
-			if (aptFile.exists()) {
-				cpProgress.println("Processing the APT.txt file");
-				BufferedReader reader = new BufferedReader(new FileReader(aptFile));
-				String line;
-				while ( (line = reader.readLine()) != null ) {
-					String type = line.substring(0,3);
-					String lineID = line.substring(3,14);
-					String base = line.substring(14,27);
-					if (type.equals("APT") &&
-						(base.startsWith("AIRPORT") || base.startsWith("SEAPLANE"))) {
-						Airport airport = new Airport(line);
-						aptIndex.put(lineID, airport);
-						footer.setMessage((++count)+": "+airport.id+" "+airport.state + " " + lineID);
-					}
-					else if (type.equals("RWY")) {
-						Runway runway = new Runway(line);
-						Airport airport = aptIndex.get(lineID);
-						if (airport != null) airport.add(runway);
-					}
+			aptTable = new Hashtable<String,Airport>();
+			cpProgress.println("Processing the APT.txt file");
+			reader = new BufferedReader(new FileReader(aptFile));
+			while ( (line = reader.readLine()) != null ) {
+				String type = line.substring(0,3);
+				String lineID = line.substring(3,14).trim();
+				String base = line.substring(14,27);
+				if (type.equals("APT") && (base.startsWith("AIRPORT") || base.startsWith("SEAPLANE"))) {
+					Airport airport = new Airport(line);
+					aptIndex.put(lineID, airport);
+					aptTable.put(airport.id, airport);
+					footer.setMessage((++count)+": "+airport.id+" "+airport.state + " " + lineID);
 				}
-				cpProgress.println(count + " airports found");
-				Airport[] airports = new Airport[aptIndex.size()];
-				airports = aptIndex.values().toArray(airports);
-				Arrays.sort(airports);
-				cpProgress.println("Writing the Airports.txt file");
-				String text = getAptText(airports, "AIR");
-				FileUtil.setText(airFile, text);
-				cpProgress.println("Writing the Seaports.txt file");
-				text = getAptText(airports, "SEA");
-				FileUtil.setText(seaFile, text);
-				cpProgress.println("Writing the Airports.xml file");
-				Document doc = getXML(airports);
-				text = XmlUtil.toPrettyString(doc);
-				text = text.replace("    ", " ");
-				FileUtil.setText(xmlFile, text);
+				else if (type.equals("RWY")) {
+					Runway runway = new Runway(line);
+					Airport airport = aptIndex.get(lineID);
+					if (airport != null) airport.add(runway);
+				}
 			}
-			else footer.setMessage("File "+aptFile+" not found.");
+			reader.close();
 
-			count = 0;
-			navIndex = new Hashtable<String,NAV>();
-			if (navFile.exists()) {
-				cpProgress.println("Processing the NAV.txt file");
-				BufferedReader reader = new BufferedReader(new FileReader(navFile));
-				String line;
-				while ( (line = reader.readLine()) != null ) {
-					if (line.startsWith("NAV1")) {
-						NAV nav = new NAV(line);
-						if (!nav.status.startsWith("DECOMMISSIONED")) {
-							navIndex.put(nav.id, nav);
-							footer.setMessage((++count)+": "+nav.id+" "+nav.state);
+			//Get the frequencies
+			reader = new BufferedReader(new FileReader(twrFile));
+			cpProgress.println("Processing the TWR.txt file");
+			while ( (line = reader.readLine()) != null ) {
+				int len = line.length();
+				if (len > 8) {
+					String type = line.substring(0,4);
+					String id = line.substring(4,8).trim();
+					if (type.equals("TWR3")) {
+						Airport airport = aptTable.get(id);
+						if (airport != null) {
+							for (int k=8; (k+94<len) && (k<854); k+=94) {
+								String freq = line.substring(k, k+44).trim();
+								String use = line.substring(k+44, k+94).trim();
+								if (!freq.equals("") && !use.equals("") && freq.startsWith("1")) airport.add(new Freq(freq, use));
+							}
 						}
 					}
 				}
-				cpProgress.println(count + " navaids found");
-				NAV[] navs = new NAV[navIndex.size()];
-				navs = navIndex.values().toArray(navs);
-				Arrays.sort(navs);
-				cpProgress.println("Writing the NDBs.txt file");
-				String text = getNavText(navs, "NDB");
-				FileUtil.setText(ndbFile, text);
-				cpProgress.println("Writing the VORs.txt file");
-				text = getNavText(navs, "VO");
-				FileUtil.setText(vorFile, text);
 			}
-			else footer.setMessage("File "+navFile+" not found.");
+			reader.close();
+			
+			//Get the AWOS frequencies
+			reader = new BufferedReader(new FileReader(awosFile));
+			cpProgress.println("Processing the AWOS.txt file");
+			while ( (line = reader.readLine()) != null ) {
+				int len = line.length();
+				if (len > 112) {
+					String rec = line.substring(0,5);
+					if (rec.equals("AWOS1")) {
+						String sts = line.substring(19,20);
+						if (sts.equals("Y")) {
+							String type = line.substring(9,19).trim();
+							String freq = line.substring(68,75).trim();
+							String id = line.substring(110,121).trim();
+							Airport airport = aptIndex.get(id);
+							if (!freq.equals("") && (airport != null)) {
+								airport.add(new Freq(freq, type));
+							}
+						}
+					}
+				}
+			}
+			reader.close();
+			
+			cpProgress.println(count + " airports found");
+			Airport[] airports = new Airport[aptTable.size()];
+			airports = aptTable.values().toArray(airports);
+			Arrays.sort(airports);
+			cpProgress.println("Writing the Airports.txt file");
+			text = getAptText(airports, "AIR");
+			FileUtil.setText(airFile, text);
+			cpProgress.println("Writing the Seaports.txt file");
+			text = getAptText(airports, "SEA");
+			FileUtil.setText(seaFile, text);
+			cpProgress.println("Writing the Airports.xml file");
+			Document doc = getXML(airports);
+			text = XmlUtil.toPrettyString(doc);
+			text = text.replace("    ", " ");
+			FileUtil.setText(xmlFile, text);
+
+			count = 0;
+			navIndex = new Hashtable<String,NAV>();
+			cpProgress.println("Processing the NAV.txt file");
+			reader = new BufferedReader(new FileReader(navFile));
+			while ( (line = reader.readLine()) != null ) {
+				if (line.startsWith("NAV1")) {
+					NAV nav = new NAV(line);
+					if (!nav.status.startsWith("DECOMMISSIONED")) {
+						navIndex.put(nav.id, nav);
+						footer.setMessage((++count)+": "+nav.id+" "+nav.state);
+					}
+				}
+			}
+			reader.close();
+			
+			cpProgress.println(count + " navaids found");
+			NAV[] navs = new NAV[navIndex.size()];
+			navs = navIndex.values().toArray(navs);
+			Arrays.sort(navs);
+			cpProgress.println("Writing the NDBs.txt file");
+			text = getNavText(navs, "NDB");
+			FileUtil.setText(ndbFile, text);
+			cpProgress.println("Writing the VORs.txt file");
+			text = getNavText(navs, "VO");
+			FileUtil.setText(vorFile, text);
 			cpProgress.println("\nDone.");
 		}
 		catch (Exception ex) {
@@ -197,6 +256,7 @@ public class FAAImporter extends JFrame {
 		String lon = "lon";
 		String elev = "elev";
 		String var = "var";
+		LinkedList<Freq> freqs;
 		
 		public Airport(String line) {
 			type = line.substring(14,17);
@@ -210,13 +270,28 @@ public class FAAImporter extends JFrame {
 			lon = getLon(line.substring(550, 565));
 			var = line.substring(586,589).trim();
 			if (var.startsWith("0")) var = var.substring(1);
+			if (var.endsWith("W")) {
+				var = "-" + var.substring(0, var.length()-1).trim();
+			}
+			else if (var.endsWith("E")) {
+				var = var.substring(0, var.length()-1).trim();
+			}
 			runways = new LinkedList<Runway>();
+			freqs = new LinkedList<Freq>();
+			String unicom = line.substring(981, 988).trim();
+			add(new Freq(unicom, "UNICOM"));
+			String ctaf = line.substring(988, 995).trim();
+			add(new Freq(ctaf, "CTAF"));
 		}
 		
 		public void add(Runway runway) {
 			if (!runway.length.equals("0") && !runway.id.endsWith("X")) {
 				runways.add(runway);
 			}
+		}
+		
+		public void add(Freq freq) {
+			if (!freq.freq.equals("")) freqs.add(freq);
 		}
 		
 		public int compareTo(Airport a) {
@@ -231,13 +306,19 @@ public class FAAImporter extends JFrame {
 			sb.append(state + "|");
 			sb.append(lat + "," + lon + "|");
 			sb.append(elev + "|");
-			StringBuffer rwys = new StringBuffer();
+			StringBuffer rwySB = new StringBuffer();
 			for (Runway runway : runways) {
-				if (rwys.length() > 0) rwys.append(";");
-				rwys.append(runway.toString());
+				if (rwySB.length() > 0) rwySB.append(";");
+				rwySB.append(runway.toString());
 			}
-			sb.append(rwys.toString() + "|");
-			sb.append(var);
+			sb.append(rwySB.toString() + "|");
+			sb.append(var + "|");
+			StringBuffer freqSB = new StringBuffer();
+			for (Freq freq : freqs) {
+				if (freqSB.length() > 0) freqSB.append(";");
+				freqSB.append(freq.toString());
+			}
+			sb.append(freqSB.toString());
 			sb.append("\n");
 			return sb.toString();
 		}
@@ -280,7 +361,21 @@ public class FAAImporter extends JFrame {
 		}
 		
 		public String toString() {
-			return id + ":" + length + "x" + width + "," + type;
+			return id + ": " + length + "x" + width + ", " + type;
+		}
+	}
+
+	class Freq {
+		String freq;
+		String use;
+		
+		public Freq(String freq, String use) {
+			this.freq = freq;
+			this.use = use;
+		}
+		
+		public String toString() {
+			return freq + " - " + use;
 		}
 	}
 	
@@ -308,6 +403,12 @@ public class FAAImporter extends JFrame {
 			lon = getLon(line.substring(396, 410));
 			var = line.substring(481,484).trim();
 			if (var.startsWith("0")) var = var.substring(1);
+			if (var.endsWith("W")) {
+				var = "-" + var.substring(0, var.length()-1).trim();
+			}
+			else if (var.endsWith("E")) {
+				var = var.substring(0, var.length()-1).trim();
+			}
 		}
 		
 		public int compareTo(NAV n) {
