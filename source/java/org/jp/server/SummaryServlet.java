@@ -122,7 +122,14 @@ public class SummaryServlet extends Servlet {
 				sc.earliestDate = oneYearAgo();
 				root.appendChild(search(root, "Last 12 Months", sc));
 				
-				Document xsl = XmlUtil.getDocument( Cache.getInstance().getFile("SummaryServlet.xsl" ) );
+				Document xsl;
+				if (req.hasParameter("insurance")) {
+					xsl = XmlUtil.getDocument( Cache.getInstance().getFile("InsuranceSummary.xsl" ) );
+				}
+				else {
+					xsl = XmlUtil.getDocument( Cache.getInstance().getFile("SummaryServlet.xsl" ) );
+				}
+					
 				res.write( XmlUtil.getTransformedText(doc, xsl, null) );
 				res.disableCaching();
 				res.setContentType("html");
