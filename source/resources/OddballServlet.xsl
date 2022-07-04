@@ -65,6 +65,7 @@
 <xsl:template name="ColumnHeadings">
 	<tr>
 		<th/>
+		<th>ID</th>
 		<th>Date</th>
 		<th>A/C ID</th>
 		<th>Route</th>
@@ -91,6 +92,11 @@
 			<xsl:if test="not(@notes)">
 				<xsl:value-of select="position()"/>
 			</xsl:if>
+		</td>
+		<td>
+			<a href="/addflight?id={@id}">
+				<xsl:value-of select="@id"/>
+			</a>
 		</td>
 		<td>
 			<a href="/addflight?id={@id}">

@@ -68,7 +68,7 @@ public class OddballServlet extends Servlet {
 					double dayTime = flight.tday.doubleValue();
 					double picTime = flight.pic.doubleValue();
 					double xcTime = flight.txc.doubleValue();
-					if ((dayTime > totalTime) || (picTime > totalTime) || 
+					if (flight.date.trim().equals("") || (dayTime > totalTime) || (picTime > totalTime) || 
 							(flight.txc.isZero() && flight.isXC())) {
 						root.appendChild(flight.getElement(root));
 					}
