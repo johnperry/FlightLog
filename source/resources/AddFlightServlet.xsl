@@ -162,11 +162,25 @@
 <xsl:template name="makeImageElement">
 	<xsl:param name="name"/>
 	<xsl:if test="$name != ''">
-		<p>
-			<img src="/images/{$name}" title="{$name}"/>
-			<xsl:text> </xsl:text>
-			<a href="javascript:deleteImage('{Flight/@id}','{$name}');"><img src="/icons/closebox.gif"/></a>
-		</p>
+		<xsl:variable name="lc" select="translate($name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
+		<xsl:variable name="ext" select="substring($lc, string-length($lc) - 3)"/>
+		<!--<p><xsl:value-of select="$lc"/> - <xsl:value-of select="$ext"/></p>-->
+		<xsl:choose>
+			<xsl:when test="$ext='.pdf'">
+				<p>
+					<a href="/images/{$name}" target="_blank" title="{$name}">PDF document</a>
+					<xsl:text> </xsl:text>
+					<a href="javascript:deleteImage('{Flight/@id}','{$name}');"><img src="/icons/closebox.gif"/></a>
+				</p>
+			</xsl:when>
+			<xsl:otherwise>
+				<p>
+					<img src="/images/{$name}" title="{$name}"/>
+					<xsl:text> </xsl:text>
+					<a href="javascript:deleteImage('{Flight/@id}','{$name}');"><img src="/icons/closebox.gif"/></a>
+				</p>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:if>
 </xsl:template>
 
