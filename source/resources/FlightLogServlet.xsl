@@ -61,7 +61,7 @@
 				<div class="L2"><a href="javascript:loadFrame('/search?recent')">Recent flights</a></div>
 				<div class="L2"><a href="javascript:loadFrame('/oddballs')">Find oddballs</a></div>				
 				<div class="L2"><a href="javascript:loadFrame('/listimages')">List images</a></div>				
-				<div class="L2"><a href="javascript:loadFrame('/summary?insurance')">Insurance Form</a></div>				
+				<div class="L2"><a href="javascript:loadFrame('/summary?insurance')">Insurance</a></div>				
 				<div class="L2"><a href="javascript:loadFrame('/summary')">Summary</a></div>				
 
 				<div class="L1">Flights</div>
